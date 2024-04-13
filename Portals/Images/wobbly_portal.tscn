@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjv34e88k18ve"]
+
+[ext_resource type="PackedScene" uid="uid://2k5s1yijafew" path="res://Portals/Images/portal_edge.tscn" id="1_l3yhl"]
+
+[node name="WobblyPortal" type="Node2D"]
+
+[node name="Portal" parent="." instance=ExtResource("1_l3yhl")]
+
+[node name="Portal2" parent="Portal" instance=ExtResource("1_l3yhl")]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+show_behind_parent = true
+scale = Vector2(0.895, 0.895)
+RotationSpeed = 4.5
+
+[node name="Portal3" parent="Portal/Portal2" instance=ExtResource("1_l3yhl")]
+self_modulate = Color(0.784314, 0.784314, 0.784314, 1)
+show_behind_parent = true
+scale = Vector2(0.895, 0.895)
+RotationSpeed = 4.0

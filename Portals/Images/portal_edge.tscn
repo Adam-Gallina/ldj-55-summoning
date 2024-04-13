@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://2k5s1yijafew"]
+
+[ext_resource type="Texture2D" uid="uid://d2vyjyoanc1gb" path="res://Portals/Images/Portal_Wobbly.png" id="1_2io1f"]
+[ext_resource type="Script" path="res://Portals/Images/PortalWobble.gd" id="2_bjic5"]
+
+[node name="Portal" type="Sprite2D"]
+scale = Vector2(0.775, 0.775)
+texture = ExtResource("1_2io1f")
+script = ExtResource("2_bjic5")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgxlvkuixln4c"]
+
+[ext_resource type="PackedScene" uid="uid://bjv34e88k18ve" path="res://Portals/Images/wobbly_portal.tscn" id="1_piyjm"]
+[ext_resource type="Script" path="res://Portals/InputPortal.gd" id="1_x424r"]
+
+[node name="InputPortal" type="Node2D"]
+script = ExtResource("1_x424r")
+
+[node name="WobblyPortal" parent="." instance=ExtResource("1_piyjm")]
+modulate = Color(1, 0.505882, 0.976471, 1)
