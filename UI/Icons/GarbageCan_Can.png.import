@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rdjckemmdqcs"
-path="res://.godot/imported/Cheese.png-a3225f143df08340346d05c162257599.ctex"
+uid="uid://bhi6ak5ptdjsi"
+path="res://.godot/imported/GarbageCan_Can.png-2a4969dd70371115024443b1e1c24539.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/Summons/Cheese.png"
-dest_files=["res://.godot/imported/Cheese.png-a3225f143df08340346d05c162257599.ctex"]
+source_file="res://UI/Icons/GarbageCan_Can.png"
+dest_files=["res://.godot/imported/GarbageCan_Can.png-2a4969dd70371115024443b1e1c24539.ctex"]
 
 [params]
 

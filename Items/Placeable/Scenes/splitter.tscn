@@ -1,17 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://vj7f4wk02auv"]
+[gd_scene load_steps=4 format=3 uid="uid://cmqohvuocd8es"]
 
-[ext_resource type="Script" path="res://Items/Placeable/destroy.gd" id="1_3ppcp"]
-[ext_resource type="Texture2D" uid="uid://cset64ha1ps0i" path="res://Items/Placeable/Boom.png" id="2_r3n0b"]
+[ext_resource type="Script" path="res://Items/Placeable/splitter.gd" id="1_m2rjv"]
+[ext_resource type="Texture2D" uid="uid://cdxgo4lcpeg7u" path="res://Items/Placeable/Splitter.png" id="2_xyax3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_87scr"]
 size = Vector2(200, 200)
 
-[node name="Destroy" type="Node2D"]
-script = ExtResource("1_3ppcp")
+[node name="Splitter" type="Node2D"]
+script = ExtResource("1_m2rjv")
+ObjType = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_r3n0b")
-offset = Vector2(-4.075, -8.7)
+texture = ExtResource("2_xyax3")
 
 [node name="Area2D" type="Area2D" parent="."]
 

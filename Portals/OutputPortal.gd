@@ -1,4 +1,5 @@
 extends GridObject
 
 func summon_interact(summon : SummonObject):
-    summon.queue_free()
+    summon.despawn()
+    ScoreBoard.add_point()

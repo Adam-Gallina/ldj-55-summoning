@@ -12,7 +12,7 @@ func _ready():
 func _on_tick():
 	_next_summon -= 1
 
-	if _next_summon <= 0:
+	if SummonRate > 0 and _next_summon <= 0:
 		var o = SummonedObject.instantiate()
 		get_parent().add_child(o)
 		o.position = position

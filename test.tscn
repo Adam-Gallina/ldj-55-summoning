@@ -1,12 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bww6q61tdxd0i"]
+[gd_scene load_steps=7 format=3 uid="uid://bww6q61tdxd0i"]
 
+[ext_resource type="PackedScene" uid="uid://b756ltngpqunc" path="res://Environment/background.tscn" id="1_1fwmo"]
+[ext_resource type="PackedScene" uid="uid://bb5gordg8g48g" path="res://UI/game_ui.tscn" id="1_bmbmm"]
 [ext_resource type="PackedScene" uid="uid://bgxlvkuixln4c" path="res://Portals/InputPortal.tscn" id="1_rcvpn"]
-[ext_resource type="PackedScene" uid="uid://d3plnc1auau04" path="res://Items/Placeable/elbow_pipe.tscn" id="1_w4rft"]
 [ext_resource type="PackedScene" uid="uid://cfo1lncpv4l60" path="res://Items/Summons/Cheese.tscn" id="2_dh1jd"]
 [ext_resource type="PackedScene" uid="uid://cuj2dyvmh6pco" path="res://Portals/OutputPortal.tscn" id="3_okjl1"]
-[ext_resource type="PackedScene" uid="uid://d0ugtktuhfhyl" path="res://Items/Placeable/delay.tscn" id="5_j7lpg"]
-[ext_resource type="PackedScene" uid="uid://vj7f4wk02auv" path="res://Items/Placeable/destroy.tscn" id="6_r6n6c"]
-[ext_resource type="PackedScene" uid="uid://cmqohvuocd8es" path="res://Items/Placeable/splitter.tscn" id="7_3t8hx"]
 
 [sub_resource type="GDScript" id="GDScript_ks72o"]
 script/source = "extends Node2D
@@ -38,6 +36,10 @@ func _ready():
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
 
+[node name="GameUI" parent="." instance=ExtResource("1_bmbmm")]
+
+[node name="Background" parent="." instance=ExtResource("1_1fwmo")]
+
 [node name="Test" type="Node2D" parent="."]
 script = SubResource("GDScript_ks72o")
 
@@ -61,18 +63,3 @@ SummonedObject = ExtResource("2_dh1jd")
 
 [node name="OutputPortal" parent="Test" instance=ExtResource("3_okjl1")]
 position = Vector2(-599, -427)
-
-[node name="ElbowPipe" parent="." instance=ExtResource("1_w4rft")]
-position = Vector2(1009, 390)
-
-[node name="ElbowPipe2" parent="." instance=ExtResource("1_w4rft")]
-position = Vector2(729, 388)
-
-[node name="Delay" parent="." instance=ExtResource("5_j7lpg")]
-position = Vector2(-212, -98)
-
-[node name="Destroy" parent="." instance=ExtResource("6_r6n6c")]
-position = Vector2(-381, 141)
-
-[node name="Splitter" parent="." instance=ExtResource("7_3t8hx")]
-position = Vector2(-683, 441)

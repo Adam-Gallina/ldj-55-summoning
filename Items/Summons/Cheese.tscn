@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfo1lncpv4l60"]
+[gd_scene load_steps=6 format=3 uid="uid://cfo1lncpv4l60"]
 
 [ext_resource type="Script" path="res://Items/Summons/SummonObject.gd" id="1_1ujdv"]
-[ext_resource type="Texture2D" uid="uid://rdjckemmdqcs" path="res://Items/Summons/Cheese.png" id="1_e8q6v"]
+[ext_resource type="Texture2D" uid="uid://rdjckemmdqcs" path="res://Items/Summons/Images/Cheese.png" id="1_e8q6v"]
+[ext_resource type="Script" path="res://Items/Summons/summon_particles.gd" id="3_rpaav"]
+
+[sub_resource type="Curve" id="Curve_eabxj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.64066, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_echsq"]
+colors = PackedColorArray(1, 0.784314, 0, 1, 1, 1, 0, 1)
 
 [node name="Cheese" type="Node2D"]
 script = ExtResource("1_1ujdv")
@@ -10,3 +18,24 @@ script = ExtResource("1_1ujdv")
 scale = Vector2(1.01, 1.01)
 texture = ExtResource("1_e8q6v")
 offset = Vector2(17.965, 19.605)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -10
+emitting = false
+amount = 15
+lifetime = 5.0
+randomness = 0.51
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 55.0
+initial_velocity_max = 75.0
+angular_velocity_min = -14.54
+angular_velocity_max = 14.55
+linear_accel_min = -100.0
+linear_accel_max = -84.85
+angle_max = 360.0
+scale_amount_min = 8.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_eabxj")
+color_ramp = SubResource("Gradient_echsq")
+script = ExtResource("3_rpaav")

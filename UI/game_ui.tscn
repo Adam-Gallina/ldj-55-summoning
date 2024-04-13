@@ -1,0 +1,195 @@
+[gd_scene load_steps=20 format=3 uid="uid://bb5gordg8g48g"]
+
+[ext_resource type="Texture2D" uid="uid://csllc4ya03qby" path="res://UI/Icons/sharp_pause_white_48dp.png" id="1_cgm83"]
+[ext_resource type="Script" path="res://UI/game_ui.gd" id="1_y53i7"]
+[ext_resource type="PackedScene" uid="uid://d3plnc1auau04" path="res://Items/Placeable/Scenes/elbow_pipe.tscn" id="2_4mokc"]
+[ext_resource type="Texture2D" uid="uid://bo4lhh1tsi02x" path="res://UI/Icons/sharp_play_arrow_white_48dp.png" id="2_v3058"]
+[ext_resource type="Texture2D" uid="uid://k0bj2mrlgou" path="res://UI/Icons/sharp_fast_forward_white_48dp.png" id="3_iqmpw"]
+[ext_resource type="PackedScene" uid="uid://cmqohvuocd8es" path="res://Items/Placeable/Scenes/splitter.tscn" id="3_mkgc3"]
+[ext_resource type="PackedScene" uid="uid://dixxthcbkd4gg" path="res://Items/Placeable/Scenes/launcher.tscn" id="4_pqaxj"]
+[ext_resource type="PackedScene" uid="uid://d0ugtktuhfhyl" path="res://Items/Placeable/Scenes/delay.tscn" id="5_3imsr"]
+[ext_resource type="Texture2D" uid="uid://b7hpu8nmm024x" path="res://Items/Placeable/ElbowPipe.png" id="5_s4tat"]
+[ext_resource type="Texture2D" uid="uid://cdxgo4lcpeg7u" path="res://Items/Placeable/Splitter.png" id="6_hlf7n"]
+[ext_resource type="PackedScene" uid="uid://vj7f4wk02auv" path="res://Items/Placeable/Scenes/destroy.tscn" id="6_ljt71"]
+[ext_resource type="PackedScene" uid="uid://2ounmfs7tk1w" path="res://Items/Placeable/Scenes/teleport.tscn" id="7_5f214"]
+[ext_resource type="Texture2D" uid="uid://s2e26kigqt2s" path="res://Items/Placeable/Launcher.png" id="7_iypf3"]
+[ext_resource type="Texture2D" uid="uid://6l2v6r0okp1q" path="res://Items/Placeable/Delay.png" id="8_xpgeu"]
+[ext_resource type="Texture2D" uid="uid://cset64ha1ps0i" path="res://Items/Placeable/Boom.png" id="9_f50qo"]
+[ext_resource type="Texture2D" uid="uid://d2vyjyoanc1gb" path="res://Portals/Images/Portal_Wobbly.png" id="10_ueo1c"]
+[ext_resource type="Texture2D" uid="uid://bhi6ak5ptdjsi" path="res://UI/Icons/GarbageCan_Can.png" id="17_knlt1"]
+[ext_resource type="Texture2D" uid="uid://dyqper5ah6k5j" path="res://UI/Icons/GarbageCan_Lid.png" id="18_ao73h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1b0tl"]
+font_size = 30
+
+[node name="GameUI" type="CanvasLayer"]
+script = ExtResource("1_y53i7")
+BtnSelectedCol = Color(1, 1, 1, 1)
+BtnDefaultCol = Color(0.431373, 0.431373, 0.431373, 1)
+RerouteScene = ExtResource("2_4mokc")
+SplitterScene = ExtResource("3_mkgc3")
+LaunchScene = ExtResource("4_pqaxj")
+DelayScene = ExtResource("5_3imsr")
+DestroyScene = ExtResource("6_ljt71")
+TeleportScene = ExtResource("7_5f214")
+
+[node name="SpeedControls" type="HBoxContainer" parent="."]
+offset_right = 320.0
+offset_bottom = 104.0
+scale = Vector2(0.5, 0.5)
+
+[node name="PauseBtn" type="Button" parent="SpeedControls"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("1_cgm83")
+flat = true
+
+[node name="PlayBtn" type="Button" parent="SpeedControls"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("2_v3058")
+flat = true
+
+[node name="FastForwardBtn" type="Button" parent="SpeedControls"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("3_iqmpw")
+flat = true
+
+[node name="Items" type="HBoxContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -331.0
+offset_top = -132.0
+offset_right = 993.0
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+
+[node name="RerouteBtn" type="Button" parent="Items"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("5_s4tat")
+flat = true
+
+[node name="SplitterBtn" type="Button" parent="Items"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("6_hlf7n")
+flat = true
+
+[node name="LaunchBtn" type="Button" parent="Items"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("7_iypf3")
+flat = true
+
+[node name="DelayBtn" type="Button" parent="Items"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("8_xpgeu")
+flat = true
+
+[node name="DestroyBtn" type="Button" parent="Items"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("9_f50qo")
+flat = true
+
+[node name="TeleportBtn" type="Button" parent="Items"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("10_ueo1c")
+flat = true
+
+[node name="TrashBtn" type="Button" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -172.0
+offset_top = -127.0
+grow_horizontal = 0
+grow_vertical = 0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+flat = true
+
+[node name="Can" type="TextureRect" parent="TrashBtn"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -93.0
+offset_top = -57.5
+offset_right = 107.0
+offset_bottom = 78.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.136136
+scale = Vector2(0.78, 1.116)
+texture = ExtResource("17_knlt1")
+
+[node name="Lid" type="TextureRect" parent="TrashBtn/Can"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.754
+offset_top = -75.5521
+offset_right = 87.2458
+offset_bottom = -11.5521
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.115, 0.865)
+texture = ExtResource("18_ao73h")
+
+[node name="ScoreLabel" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "1234"
+label_settings = SubResource("LabelSettings_1b0tl")
+horizontal_alignment = 2
+
+[connection signal="pressed" from="SpeedControls/PauseBtn" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="SpeedControls/PlayBtn" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="SpeedControls/FastForwardBtn" to="." method="_on_fast_forward_pressed"]
+[connection signal="pressed" from="Items/RerouteBtn" to="." method="_on_spawn_pressed" binds= [1]]
+[connection signal="pressed" from="Items/SplitterBtn" to="." method="_on_spawn_pressed" binds= [2]]
+[connection signal="pressed" from="Items/LaunchBtn" to="." method="_on_spawn_pressed" binds= [3]]
+[connection signal="pressed" from="Items/DelayBtn" to="." method="_on_spawn_pressed" binds= [4]]
+[connection signal="pressed" from="Items/DestroyBtn" to="." method="_on_spawn_pressed" binds= [5]]
+[connection signal="pressed" from="Items/TeleportBtn" to="." method="_on_spawn_pressed" binds= [6]]
+[connection signal="pressed" from="TrashBtn" to="." method="_on_trash_btn_pressed"]
