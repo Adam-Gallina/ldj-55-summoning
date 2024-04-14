@@ -1,6 +1,6 @@
 extends Node2D
 
-signal step(delta : float)
+signal step(delta : float, to_next_tick : float)
 signal tick()
 
 const GridSize : int = 200
@@ -11,11 +11,26 @@ var Paused = false
 var FastForward = false
 const FastForwardSpeed : float = 2
 
-const MinGrid : Vector2i = Vector2i(-6, -3)
-const MaxGrid : Vector2i = Vector2i(6, 3)
+var MinGrid : Vector2i = Vector2i(-5, -3)
+var MaxGrid : Vector2i = Vector2i(5, 3)
 
 var _curr_contained = {}
 var _curr_hovered = {}
+
+func update_grid_width(new_width : int):
+	var x = float(new_width - 1) / 2
+	var y = x - 2
+
+	MinGrid = Vector2i(-int(x), -int(y))
+	MaxGrid = Vector2i(int(x), int(y))
+
+func update_grid_height(new_height : int):
+	var y = float(new_height - 1) / 2
+	var x = y + 2
+
+	MinGrid = Vector2i(-int(x), -int(y))
+	MaxGrid = Vector2i(int(x), int(y))
+
 
 func closest_grid_space(world_pos : Vector2) -> Vector2i:
 	var x = int(world_pos.x + GridSize / 2 * sign(world_pos.x)) / GridSize
@@ -30,7 +45,9 @@ func to_world_pos(grid_pos : Vector2i):
 	return grid_pos * GridSize
 
 func pos_contents(grid_pos : Vector2i) -> GridObject:
-	return _curr_contained.get(grid_pos)
+	if is_instance_valid(_curr_contained.get(grid_pos)):
+		return _curr_contained.get(grid_pos)
+	return null
 
 func insert(grid_pos : Vector2i, obj : GridObject):
 	_curr_contained[grid_pos] = obj
@@ -64,14 +81,13 @@ func toggle_fast_forward():
 func _process(delta):
 	if Paused: return
 
-	step.emit(delta)
-
 	_next_tick -= delta if not FastForward else (delta * FastForwardSpeed)
+	step.emit(delta if not FastForward else (delta * FastForwardSpeed), _next_tick)
+
 	if _next_tick <= 0:
 		tick.emit()
 		_next_tick = TickSpeed
 
 
 func calc_move_speed():
-	if FastForward: return GridSize / TickSpeed * FastForwardSpeed
 	return GridSize / TickSpeed

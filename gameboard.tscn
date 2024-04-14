@@ -1,13 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://dg4uibj36f87o"]
+[gd_scene load_steps=5 format=3 uid="uid://dg4uibj36f87o"]
 
+[ext_resource type="Script" path="res://game_controller.gd" id="1_8wjyj"]
 [ext_resource type="PackedScene" uid="uid://bb5gordg8g48g" path="res://UI/game_ui.tscn" id="1_ae2r3"]
 [ext_resource type="PackedScene" uid="uid://b756ltngpqunc" path="res://Environment/background.tscn" id="2_8ox67"]
+[ext_resource type="PackedScene" uid="uid://cjxqlwuy8jr7o" path="res://PortalSpawner.tscn" id="2_37b1e"]
 
 [node name="Gameboard" type="Node2D"]
+script = ExtResource("1_8wjyj")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
-
-[node name="GameUI" parent="." instance=ExtResource("1_ae2r3")]
 
 [node name="Background" parent="." instance=ExtResource("2_8ox67")]
+
+[node name="PortalSpawner" parent="." instance=ExtResource("2_37b1e")]
+
+[node name="GameUI" parent="PortalSpawner" instance=ExtResource("1_ae2r3")]

@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwwfvrn3rydek"]
+
+[ext_resource type="Script" path="res://Items/Summons/SummonObject.gd" id="1_r4hw4"]
+[ext_resource type="Texture2D" uid="uid://dg2wd0m8xhdx1" path="res://Items/Summons/Images/Dice.png" id="2_8esex"]
+[ext_resource type="Script" path="res://Items/Summons/summon_particles.gd" id="3_aanah"]
+
+[sub_resource type="Curve" id="Curve_eabxj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.64066, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_echsq"]
+colors = PackedColorArray(0.554309, 0.000102521, 0.0549143, 1, 1, 0, 0.0772576, 1)
+
+[node name="Dice" type="Node2D"]
+script = ExtResource("1_r4hw4")
+ObjectNum = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_8esex")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -10
+emitting = false
+amount = 25
+lifetime = 5.0
+randomness = 0.51
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 55.0
+initial_velocity_max = 75.0
+angular_velocity_min = -14.54
+angular_velocity_max = 14.55
+linear_accel_min = -100.0
+linear_accel_max = -84.85
+angle_max = 360.0
+scale_amount_min = 8.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_eabxj")
+color_ramp = SubResource("Gradient_echsq")
+script = ExtResource("3_aanah")

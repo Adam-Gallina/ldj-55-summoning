@@ -1,0 +1,26 @@
+[gd_scene load_steps=17 format=3 uid="uid://cjxqlwuy8jr7o"]
+
+[ext_resource type="Script" path="res://PortalSpawner.gd" id="1_0ihs0"]
+[ext_resource type="PackedScene" uid="uid://bgxlvkuixln4c" path="res://Portals/InputPortal.tscn" id="2_5bxjf"]
+[ext_resource type="PackedScene" uid="uid://bx5mg26d7wtro" path="res://Portals/Images/round_portal.tscn" id="2_ajku4"]
+[ext_resource type="PackedScene" uid="uid://bjv34e88k18ve" path="res://Portals/Images/wobbly_portal.tscn" id="3_8rah1"]
+[ext_resource type="PackedScene" uid="uid://cuj2dyvmh6pco" path="res://Portals/OutputPortal.tscn" id="3_c8xh3"]
+[ext_resource type="PackedScene" uid="uid://beimtnv7pt5i1" path="res://Portals/Images/spiky_portal.tscn" id="4_2fewi"]
+[ext_resource type="PackedScene" uid="uid://cfo1lncpv4l60" path="res://Items/Summons/Scenes/Cheese.tscn" id="7_121yw"]
+[ext_resource type="PackedScene" uid="uid://3rh0bky0io2b" path="res://Items/Summons/Scenes/Icon.tscn" id="8_1muwt"]
+[ext_resource type="PackedScene" uid="uid://cpp8dlpvhjqg2" path="res://Items/Summons/Scenes/Bone.tscn" id="9_4jtly"]
+[ext_resource type="PackedScene" uid="uid://lfqlxlmsup58" path="res://Items/Summons/Scenes/Chicken.tscn" id="10_b4lsl"]
+[ext_resource type="PackedScene" uid="uid://b5jdpjejg5tq" path="res://Items/Summons/Scenes/Crystal.tscn" id="11_jyroy"]
+[ext_resource type="PackedScene" uid="uid://bwwfvrn3rydek" path="res://Items/Summons/Scenes/Dice.tscn" id="12_ag3fd"]
+[ext_resource type="PackedScene" uid="uid://c8q170fnnyknr" path="res://Items/Summons/Scenes/Flowers.tscn" id="13_k1fkg"]
+[ext_resource type="PackedScene" uid="uid://by0l6ai4rb0mm" path="res://Items/Summons/Scenes/Orb.tscn" id="14_ogepb"]
+[ext_resource type="PackedScene" uid="uid://c3t2vapcolyx3" path="res://Items/Summons/Scenes/Potion.tscn" id="15_n663p"]
+[ext_resource type="PackedScene" uid="uid://bufwhem4acqw5" path="res://Items/Summons/Scenes/Wrench.tscn" id="16_qgri8"]
+
+[node name="PortalSpawner" type="Node2D"]
+script = ExtResource("1_0ihs0")
+PortalInputScene = ExtResource("2_5bxjf")
+PortalOutputScene = ExtResource("3_c8xh3")
+PortalImages = Array[PackedScene]([ExtResource("2_ajku4"), ExtResource("3_8rah1"), ExtResource("4_2fewi")])
+PortalColors = Array[Color]([Color(0.407843, 0.85098, 1, 1), Color(0.482353, 0.921569, 0.478431, 1), Color(1, 0.988235, 0.415686, 1), Color(1, 0.435294, 0.435294, 1), Color(1, 0.780392, 0.419608, 1), Color(1, 0.52549, 0.890196, 1), Color(0.745098, 0.501961, 1, 1), Color(0.239216, 0.223529, 0.690196, 1), Color(0.701961, 0.478431, 0.14902, 1), Color(0.0745098, 0.478431, 0.0941176, 1)])
+PortalSummons = Array[PackedScene]([ExtResource("7_121yw"), ExtResource("8_1muwt"), ExtResource("9_4jtly"), ExtResource("10_b4lsl"), ExtResource("11_jyroy"), ExtResource("12_ag3fd"), ExtResource("13_k1fkg"), ExtResource("14_ogepb"), ExtResource("15_n663p"), ExtResource("16_qgri8")])

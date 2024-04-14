@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cfo1lncpv4l60"]
 
-[ext_resource type="Script" path="res://Items/Summons/SummonObject.gd" id="1_1ujdv"]
-[ext_resource type="Texture2D" uid="uid://rdjckemmdqcs" path="res://Items/Summons/Images/Cheese.png" id="1_e8q6v"]
-[ext_resource type="Script" path="res://Items/Summons/summon_particles.gd" id="3_rpaav"]
+[ext_resource type="Script" path="res://Items/Summons/SummonObject.gd" id="1_ict1b"]
+[ext_resource type="Texture2D" uid="uid://rdjckemmdqcs" path="res://Items/Summons/Images/Cheese.png" id="2_ea0g4"]
+[ext_resource type="Script" path="res://Items/Summons/summon_particles.gd" id="3_ft8gx"]
 
 [sub_resource type="Curve" id="Curve_eabxj"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.64066, 0.0, 0, 0]
@@ -12,17 +12,17 @@ point_count = 2
 colors = PackedColorArray(1, 0.784314, 0, 1, 1, 1, 0, 1)
 
 [node name="Cheese" type="Node2D"]
-script = ExtResource("1_1ujdv")
+script = ExtResource("1_ict1b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1.01, 1.01)
-texture = ExtResource("1_e8q6v")
+scale = Vector2(0.505, 0.505)
+texture = ExtResource("2_ea0g4")
 offset = Vector2(17.965, 19.605)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = -10
 emitting = false
-amount = 15
+amount = 25
 lifetime = 5.0
 randomness = 0.51
 spread = 180.0
@@ -38,4 +38,4 @@ scale_amount_min = 8.0
 scale_amount_max = 20.0
 scale_amount_curve = SubResource("Curve_eabxj")
 color_ramp = SubResource("Gradient_echsq")
-script = ExtResource("3_rpaav")
+script = ExtResource("3_ft8gx")

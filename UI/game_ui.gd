@@ -16,9 +16,15 @@ extends CanvasLayer
 
 var _curr_drag : GridObject = null
 
+@onready var _upgrade_select = $UpgradeSelect
 @onready var _score_text = get_node('%ScoreLabel')
 
+func _ready():
+    _upgrade_select.hide()
+
 func _process(_delta):
+    if _upgrade_select.visible: return
+    
     if Input.is_action_just_pressed("pause"):
         GridController.toggle_pause()
 
@@ -42,6 +48,13 @@ func _spawn_object(scene : PackedScene):
     obj.drag_end.connect(_on_object_drag_end)
 
     return obj
+
+
+func _show_upgrades():
+    _upgrade_select.show()
+
+func _hide_upgrades():
+    _upgrade_select.hide()
 
 
 func _on_pause_pressed():

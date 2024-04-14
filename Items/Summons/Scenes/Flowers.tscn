@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8q170fnnyknr"]
+
+[ext_resource type="Script" path="res://Items/Summons/SummonObject.gd" id="1_lsd5b"]
+[ext_resource type="Texture2D" uid="uid://dlrabwekiwhp3" path="res://Items/Summons/Images/Flowers.png" id="2_pae4c"]
+[ext_resource type="Script" path="res://Items/Summons/summon_particles.gd" id="3_io1gs"]
+
+[sub_resource type="Curve" id="Curve_eabxj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.64066, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_echsq"]
+colors = PackedColorArray(0.561098, 0.0259343, 0.499007, 1, 1, 0, 0.717647, 1)
+
+[node name="Flowers" type="Node2D"]
+script = ExtResource("1_lsd5b")
+ObjectNum = 9
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_pae4c")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -10
+emitting = false
+amount = 25
+lifetime = 5.0
+randomness = 0.51
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 55.0
+initial_velocity_max = 75.0
+angular_velocity_min = -14.54
+angular_velocity_max = 14.55
+linear_accel_min = -100.0
+linear_accel_max = -84.85
+angle_max = 360.0
+scale_amount_min = 8.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_eabxj")
+color_ramp = SubResource("Gradient_echsq")
+script = ExtResource("3_io1gs")

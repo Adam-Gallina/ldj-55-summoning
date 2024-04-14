@@ -1,12 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://2ounmfs7tk1w"]
+[gd_scene load_steps=9 format=3 uid="uid://2ounmfs7tk1w"]
 
 [ext_resource type="Script" path="res://Items/Placeable/TpInput.gd" id="1_oamaj"]
 [ext_resource type="Texture2D" uid="uid://djak53wmpt7ud" path="res://Portals/Images/Portal_Round.png" id="2_3sngd"]
 [ext_resource type="PackedScene" uid="uid://dyddeuof5401y" path="res://Items/Placeable/Scenes/teleport_output.tscn" id="2_lp31k"]
 [ext_resource type="PackedScene" uid="uid://bjv34e88k18ve" path="res://Portals/Images/wobbly_portal.tscn" id="3_oc27l"]
+[ext_resource type="Texture2D" uid="uid://c2fnplfmok8q3" path="res://Items/Placeable/VerticalLines.png" id="5_kyix8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_87scr"]
 size = Vector2(200, 200)
+
+[sub_resource type="Curve" id="Curve_8gwvg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.494737, 0.527472), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_cj7pv"]
+offsets = PackedFloat32Array(0, 0.293333, 0.686667, 1)
+colors = PackedColorArray(0.266667, 0.290196, 0.784314, 1, 0.266667, 0.290196, 0.784314, 1, 1, 0.54902, 0.337255, 1, 1, 0.54902, 0.337255, 1)
 
 [node name="TeleportInput" type="Node2D"]
 script = ExtResource("1_oamaj")
@@ -20,12 +29,26 @@ shape = SubResource("RectangleShape2D_87scr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(0.576471, 0.576471, 0.576471, 1)
+z_index = -10
 scale = Vector2(0.82, 0.82)
 texture = ExtResource("2_3sngd")
 offset = Vector2(-1.455, 0)
 
 [node name="WobblyPortal" parent="Sprite2D" instance=ExtResource("3_oc27l")]
 modulate = Color(0.337255, 0.368627, 1, 1)
+
+[node name="Line2D" type="Line2D" parent="."]
+modulate = Color(0.678431, 0.678431, 0.678431, 1)
+z_index = -20
+texture_repeat = 2
+points = PackedVector2Array(0, 0, 100, 0, 200, 0, 300, 0, 400, 0, 500, 0, 600, 0, 700, 0)
+width = 130.0
+width_curve = SubResource("Curve_8gwvg")
+gradient = SubResource("Gradient_cj7pv")
+texture = ExtResource("5_kyix8")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_mouse_exited"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://beimtnv7pt5i1"]
+
+[ext_resource type="PackedScene" uid="uid://2k5s1yijafew" path="res://Portals/Images/portal_edge.tscn" id="1_glfkj"]
+[ext_resource type="Texture2D" uid="uid://bobraqeq3kyb5" path="res://Portals/Images/Portal_Spiky.png" id="2_c666g"]
+
+[node name="SpikyPortal" type="Node2D"]
+
+[node name="Portal" parent="." instance=ExtResource("1_glfkj")]
+texture = ExtResource("2_c666g")
+
+[node name="Portal2" parent="Portal" instance=ExtResource("1_glfkj")]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+show_behind_parent = true
+scale = Vector2(0.895, 0.895)
+texture = ExtResource("2_c666g")
+RotationSpeed = 4.5
+
+[node name="Portal3" parent="Portal/Portal2" instance=ExtResource("1_glfkj")]
+self_modulate = Color(0.784314, 0.784314, 0.784314, 1)
+show_behind_parent = true
+scale = Vector2(0.895, 0.895)
+texture = ExtResource("2_c666g")
+RotationSpeed = 4.0

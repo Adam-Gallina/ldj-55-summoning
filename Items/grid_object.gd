@@ -12,10 +12,6 @@ var _dragged = false
 var _curr_grid_pos : Vector2i
 
 func _process(_delta):
-    #if _dragged and Input.is_action_just_pressed('select'):
-    #    _dragged = false
-    #    _place_object(_curr_grid_pos)
-    #elif _dragged:
     if _dragged:
         if Input.is_action_just_pressed('rotate_cw'): rotate_cw()
         elif Input.is_action_just_pressed('rotate_ccw'): rotate_ccw()
@@ -26,11 +22,6 @@ func _process(_delta):
         if GridController.pos_contents(pos) == null:
             _curr_grid_pos = pos
             position = GridController.to_world_pos(pos)
-    #elif _hovered and Input.is_action_just_pressed('select'):
-    #    _dragged = true
-        
-    #    if GridController.pos_contents(_curr_grid_pos) == self:
-    #        GridController.remove(_curr_grid_pos)
 
 func _unhandled_input(event):
     if event is InputEventMouseButton:

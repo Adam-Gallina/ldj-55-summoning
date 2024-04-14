@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bb5gordg8g48g"]
+[gd_scene load_steps=24 format=3 uid="uid://bb5gordg8g48g"]
 
 [ext_resource type="Texture2D" uid="uid://csllc4ya03qby" path="res://UI/Icons/sharp_pause_white_48dp.png" id="1_cgm83"]
 [ext_resource type="Script" path="res://UI/game_ui.gd" id="1_y53i7"]
@@ -21,6 +21,18 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_1b0tl"]
 font_size = 30
+
+[sub_resource type="Gradient" id="Gradient_mnwvg"]
+colors = PackedColorArray(0, 0, 0, 0.392157, 0, 0, 0, 0.392157)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_n4mv0"]
+gradient = SubResource("Gradient_mnwvg")
+
+[sub_resource type="Gradient" id="Gradient_revup"]
+colors = PackedColorArray(0.4, 0, 0.25098, 0.588235, 0.4, 0, 0.25098, 0.588235)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bdan5"]
+gradient = SubResource("Gradient_revup")
 
 [node name="GameUI" type="CanvasLayer"]
 script = ExtResource("1_y53i7")
@@ -62,19 +74,19 @@ mouse_default_cursor_shape = 2
 icon = ExtResource("3_iqmpw")
 flat = true
 
-[node name="Items" type="HBoxContainer" parent="."]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -331.0
-offset_top = -132.0
-offset_right = 993.0
-offset_bottom = 132.0
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.5, 0.5)
+[node name="Items" type="VBoxContainer" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -78.0001
+offset_top = -247.0
+offset_right = 186.0
+offset_bottom = 1077.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.35, 0.35)
 
 [node name="RerouteBtn" type="Button" parent="Items"]
 unique_name_in_owner = true
@@ -130,8 +142,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -172.0
-offset_top = -127.0
+offset_left = -94.0
+offset_top = -76.0
 grow_horizontal = 0
 grow_vertical = 0
 focus_mode = 0
@@ -145,14 +157,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -93.0
-offset_top = -57.5
-offset_right = 107.0
-offset_bottom = 78.5
+offset_left = -51.0
+offset_top = -29.0
+offset_right = 149.0
+offset_bottom = 107.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -0.136136
-scale = Vector2(0.78, 1.116)
+scale = Vector2(0.405, 0.579)
 texture = ExtResource("17_knlt1")
 
 [node name="Lid" type="TextureRect" parent="TrashBtn/Can"]
@@ -182,6 +194,45 @@ grow_horizontal = 0
 text = "1234"
 label_settings = SubResource("LabelSettings_1b0tl")
 horizontal_alignment = 2
+
+[node name="UpgradeSelect" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = SubResource("GradientTexture1D_n4mv0")
+
+[node name="Panel" type="TextureRect" parent="UpgradeSelect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -100.0
+offset_right = 300.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_bdan5")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UpgradeSelect/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="pressed" from="SpeedControls/PauseBtn" to="." method="_on_pause_pressed"]
 [connection signal="pressed" from="SpeedControls/PlayBtn" to="." method="_on_play_pressed"]

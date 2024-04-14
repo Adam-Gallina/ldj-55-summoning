@@ -1,10 +1,86 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgxlvkuixln4c"]
+[gd_scene load_steps=4 format=3 uid="uid://bgxlvkuixln4c"]
 
-[ext_resource type="PackedScene" uid="uid://bjv34e88k18ve" path="res://Portals/Images/wobbly_portal.tscn" id="1_piyjm"]
 [ext_resource type="Script" path="res://Portals/InputPortal.gd" id="1_x424r"]
+[ext_resource type="Texture2D" uid="uid://c3ovukgc0ooq1" path="res://UI/Icons/Diamond.png" id="3_ftpvn"]
+[ext_resource type="Texture2D" uid="uid://djak53wmpt7ud" path="res://Portals/Images/Portal_Round.png" id="3_org3x"]
 
 [node name="InputPortal" type="Node2D"]
 script = ExtResource("1_x424r")
+SummonRate = 4
+ObjType = -1
 
-[node name="WobblyPortal" parent="." instance=ExtResource("1_piyjm")]
-modulate = Color(1, 0.505882, 0.976471, 1)
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+modulate = Color(0.513726, 0.513726, 0.513726, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 4.0
+step = 0.01
+value = 4.0
+fill_mode = 4
+texture_progress = ExtResource("3_org3x")
+
+[node name="EveryEight" type="TextureRect" parent="TextureProgressBar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+texture = ExtResource("3_ftpvn")
+expand_mode = 1
+
+[node name="EveryTwo" type="TextureRect" parent="TextureProgressBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("3_ftpvn")
+expand_mode = 1
+
+[node name="EveryFour" type="TextureRect" parent="TextureProgressBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_ftpvn")
+expand_mode = 1
+
+[node name="EverySix" type="TextureRect" parent="TextureProgressBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+texture = ExtResource("3_ftpvn")
+expand_mode = 1

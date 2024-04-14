@@ -8,6 +8,7 @@ script = ExtResource("1_7412b")
 
 [node name="Pivot" type="Node2D" parent="."]
 z_index = -1000
+scale = Vector2(1.25, 1.25)
 
 [node name="Images" type="Node2D" parent="Pivot"]
 modulate = Color(0.643137, 0.643137, 0.643137, 1)
@@ -151,6 +152,70 @@ texture = ExtResource("1_cxjvj")
 
 [node name="Sprite2D38" type="Sprite2D" parent="Pivot/Images"]
 position = Vector2(-4000, -2000)
+texture = ExtResource("1_cxjvj")
+
+[node name="Sprite2D41" type="Sprite2D" parent="Pivot/Images"]
+position = Vector2(0, -3000)
+texture = ExtResource("1_cxjvj")
+
+[node name="Sprite2D42" type="Sprite2D" parent="Pivot/Images"]
+position = Vector2(-1000, -3000)
+texture = ExtResource("1_cxjvj")
+
+[node name="Sprite2D43" type="Sprite2D" parent="Pivot/Images"]
+position = Vector2(-2000, -3000)
+texture = ExtResource("1_cxjvj")
+
+[node name="Sprite2D44" type="Sprite2D" parent="Pivot/Images"]
+position = Vector2(-3000, -3000)
+texture = ExtResource("1_cxjvj")
+
+[node name="Sprite2D45" type="Sprite2D" parent="Pivot/Images"]
+position = Vector2(1000, -3000)
+texture = ExtResource("1_cxjvj")
+
+[node name="Sprite2D46" type="Sprite2D" parent="Pivot/Images"]
+position = Vector2(2000, -3000)
+texture = ExtResource("1_cxjvj")
+
+[node name="Sprite2D47" type="Sprite2D" parent="Pivot/Images"]
+position = Vector2(3000, -3000)
+texture = ExtResource("1_cxjvj")
+
+[node name="Sprite2D48" type="Sprite2D" parent="Pivot/Images"]
+position = Vector2(-4000, -3000)
+texture = ExtResource("1_cxjvj")
+
+[node name="Sprite2D49" type="Sprite2D" parent="Pivot/Images"]
+position = Vector2(0, 3000)
+texture = ExtResource("1_cxjvj")
+
+[node name="Sprite2D50" type="Sprite2D" parent="Pivot/Images"]
+position = Vector2(-1000, 3000)
+texture = ExtResource("1_cxjvj")
+
+[node name="Sprite2D51" type="Sprite2D" parent="Pivot/Images"]
+position = Vector2(-2000, 3000)
+texture = ExtResource("1_cxjvj")
+
+[node name="Sprite2D52" type="Sprite2D" parent="Pivot/Images"]
+position = Vector2(-3000, 3000)
+texture = ExtResource("1_cxjvj")
+
+[node name="Sprite2D53" type="Sprite2D" parent="Pivot/Images"]
+position = Vector2(1000, 3000)
+texture = ExtResource("1_cxjvj")
+
+[node name="Sprite2D54" type="Sprite2D" parent="Pivot/Images"]
+position = Vector2(2000, 3000)
+texture = ExtResource("1_cxjvj")
+
+[node name="Sprite2D55" type="Sprite2D" parent="Pivot/Images"]
+position = Vector2(3000, 3000)
+texture = ExtResource("1_cxjvj")
+
+[node name="Sprite2D56" type="Sprite2D" parent="Pivot/Images"]
+position = Vector2(-4000, 3000)
 texture = ExtResource("1_cxjvj")
 
 [node name="Sprite2D39" type="Sprite2D" parent="Pivot/Images"]

@@ -1,6 +1,9 @@
 extends Node
 
-enum ObjectType { None, Reroute, Splitter, Launch, Delay, Destroy, Teleport }
+enum ObjectType { 
+    Portal = -1,
+    None, Reroute, Splitter, Launch, Delay, Destroy, Teleport
+}
 
 enum Direction { None, Up, Right, Down, Left }
 func DirectionVector(dir : Direction):

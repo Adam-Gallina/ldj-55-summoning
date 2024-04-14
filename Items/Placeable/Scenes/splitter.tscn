@@ -11,6 +11,7 @@ script = ExtResource("1_m2rjv")
 ObjType = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -10
 texture = ExtResource("2_xyax3")
 
 [node name="Area2D" type="Area2D" parent="."]

@@ -1,10 +1,27 @@
 [gd_scene load_steps=3 format=3 uid="uid://cuj2dyvmh6pco"]
 
 [ext_resource type="Script" path="res://Portals/OutputPortal.gd" id="1_sqvke"]
-[ext_resource type="PackedScene" uid="uid://bjv34e88k18ve" path="res://Portals/Images/wobbly_portal.tscn" id="2_7ljha"]
+[ext_resource type="Texture2D" uid="uid://djak53wmpt7ud" path="res://Portals/Images/Portal_Round.png" id="2_6h1fp"]
 
 [node name="OutputPortal" type="Node2D"]
+modulate = Color(0.466667, 0.466667, 0.466667, 1)
 script = ExtResource("1_sqvke")
+ObjType = -1
 
-[node name="WobblyPortal" parent="." instance=ExtResource("2_7ljha")]
-modulate = Color(1, 0.67451, 0.505882, 1)
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 4.0
+step = 0.01
+value = 4.0
+fill_mode = 4
+texture_progress = ExtResource("2_6h1fp")
