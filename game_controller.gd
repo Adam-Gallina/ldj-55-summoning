@@ -21,8 +21,8 @@ var _zoom_remaining : float = -1
 @export var MaxTimeBetweenSpawns : int = 25
 @onready var _max_tick_spawns : int = int(MaxTimeBetweenSpawns / GridController.TickSpeed)
 var _next_spawn : int = -1
-@export var ChanceForNewOutput : float = .4
-@export var ChanceForNewSeries : float = .25
+@export var ChanceForNewOutput : float = .25
+@export var ChanceForNewSeries : float = .35
 @export var ChanceForNoNewInput : float = .35
 
 var _series : Array[PortalSpawner.PortalSeries] = []
@@ -49,9 +49,11 @@ func start_game():
 	_series.append(portal_spawner.get_new_portal_series())
 	var input_pos = portal_spawner.get_portal_spawn_pos()
 	_series[0].inputs.append(portal_spawner.spawn_input_portal(_series[0], input_pos, 8))
+	_series[0].input_rate += 1
 
 	var output_pos = portal_spawner.get_portal_spawn_pos()
-	_series[0].outputs.append(portal_spawner.spawn_output_portal(_series[0], output_pos))
+	_series[0].outputs.append(portal_spawner.spawn_output_portal(_series[0], output_pos, 8))
+	_series[0].output_rate += 1
 
 	_next_spawn = randi_range(_min_tick_spawns, _max_tick_spawns)
 
@@ -86,24 +88,57 @@ func _on_tick():
 	_next_spawn -= 1
 
 	if _next_spawn == 0:
+		var spawn_successful = false
+
+
 		var s : PortalSpawner.PortalSeries
 		
 		if portal_spawner.can_get_series() and randf() <= ChanceForNewSeries:
 			s = portal_spawner.get_new_portal_series()
 			_series.append(s)
-			
-			var output_pos = portal_spawner.get_portal_spawn_pos()
-			s.outputs.append(portal_spawner.spawn_output_portal(s, output_pos))
 		else:
 			s = _series.pick_random()
 
-			if randf() <= ChanceForNewOutput:
-				var output_pos = portal_spawner.get_portal_spawn_pos()
-				s.outputs.append(portal_spawner.spawn_output_portal(s, output_pos))
-			else:
-				pass # Make output bigger
-		
-		var input_pos = portal_spawner.get_portal_spawn_pos()
-		s.inputs.append(portal_spawner.spawn_input_portal(s, input_pos))
+		var eligible_upgrades = []
+		for out in s.outputs:
+			if out.EmptyRate == 1:
+				continue
+			if s.input_rate - s.output_rate >= 8 / out.EmptyRate:
+				eligible_upgrades.append(out)
 
-		_next_spawn = randi_range(_min_tick_spawns, _max_tick_spawns)
+
+		if eligible_upgrades.size() == 0 or randf() <= ChanceForNewOutput:
+			var input_pos = portal_spawner.get_portal_spawn_pos()
+			var output_pos = portal_spawner.get_portal_spawn_pos()
+
+			if input_pos != null and output_pos != null:
+				s.inputs.append(portal_spawner.spawn_input_portal(s, input_pos))
+				s.input_rate += int(8 / s.inputs[-1].SummonRate)
+				
+				s.outputs.append(portal_spawner.spawn_output_portal(s, output_pos, 8))
+				s.output_rate += 1
+
+				spawn_successful = true		
+		else:
+			var upgrade = eligible_upgrades.pick_random()
+
+			if upgrade.EmptyRate == 8:
+				upgrade.set_empty_rate(4)
+				s.output_rate += 1
+			elif upgrade.EmptyRate == 4:
+				upgrade.set_empty_rate(2)
+				s.output_rate += 2
+			elif upgrade.EmptyRate == 2:
+				upgrade.set_empty_rate(1)
+				s.output_rate += 4
+
+			if not randf() <= ChanceForNewOutput:
+				var input_pos = portal_spawner.get_portal_spawn_pos()
+				if input_pos != null:
+					s.inputs.append(portal_spawner.spawn_input_portal(s, input_pos))
+					s.input_rate += int(8 / s.inputs[-1].SummonRate)
+			
+			spawn_successful = true
+		
+		if spawn_successful: _next_spawn = randi_range(_min_tick_spawns, _max_tick_spawns)
+

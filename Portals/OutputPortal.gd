@@ -17,7 +17,11 @@ func _ready():
 
 func set_empty_rate(rate : int):
     EmptyRate = rate
-    _next_gain = min(_next_gain, EmptyRate)
+    _next_gain = EmptyRate if _next_gain == null else min(_next_gain, EmptyRate)
+
+    get_node('%EveryFour').visible = rate < 8
+    get_node('%EveryTwo').visible = rate < 4
+    get_node('%EveryOne').visible = rate == 1
 
 func summon_interact(summon : SummonObject):
     if summon.ObjectNum == FilteredObject:

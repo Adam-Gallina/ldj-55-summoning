@@ -8,7 +8,9 @@ class PortalSeries:
     var portal_summon_id : int
 
     var inputs = []
+    var input_rate = 0
     var outputs = []
+    var output_rate = 0
 
 @export var PortalInputScene : PackedScene
 @export var PortalOutputScene : PackedScene
@@ -42,6 +44,7 @@ func spawn_input_portal(series : PortalSeries, grid_pos : Vector2i, spawn_rate=-
     var p = PortalInputScene.instantiate()
     p.SummonedObject = series.portal_summon
     p.set_summon_dir(randi() % 4 + 1)
+    # Random between (2, 4, 8)
     p.set_summon_rate(2 ** (randi() % 3 + 1) if spawn_rate == -1 else spawn_rate)
     get_parent().add_child(p)
 
@@ -55,9 +58,12 @@ func spawn_input_portal(series : PortalSeries, grid_pos : Vector2i, spawn_rate=-
     return p
 
 
-func spawn_output_portal(series : PortalSeries, grid_pos : Vector2i):
+func spawn_output_portal(series : PortalSeries, grid_pos : Vector2i, empty_rate=-1):
     var p = PortalOutputScene.instantiate()
     p.FilteredObject = series.portal_summon_id
+    # Random between (1, 2, 4, 8)
+    p.set_empty_rate(2 ** (randi() % 4) if empty_rate == -1 else empty_rate)
+
     get_parent().add_child(p)
 
     p.position = GridController.to_world_pos(grid_pos)

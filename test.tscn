@@ -82,5 +82,5 @@ modulate = Color(0.376471, 0.847059, 0.372549, 1)
 [node name="OutputPortal" parent="Test" instance=ExtResource("3_okjl1")]
 position = Vector2(-599, -427)
 
-[node name="WobblyPortal" parent="Test/OutputPortal" instance=ExtResource("7_7lc4t")]
+[node name="WobblyPortal2" parent="Test/OutputPortal" instance=ExtResource("7_7lc4t")]
 modulate = Color(0.376471, 0.847059, 0.372549, 1)

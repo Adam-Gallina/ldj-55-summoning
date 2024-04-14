@@ -23,8 +23,8 @@ ScoreBoard="*res://Autoloaded/score_board.gd"
 
 [display]
 
-window/size/viewport_width=1000
-window/size/viewport_height=600
+window/size/viewport_width=2000
+window/size/viewport_height=1200
 window/stretch/mode="viewport"
 
 [input]

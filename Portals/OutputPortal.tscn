@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cuj2dyvmh6pco"]
+[gd_scene load_steps=5 format=3 uid="uid://cuj2dyvmh6pco"]
 
 [ext_resource type="Script" path="res://Portals/OutputPortal.gd" id="1_sqvke"]
 [ext_resource type="Texture2D" uid="uid://djak53wmpt7ud" path="res://Portals/Images/Portal_Round.png" id="2_6h1fp"]
+[ext_resource type="Texture2D" uid="uid://bneflosr5lhx4" path="res://UI/Icons/Star.png" id="3_qrvbp"]
+[ext_resource type="PackedScene" uid="uid://bjv34e88k18ve" path="res://Portals/Images/wobbly_portal.tscn" id="4_60y7b"]
 
 [node name="OutputPortal" type="Node2D"]
 modulate = Color(0.466667, 0.466667, 0.466667, 1)
@@ -25,3 +27,75 @@ step = 0.01
 value = 4.0
 fill_mode = 4
 texture_progress = ExtResource("2_6h1fp")
+
+[node name="EveryOne" type="TextureRect" parent="TextureProgressBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -53.0
+offset_right = 2.99998
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.80083, 1.80083)
+texture = ExtResource("3_qrvbp")
+expand_mode = 1
+
+[node name="EveryTwo" type="TextureRect" parent="TextureProgressBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 13.0
+offset_top = -26.0
+offset_right = 53.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.321141
+texture = ExtResource("3_qrvbp")
+expand_mode = 1
+
+[node name="EveryFour" type="TextureRect" parent="TextureProgressBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.0
+offset_top = -12.0
+offset_right = -11.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.321547
+texture = ExtResource("3_qrvbp")
+expand_mode = 1
+
+[node name="EveryEight" type="TextureRect" parent="TextureProgressBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -13.0
+offset_right = 20.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_qrvbp")
+expand_mode = 1
+
+[node name="WobblyPortal" parent="." instance=ExtResource("4_60y7b")]
