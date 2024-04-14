@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c2fnplfmok8q3"
-path="res://.godot/imported/VerticalLines.png-ebb1bce36d10c780a70e8e86924cec1a.ctex"
+path="res://.godot/imported/VerticalLines.png-dd4b5cb038d44df896f775935ab4e9a5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/Placeable/VerticalLines.png"
-dest_files=["res://.godot/imported/VerticalLines.png-ebb1bce36d10c780a70e8e86924cec1a.ctex"]
+source_file="res://Items/Placeable/Images/VerticalLines.png"
+dest_files=["res://.godot/imported/VerticalLines.png-dd4b5cb038d44df896f775935ab4e9a5.ctex"]
 
 [params]
 

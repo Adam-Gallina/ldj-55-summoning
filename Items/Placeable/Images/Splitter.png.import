@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cdxgo4lcpeg7u"
-path="res://.godot/imported/Splitter.png-fa99a5fbe3e006e45512aae5f1aef7a9.ctex"
+path="res://.godot/imported/Splitter.png-ca296d4a1a7afe86483ec6b3748df746.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/Placeable/Splitter.png"
-dest_files=["res://.godot/imported/Splitter.png-fa99a5fbe3e006e45512aae5f1aef7a9.ctex"]
+source_file="res://Items/Placeable/Images/Splitter.png"
+dest_files=["res://.godot/imported/Splitter.png-ca296d4a1a7afe86483ec6b3748df746.ctex"]
 
 [params]
 

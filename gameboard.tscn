@@ -15,3 +15,4 @@ script = ExtResource("1_8wjyj")
 [node name="PortalSpawner" parent="." instance=ExtResource("2_37b1e")]
 
 [node name="GameUI" parent="PortalSpawner" instance=ExtResource("1_ae2r3")]
+unique_name_in_owner = true

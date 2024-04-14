@@ -1,0 +1,205 @@
+[gd_scene load_steps=19 format=3 uid="uid://d0y6o4gaxmiju"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_rjrhw"]
+[ext_resource type="PackedScene" uid="uid://b756ltngpqunc" path="res://Environment/background.tscn" id="1_vohxq"]
+[ext_resource type="PackedScene" uid="uid://bgxlvkuixln4c" path="res://Portals/InputPortal.tscn" id="2_4nnsv"]
+[ext_resource type="PackedScene" uid="uid://dg4uibj36f87o" path="res://gameboard.tscn" id="2_xxmou"]
+[ext_resource type="PackedScene" uid="uid://c3t2vapcolyx3" path="res://Items/Summons/Scenes/Potion.tscn" id="3_e03up"]
+[ext_resource type="PackedScene" uid="uid://beimtnv7pt5i1" path="res://Portals/Images/spiky_portal.tscn" id="4_p24ub"]
+[ext_resource type="PackedScene" uid="uid://by0l6ai4rb0mm" path="res://Items/Summons/Scenes/Orb.tscn" id="5_vdbbt"]
+[ext_resource type="PackedScene" uid="uid://bjv34e88k18ve" path="res://Portals/Images/wobbly_portal.tscn" id="6_jhwca"]
+[ext_resource type="PackedScene" uid="uid://bx5mg26d7wtro" path="res://Portals/Images/round_portal.tscn" id="8_nj4h3"]
+[ext_resource type="PackedScene" uid="uid://bufwhem4acqw5" path="res://Items/Summons/Scenes/Wrench.tscn" id="9_m4vnd"]
+[ext_resource type="PackedScene" uid="uid://cuj2dyvmh6pco" path="res://Portals/OutputPortal.tscn" id="10_soisp"]
+[ext_resource type="PackedScene" uid="uid://cmqohvuocd8es" path="res://Items/Placeable/Scenes/splitter.tscn" id="11_lqumk"]
+[ext_resource type="PackedScene" uid="uid://d3plnc1auau04" path="res://Items/Placeable/Scenes/elbow_pipe.tscn" id="12_uks7d"]
+[ext_resource type="PackedScene" uid="uid://dixxthcbkd4gg" path="res://Items/Placeable/Scenes/launcher.tscn" id="13_gcwyj"]
+[ext_resource type="PackedScene" uid="uid://d0ugtktuhfhyl" path="res://Items/Placeable/Scenes/delay.tscn" id="14_5q7s0"]
+
+[sub_resource type="GDScript" id="GDScript_7dled"]
+script/source = "extends Node2D
+
+func _ready():
+	GridController.update_grid_height(35)
+	
+	for c in get_children():
+		GridController.insert(GridController.closest_grid_space(c.position), c)
+		
+	$InputPortal3.set_summon_dir(Constants.Direction.Up)
+	$ElbowPipe.mirror()
+	$ElbowPipe.rotate_cw()
+	$ElbowPipe.rotate_cw()
+	
+	$ElbowPipe4.mirror()
+	$ElbowPipe4.rotate_ccw()
+	
+	$ElbowPipe5.mirror()
+	
+	
+	$InputPortal4.set_summon_dir(Constants.Direction.Left)
+	$ElbowPipe2.rotate_cw()
+	
+	
+	$InputPortal2.set_summon_dir(Constants.Direction.Up)
+	$ElbowPipe3.rotate_cw()
+	$ElbowPipe3.rotate_cw()
+	
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_1c0ym"]
+font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_ot0n7"]
+font_size = 24
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_rjrhw")
+PlayScene = ExtResource("2_xxmou")
+
+[node name="Background" parent="." instance=ExtResource("1_vohxq")]
+
+[node name="DemoAnim" type="Node2D" parent="."]
+position = Vector2(1000, 600)
+rotation = -0.495674
+scale = Vector2(0.5, 0.5)
+script = SubResource("GDScript_7dled")
+
+[node name="InputPortal" parent="DemoAnim" instance=ExtResource("2_4nnsv")]
+modulate = Color(0.494118, 0.886275, 0.47451, 1)
+position = Vector2(-800, -1400)
+SummonedObject = ExtResource("3_e03up")
+
+[node name="SpikyPortal" parent="DemoAnim/InputPortal" instance=ExtResource("4_p24ub")]
+
+[node name="OutputPortal" parent="DemoAnim" instance=ExtResource("10_soisp")]
+modulate = Color(0.494118, 0.886275, 0.47451, 1)
+position = Vector2(-2000, 0.00012207)
+FilteredObject = 3
+
+[node name="SpikyPortal" parent="DemoAnim/OutputPortal" instance=ExtResource("4_p24ub")]
+
+[node name="InputPortal2" parent="DemoAnim" instance=ExtResource("2_4nnsv")]
+modulate = Color(0.494118, 0.886275, 0.47451, 1)
+position = Vector2(1200, 1400)
+SummonedObject = ExtResource("3_e03up")
+SummonRate = 8
+
+[node name="SpikyPortal" parent="DemoAnim/InputPortal2" instance=ExtResource("4_p24ub")]
+
+[node name="OutputPortal3" parent="DemoAnim" instance=ExtResource("10_soisp")]
+modulate = Color(0.494118, 0.886275, 0.47451, 1)
+position = Vector2(-600, 600)
+FilteredObject = 3
+
+[node name="SpikyPortal" parent="DemoAnim/OutputPortal3" instance=ExtResource("4_p24ub")]
+
+[node name="InputPortal3" parent="DemoAnim" instance=ExtResource("2_4nnsv")]
+modulate = Color(0.74902, 0.482353, 0.960784, 1)
+position = Vector2(-1200, 400)
+SummonedObject = ExtResource("5_vdbbt")
+SummonRate = 2
+
+[node name="WobblyPortal" parent="DemoAnim/InputPortal3" instance=ExtResource("6_jhwca")]
+
+[node name="OutputPortal2" parent="DemoAnim" instance=ExtResource("10_soisp")]
+modulate = Color(0.74902, 0.482353, 0.960784, 1)
+position = Vector2(-0.00012207, -1000)
+FilteredObject = 2
+
+[node name="WobblyPortal2" parent="DemoAnim/OutputPortal2" instance=ExtResource("6_jhwca")]
+
+[node name="InputPortal4" parent="DemoAnim" instance=ExtResource("2_4nnsv")]
+modulate = Color(0.411765, 0.588235, 0.87451, 1)
+position = Vector2(1400, -400)
+SummonedObject = ExtResource("9_m4vnd")
+
+[node name="RoundPortal" parent="DemoAnim/InputPortal4" instance=ExtResource("8_nj4h3")]
+
+[node name="OutputPortal4" parent="DemoAnim" instance=ExtResource("10_soisp")]
+modulate = Color(0.411765, 0.588235, 0.87451, 1)
+position = Vector2(0, 1000)
+FilteredObject = 4
+
+[node name="RoundPortal" parent="DemoAnim/OutputPortal4" instance=ExtResource("8_nj4h3")]
+
+[node name="Splitter" parent="DemoAnim" instance=ExtResource("11_lqumk")]
+position = Vector2(-800, 0)
+
+[node name="ElbowPipe" parent="DemoAnim" instance=ExtResource("12_uks7d")]
+position = Vector2(-1200, -1000)
+
+[node name="ElbowPipe2" parent="DemoAnim" instance=ExtResource("12_uks7d")]
+position = Vector2(0, -400)
+
+[node name="Launcher" parent="DemoAnim" instance=ExtResource("13_gcwyj")]
+position = Vector2(-200, 0)
+
+[node name="Delay" parent="DemoAnim" instance=ExtResource("14_5q7s0")]
+position = Vector2(800, 600)
+
+[node name="ElbowPipe3" parent="DemoAnim" instance=ExtResource("12_uks7d")]
+position = Vector2(1200, 600)
+
+[node name="ElbowPipe4" parent="DemoAnim" instance=ExtResource("12_uks7d")]
+position = Vector2(400, 0)
+
+[node name="ElbowPipe5" parent="DemoAnim" instance=ExtResource("12_uks7d")]
+position = Vector2(400, 600)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2000.0
+offset_bottom = 1200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 561.0
+offset_right = 432.0
+offset_bottom = 800.0
+
+[node name="Play" type="Button" parent="UI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = "Play"
+
+[node name="Spacer" type="Label" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="PlayZen" type="Button" parent="UI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = "Play Zen"
+
+[node name="Title" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 1103.0
+offset_top = 236.0
+offset_right = 1851.0
+offset_bottom = 373.0
+text = "The In Between"
+label_settings = SubResource("LabelSettings_1c0ym")
+
+[node name="Credits" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -649.0
+offset_top = -51.0
+offset_right = -24.0
+offset_bottom = -17.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Made in 72 hours for Ludum Dare 55 by Adam Gallina!"
+label_settings = SubResource("LabelSettings_ot0n7")
+
+[connection signal="pressed" from="UI/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/PlayZen" to="." method="_on_zen_pressed"]

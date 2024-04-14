@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://2ounmfs7tk1w"]
+[gd_scene load_steps=15 format=3 uid="uid://2ounmfs7tk1w"]
 
 [ext_resource type="Script" path="res://Items/Placeable/TpInput.gd" id="1_oamaj"]
 [ext_resource type="Texture2D" uid="uid://djak53wmpt7ud" path="res://Portals/Images/Portal_Round.png" id="2_3sngd"]
 [ext_resource type="PackedScene" uid="uid://dyddeuof5401y" path="res://Items/Placeable/Scenes/teleport_output.tscn" id="2_lp31k"]
 [ext_resource type="PackedScene" uid="uid://bjv34e88k18ve" path="res://Portals/Images/wobbly_portal.tscn" id="3_oc27l"]
-[ext_resource type="Texture2D" uid="uid://c2fnplfmok8q3" path="res://Items/Placeable/VerticalLines.png" id="5_kyix8"]
+[ext_resource type="Texture2D" uid="uid://k2p0ou6ojyaq" path="res://Items/Placeable/Images/HorizontalLines.png" id="5_j4fkr"]
+[ext_resource type="Texture2D" uid="uid://bneflosr5lhx4" path="res://UI/Icons/Star.png" id="6_n7f1l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_87scr"]
 size = Vector2(200, 200)
@@ -17,25 +18,143 @@ point_count = 3
 offsets = PackedFloat32Array(0, 0.293333, 0.686667, 1)
 colors = PackedColorArray(0.266667, 0.290196, 0.784314, 1, 0.266667, 0.290196, 0.784314, 1, 1, 0.54902, 0.337255, 1, 1, 0.54902, 0.337255, 1)
 
+[sub_resource type="Animation" id="Animation_5hwgr"]
+resource_name = "FigureEight"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.8, 1, 1.3, 1.5, 2, 2.3, 2.5, 2.8, 3, 3.3, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-6, 6), Vector2(-10, 10), Vector2(-16, 7), Vector2(-20, 0), Vector2(-14, -8), Vector2(-10, -10), Vector2(0, 0), Vector2(6, 6), Vector2(10, 10), Vector2(16, 7), Vector2(20, 0), Vector2(14, -7), Vector2(10, -10), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0872665, 0.0872665, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.607843)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivot/Sprite2D:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [15]
+}
+
+[sub_resource type="Animation" id="Animation_mesq3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivot/Sprite2D:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-10]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2px7n"]
+_data = {
+"FigureEight": SubResource("Animation_5hwgr"),
+"RESET": SubResource("Animation_mesq3")
+}
+
+[sub_resource type="Gradient" id="Gradient_34hjr"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_30pr0"]
+colors = PackedColorArray(0, 0.422772, 1, 1, 0, 0.0230529, 1, 1)
+
 [node name="TeleportInput" type="Node2D"]
 script = ExtResource("1_oamaj")
 OutputScene = ExtResource("2_lp31k")
 ObjType = 6
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Pivot" type="Node2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_87scr")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="Pivot"]
 self_modulate = Color(0.576471, 0.576471, 0.576471, 1)
 z_index = -10
 scale = Vector2(0.82, 0.82)
 texture = ExtResource("2_3sngd")
 offset = Vector2(-1.455, 0)
 
-[node name="WobblyPortal" parent="Sprite2D" instance=ExtResource("3_oc27l")]
+[node name="WobblyPortal" parent="Pivot/Sprite2D" instance=ExtResource("3_oc27l")]
 modulate = Color(0.337255, 0.368627, 1, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_87scr")
 
 [node name="Line2D" type="Line2D" parent="."]
 modulate = Color(0.678431, 0.678431, 0.678431, 1)
@@ -45,10 +164,37 @@ points = PackedVector2Array(0, 0, 100, 0, 200, 0, 300, 0, 400, 0, 500, 0, 600, 0
 width = 130.0
 width_curve = SubResource("Curve_8gwvg")
 gradient = SubResource("Gradient_cj7pv")
-texture = ExtResource("5_kyix8")
+texture = ExtResource("5_j4fkr")
+texture_mode = 2
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2px7n")
+}
+speed_scale = 2.0
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -15
+emitting = false
+amount = 35
+lifetime = 0.65
+one_shot = true
+preprocess = 0.3
+explosiveness = 1.0
+texture = ExtResource("6_n7f1l")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 275.0
+initial_velocity_max = 300.0
+linear_accel_min = -350.0
+linear_accel_max = -300.0
+scale_amount_min = 0.15
+scale_amount_max = 0.25
+color_ramp = SubResource("Gradient_34hjr")
+color_initial_ramp = SubResource("Gradient_30pr0")
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_mouse_exited"]

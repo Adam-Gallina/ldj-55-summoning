@@ -1,5 +1,7 @@
 extends GridObject
 
+signal portal_filled(portal)
+
 @export var FilteredObject : int
 
 @export var EmptyRate = 8
@@ -12,6 +14,7 @@ var _curr_amount = 0
 func _ready():
     GridController.tick.connect(_on_tick)
 
+    print(LoseAmount)
     _amount_bar.max_value = LoseAmount
     _amount_bar.value = LoseAmount
 
@@ -24,9 +27,11 @@ func set_empty_rate(rate : int):
     get_node('%EveryOne').visible = rate == 1
 
 func summon_interact(summon : SummonObject):
+    if _curr_amount <= -1: return
+
     if summon.ObjectNum == FilteredObject:
         summon.despawn()
-        ScoreBoard.add_point()
+        Leaderboard.add_point()
         _curr_amount -= 1
         if _curr_amount < -1: _curr_amount = -1
         
@@ -43,4 +48,4 @@ func _on_tick():
         _amount_bar.value = LoseAmount - _curr_amount
 
         if _curr_amount == LoseAmount:
-            print("Womp Womp")
+            portal_filled.emit(self)

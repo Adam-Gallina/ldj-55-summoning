@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cset64ha1ps0i"
-path="res://.godot/imported/Boom.png-0de813904e6f5b8c85a3c6844183a34a.ctex"
+uid="uid://k2p0ou6ojyaq"
+path="res://.godot/imported/HorizontalLines.png-f21c4eb7ef64fff712b11d2eb6dcfc6b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/Placeable/Boom.png"
-dest_files=["res://.godot/imported/Boom.png-0de813904e6f5b8c85a3c6844183a34a.ctex"]
+source_file="res://Items/Placeable/Images/HorizontalLines.png"
+dest_files=["res://.godot/imported/HorizontalLines.png-f21c4eb7ef64fff712b11d2eb6dcfc6b.ctex"]
 
 [params]
 

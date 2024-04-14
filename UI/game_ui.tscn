@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bb5gordg8g48g"]
+[gd_scene load_steps=33 format=3 uid="uid://bb5gordg8g48g"]
 
 [ext_resource type="Texture2D" uid="uid://csllc4ya03qby" path="res://UI/Icons/sharp_pause_white_48dp.png" id="1_cgm83"]
 [ext_resource type="Script" path="res://UI/game_ui.gd" id="1_y53i7"]
@@ -8,16 +8,20 @@
 [ext_resource type="PackedScene" uid="uid://cmqohvuocd8es" path="res://Items/Placeable/Scenes/splitter.tscn" id="3_mkgc3"]
 [ext_resource type="PackedScene" uid="uid://dixxthcbkd4gg" path="res://Items/Placeable/Scenes/launcher.tscn" id="4_pqaxj"]
 [ext_resource type="PackedScene" uid="uid://d0ugtktuhfhyl" path="res://Items/Placeable/Scenes/delay.tscn" id="5_3imsr"]
-[ext_resource type="Texture2D" uid="uid://b7hpu8nmm024x" path="res://Items/Placeable/ElbowPipe.png" id="5_s4tat"]
-[ext_resource type="Texture2D" uid="uid://cdxgo4lcpeg7u" path="res://Items/Placeable/Splitter.png" id="6_hlf7n"]
 [ext_resource type="PackedScene" uid="uid://vj7f4wk02auv" path="res://Items/Placeable/Scenes/destroy.tscn" id="6_ljt71"]
 [ext_resource type="PackedScene" uid="uid://2ounmfs7tk1w" path="res://Items/Placeable/Scenes/teleport.tscn" id="7_5f214"]
-[ext_resource type="Texture2D" uid="uid://s2e26kigqt2s" path="res://Items/Placeable/Launcher.png" id="7_iypf3"]
-[ext_resource type="Texture2D" uid="uid://6l2v6r0okp1q" path="res://Items/Placeable/Delay.png" id="8_xpgeu"]
-[ext_resource type="Texture2D" uid="uid://cset64ha1ps0i" path="res://Items/Placeable/Boom.png" id="9_f50qo"]
+[ext_resource type="Texture2D" uid="uid://b3nbipo4tac6x" path="res://UI/Icons/sharp_settings_white_48dp.png" id="8_kv8bb"]
 [ext_resource type="Texture2D" uid="uid://d2vyjyoanc1gb" path="res://Portals/Images/Portal_Wobbly.png" id="10_ueo1c"]
+[ext_resource type="Texture2D" uid="uid://b7hpu8nmm024x" path="res://Items/Placeable/Images/ElbowPipe.png" id="11_y0u72"]
+[ext_resource type="Texture2D" uid="uid://cdxgo4lcpeg7u" path="res://Items/Placeable/Images/Splitter.png" id="12_6xbfr"]
+[ext_resource type="Texture2D" uid="uid://s2e26kigqt2s" path="res://Items/Placeable/Images/Launcher.png" id="13_y5c4i"]
+[ext_resource type="Texture2D" uid="uid://6l2v6r0okp1q" path="res://Items/Placeable/Images/Delay.png" id="14_k3f0c"]
+[ext_resource type="Texture2D" uid="uid://cset64ha1ps0i" path="res://Items/Placeable/Images/Boom.png" id="15_qjmga"]
 [ext_resource type="Texture2D" uid="uid://bhi6ak5ptdjsi" path="res://UI/Icons/GarbageCan_Can.png" id="17_knlt1"]
 [ext_resource type="Texture2D" uid="uid://dyqper5ah6k5j" path="res://UI/Icons/GarbageCan_Lid.png" id="18_ao73h"]
+[ext_resource type="Script" path="res://UI/PauseMenu.gd" id="19_cs7wa"]
+[ext_resource type="Script" path="res://UI/LoseScreen.gd" id="19_phews"]
+[ext_resource type="PackedScene" uid="uid://d0y6o4gaxmiju" path="res://main.tscn" id="20_vpswd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1b0tl"]
 font_size = 30
@@ -28,11 +32,26 @@ colors = PackedColorArray(0, 0, 0, 0.392157, 0, 0, 0, 0.392157)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_n4mv0"]
 gradient = SubResource("Gradient_mnwvg")
 
-[sub_resource type="Gradient" id="Gradient_revup"]
-colors = PackedColorArray(0.4, 0, 0.25098, 0.588235, 0.4, 0, 0.25098, 0.588235)
+[sub_resource type="Gradient" id="Gradient_v1jdf"]
+colors = PackedColorArray(0.705882, 0, 1, 0.588235, 0.705882, 0, 1, 0.588235)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_bdan5"]
-gradient = SubResource("Gradient_revup")
+gradient = SubResource("Gradient_v1jdf")
+
+[sub_resource type="Gradient" id="Gradient_qqy6a"]
+colors = PackedColorArray(0.921569, 0.921569, 0.921569, 0.588235, 0.921569, 0.921569, 0.921569, 0.588235)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lfia4"]
+gradient = SubResource("Gradient_qqy6a")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ubp1w"]
+font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_vnjvi"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_atrax"]
+font_size = 24
 
 [node name="GameUI" type="CanvasLayer"]
 script = ExtResource("1_y53i7")
@@ -44,6 +63,16 @@ LaunchScene = ExtResource("4_pqaxj")
 DelayScene = ExtResource("5_3imsr")
 DestroyScene = ExtResource("6_ljt71")
 TeleportScene = ExtResource("7_5f214")
+
+[node name="OptionsBtn" type="Button" parent="."]
+offset_top = 56.0
+offset_right = 104.0
+offset_bottom = 160.0
+scale = Vector2(0.5, 0.5)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("8_kv8bb")
+flat = true
 
 [node name="SpeedControls" type="HBoxContainer" parent="."]
 offset_right = 320.0
@@ -93,7 +122,7 @@ unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
-icon = ExtResource("5_s4tat")
+icon = ExtResource("11_y0u72")
 flat = true
 
 [node name="SplitterBtn" type="Button" parent="Items"]
@@ -101,7 +130,7 @@ unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
-icon = ExtResource("6_hlf7n")
+icon = ExtResource("12_6xbfr")
 flat = true
 
 [node name="LaunchBtn" type="Button" parent="Items"]
@@ -109,7 +138,7 @@ unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
-icon = ExtResource("7_iypf3")
+icon = ExtResource("13_y5c4i")
 flat = true
 
 [node name="DelayBtn" type="Button" parent="Items"]
@@ -117,7 +146,7 @@ unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
-icon = ExtResource("8_xpgeu")
+icon = ExtResource("14_k3f0c")
 flat = true
 
 [node name="DestroyBtn" type="Button" parent="Items"]
@@ -125,7 +154,7 @@ unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
-icon = ExtResource("9_f50qo")
+icon = ExtResource("15_qjmga")
 flat = true
 
 [node name="TeleportBtn" type="Button" parent="Items"]
@@ -234,6 +263,195 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="PauseMenu" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = SubResource("GradientTexture1D_n4mv0")
+script = ExtResource("19_cs7wa")
+MenuScene = ExtResource("20_vpswd")
+
+[node name="Background" type="TextureRect" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_bdan5")
+expand_mode = 1
+
+[node name="Panel2" type="TextureRect" parent="PauseMenu/Background"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 290.0
+offset_bottom = 230.0
+texture = SubResource("GradientTexture1D_lfia4")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="PauseMenu/Background"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -84.5
+offset_top = 20.0
+offset_right = 84.5
+offset_bottom = 70.0
+grow_horizontal = 2
+text = "Options"
+label_settings = SubResource("LabelSettings_ubp1w")
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="PauseMenu/Background"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.0
+offset_top = 83.0
+offset_right = 75.0
+offset_bottom = 114.0
+grow_horizontal = 2
+text = "Resume"
+
+[node name="Restart" type="Button" parent="PauseMenu/Background"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.0
+offset_top = 118.0
+offset_right = 75.0
+offset_bottom = 149.0
+grow_horizontal = 2
+text = "Restart"
+
+[node name="Menu" type="Button" parent="PauseMenu/Background"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.0
+offset_top = 156.0
+offset_right = 75.0
+offset_bottom = 187.0
+grow_horizontal = 2
+text = "Return to Menu"
+
+[node name="LoseScreen" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = SubResource("GradientTexture1D_n4mv0")
+script = ExtResource("19_phews")
+MenuScene = ExtResource("20_vpswd")
+
+[node name="Background" type="TextureRect" parent="LoseScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -100.0
+offset_right = 300.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_bdan5")
+
+[node name="Panel2" type="TextureRect" parent="LoseScreen/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_lfia4")
+
+[node name="Label" type="Label" parent="LoseScreen/Background"]
+layout_mode = 1
+offset_left = 227.0
+offset_top = 9.0
+offset_right = 396.0
+offset_bottom = 59.0
+text = "You lost..."
+label_settings = SubResource("LabelSettings_ubp1w")
+
+[node name="Score" type="Label" parent="LoseScreen/Background"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 125.0
+offset_top = 65.0
+offset_right = 497.0
+offset_bottom = 115.0
+text = "You delivered xxxxx summoned items!"
+label_settings = SubResource("LabelSettings_vnjvi")
+horizontal_alignment = 1
+
+[node name="Highscore" type="Label" parent="LoseScreen/Background"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 166.0
+offset_top = 108.0
+offset_right = 461.0
+offset_bottom = 158.0
+text = "New Highscore!"
+label_settings = SubResource("LabelSettings_atrax")
+horizontal_alignment = 1
+
+[node name="Restart" type="Button" parent="LoseScreen/Background"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -153.0
+offset_top = -48.0
+offset_right = -3.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Retry"
+
+[node name="Menu" type="Button" parent="LoseScreen/Background"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 34.0
+offset_top = -45.0
+offset_right = 184.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Return to Menu"
+
+[connection signal="pressed" from="OptionsBtn" to="PauseMenu" method="_toggle_menu"]
 [connection signal="pressed" from="SpeedControls/PauseBtn" to="." method="_on_pause_pressed"]
 [connection signal="pressed" from="SpeedControls/PlayBtn" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="SpeedControls/FastForwardBtn" to="." method="_on_fast_forward_pressed"]
@@ -244,3 +462,8 @@ grow_vertical = 2
 [connection signal="pressed" from="Items/DestroyBtn" to="." method="_on_spawn_pressed" binds= [5]]
 [connection signal="pressed" from="Items/TeleportBtn" to="." method="_on_spawn_pressed" binds= [6]]
 [connection signal="pressed" from="TrashBtn" to="." method="_on_trash_btn_pressed"]
+[connection signal="pressed" from="PauseMenu/Background/Resume" to="PauseMenu" method="_toggle_menu"]
+[connection signal="pressed" from="PauseMenu/Background/Restart" to="PauseMenu" method="_press_restart"]
+[connection signal="pressed" from="PauseMenu/Background/Menu" to="PauseMenu" method="_press_menu"]
+[connection signal="pressed" from="LoseScreen/Background/Restart" to="LoseScreen" method="_press_restart"]
+[connection signal="pressed" from="LoseScreen/Background/Menu" to="LoseScreen" method="_press_menu"]

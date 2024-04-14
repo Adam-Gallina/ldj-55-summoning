@@ -35,7 +35,7 @@ func _process(_delta):
     _play_btn.modulate = BtnDefaultCol if GridController.FastForward else BtnSelectedCol
     _ff_btn.modulate = BtnSelectedCol if GridController.FastForward else BtnDefaultCol
 
-    _score_text.text = str(ScoreBoard.get_score())
+    _score_text.text = str(Leaderboard.get_curr_score())
 
 
 func _spawn_object(scene : PackedScene):
@@ -102,3 +102,7 @@ func _on_trash_btn_pressed():
         return false
 
     return true
+
+
+func _on_game_lost(score):
+    $LoseScreen.display_loss(score)

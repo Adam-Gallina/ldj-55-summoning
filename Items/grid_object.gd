@@ -13,6 +13,9 @@ var _curr_grid_pos : Vector2i
 
 func _process(_delta):
     if _dragged:
+        if $AnimationPlayer.current_animation != 'FigureEight':
+            $AnimationPlayer.play('FigureEight')
+
         if Input.is_action_just_pressed('rotate_cw'): rotate_cw()
         elif Input.is_action_just_pressed('rotate_ccw'): rotate_ccw()
         elif Input.is_action_just_pressed('mirror'): mirror()
@@ -27,6 +30,8 @@ func _unhandled_input(event):
     if event is InputEventMouseButton:
         if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and not event.is_echo():
             if _dragged:
+                $AnimationPlayer.play('RESET')
+                $CPUParticles2D.emitting = true
                 _dragged = false
                 drag_end.emit(self)
                 _place_object(_curr_grid_pos)

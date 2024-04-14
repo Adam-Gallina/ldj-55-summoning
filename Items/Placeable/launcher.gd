@@ -3,11 +3,11 @@ extends GridObject
 var _launch_dir : Constants.Direction = Constants.Direction.Right
 
 func rotate_cw():
-    $Sprite2D.rotation += PI/2
+    $Pivot/Sprite2D.rotation += PI/2
     _launch_dir = Constants.DirectionCW(_launch_dir)
 
 func rotate_ccw():
-    $Sprite2D.rotation -= PI/2
+    $Pivot/Sprite2D.rotation -= PI/2
     _launch_dir = Constants.DirectionCCW(_launch_dir)
 
 func summon_interact(summon : SummonObject):

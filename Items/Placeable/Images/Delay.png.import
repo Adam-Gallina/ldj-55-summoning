@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s2e26kigqt2s"
-path="res://.godot/imported/Launcher.png-f1e6a5eb788c3101522aae1a8bf7c2d1.ctex"
+uid="uid://6l2v6r0okp1q"
+path="res://.godot/imported/Delay.png-68f9fd1e028ae55a75a6c069c6dda7fb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/Placeable/Launcher.png"
-dest_files=["res://.godot/imported/Launcher.png-f1e6a5eb788c3101522aae1a8bf7c2d1.ctex"]
+source_file="res://Items/Placeable/Images/Delay.png"
+dest_files=["res://.godot/imported/Delay.png-68f9fd1e028ae55a75a6c069c6dda7fb.ctex"]
 
 [params]
 

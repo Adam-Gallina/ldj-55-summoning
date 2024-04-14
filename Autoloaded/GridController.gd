@@ -82,11 +82,10 @@ func _process(delta):
 	if Paused: return
 
 	_next_tick -= delta if not FastForward else (delta * FastForwardSpeed)
-	step.emit(delta if not FastForward else (delta * FastForwardSpeed), _next_tick)
-
 	if _next_tick <= 0:
 		tick.emit()
 		_next_tick = TickSpeed
+	step.emit(delta if not FastForward else (delta * FastForwardSpeed), _next_tick)
 
 
 func calc_move_speed():

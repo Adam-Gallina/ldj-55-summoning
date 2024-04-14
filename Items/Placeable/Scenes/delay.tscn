@@ -1,24 +1,170 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0ugtktuhfhyl"]
+[gd_scene load_steps=10 format=3 uid="uid://d0ugtktuhfhyl"]
 
 [ext_resource type="Script" path="res://Items/Placeable/Delay.gd" id="1_pwyde"]
-[ext_resource type="Texture2D" uid="uid://6l2v6r0okp1q" path="res://Items/Placeable/Delay.png" id="2_e0ftc"]
+[ext_resource type="Texture2D" uid="uid://6l2v6r0okp1q" path="res://Items/Placeable/Images/Delay.png" id="2_hdlpt"]
+[ext_resource type="Texture2D" uid="uid://bneflosr5lhx4" path="res://UI/Icons/Star.png" id="3_eedkv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_87scr"]
 size = Vector2(200, 200)
+
+[sub_resource type="Animation" id="Animation_5hwgr"]
+resource_name = "FigureEight"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.8, 1, 1.3, 1.5, 2, 2.3, 2.5, 2.8, 3, 3.3, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-6, 6), Vector2(-10, 10), Vector2(-16, 7), Vector2(-20, 0), Vector2(-14, -8), Vector2(-10, -10), Vector2(0, 0), Vector2(6, 6), Vector2(10, 10), Vector2(16, 7), Vector2(20, 0), Vector2(14, -7), Vector2(10, -10), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0872665, 0.0872665, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.607843)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivot/Sprite2D:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [15]
+}
+
+[sub_resource type="Animation" id="Animation_mesq3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivot/Sprite2D:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-10]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2px7n"]
+_data = {
+"FigureEight": SubResource("Animation_5hwgr"),
+"RESET": SubResource("Animation_mesq3")
+}
+
+[sub_resource type="Gradient" id="Gradient_vctsb"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_2xwro"]
+offsets = PackedFloat32Array(0, 0.986667)
+colors = PackedColorArray(0.635294, 0.635294, 0.635294, 1, 1, 1, 1, 1)
 
 [node name="Delay" type="Node2D"]
 script = ExtResource("1_pwyde")
 ObjType = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot"]
 z_index = -10
-texture = ExtResource("2_e0ftc")
+texture = ExtResource("2_hdlpt")
 offset = Vector2(-4.075, -8.7)
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_87scr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2px7n")
+}
+speed_scale = 1.75
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -15
+emitting = false
+amount = 35
+lifetime = 0.65
+one_shot = true
+preprocess = 0.3
+explosiveness = 1.0
+texture = ExtResource("3_eedkv")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 275.0
+initial_velocity_max = 300.0
+linear_accel_min = -350.0
+linear_accel_max = -300.0
+scale_amount_min = 0.15
+scale_amount_max = 0.25
+color_ramp = SubResource("Gradient_vctsb")
+color_initial_ramp = SubResource("Gradient_2xwro")
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_mouse_exited"]

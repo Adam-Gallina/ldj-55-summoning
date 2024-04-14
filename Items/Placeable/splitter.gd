@@ -4,12 +4,12 @@ var _input_dir = Constants.Direction.Down
 var _output_dir = Constants.Direction.Right
 
 func rotate_cw():
-    $Sprite2D.rotation += PI/2
+    $Pivot/Sprite2D.rotation += PI/2
     _input_dir = Constants.DirectionCW(_input_dir)
     _output_dir = Constants.DirectionCW(_output_dir)
 
 func rotate_ccw():
-    $Sprite2D.rotation -= PI/2
+    $Pivot/Sprite2D.rotation -= PI/2
     _input_dir = Constants.DirectionCCW(_input_dir)
     _output_dir = Constants.DirectionCCW(_output_dir)
 

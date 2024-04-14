@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgxlvkuixln4c"]
+[gd_scene load_steps=5 format=3 uid="uid://bgxlvkuixln4c"]
 
 [ext_resource type="Script" path="res://Portals/InputPortal.gd" id="1_x424r"]
 [ext_resource type="Texture2D" uid="uid://c3ovukgc0ooq1" path="res://UI/Icons/Diamond.png" id="3_ftpvn"]
 [ext_resource type="Texture2D" uid="uid://djak53wmpt7ud" path="res://Portals/Images/Portal_Round.png" id="3_org3x"]
+[ext_resource type="Texture2D" uid="uid://qenml1p4fx46" path="res://UI/Icons/Arrow.png" id="5_s557e"]
 
 [node name="InputPortal" type="Node2D"]
 script = ExtResource("1_x424r")
@@ -84,3 +85,9 @@ offset_bottom = 20.0
 grow_vertical = 2
 texture = ExtResource("3_ftpvn")
 expand_mode = 1
+
+[node name="SpawnArrow" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-3, -1)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_s557e")

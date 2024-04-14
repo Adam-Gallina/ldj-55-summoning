@@ -1,28 +1,149 @@
-[gd_scene load_steps=5 format=3 uid="uid://dyddeuof5401y"]
+[gd_scene load_steps=11 format=3 uid="uid://dyddeuof5401y"]
 
 [ext_resource type="Script" path="res://Items/grid_object.gd" id="1_rejy7"]
 [ext_resource type="Texture2D" uid="uid://djak53wmpt7ud" path="res://Portals/Images/Portal_Round.png" id="2_qnmwe"]
 [ext_resource type="PackedScene" uid="uid://bjv34e88k18ve" path="res://Portals/Images/wobbly_portal.tscn" id="3_jbp7b"]
+[ext_resource type="Texture2D" uid="uid://bneflosr5lhx4" path="res://UI/Icons/Star.png" id="4_fcffd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_87scr"]
 size = Vector2(200, 200)
 
+[sub_resource type="Animation" id="Animation_5hwgr"]
+resource_name = "FigureEight"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.8, 1, 1.3, 1.5, 2, 2.3, 2.5, 2.8, 3, 3.3, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-6, 6), Vector2(-10, 10), Vector2(-16, 7), Vector2(-20, 0), Vector2(-14, -8), Vector2(-10, -10), Vector2(0, 0), Vector2(6, 6), Vector2(10, 10), Vector2(16, 7), Vector2(20, 0), Vector2(14, -7), Vector2(10, -10), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0872665, 0.0872665, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.607843)]
+}
+
+[sub_resource type="Animation" id="Animation_mesq3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2px7n"]
+_data = {
+"FigureEight": SubResource("Animation_5hwgr"),
+"RESET": SubResource("Animation_mesq3")
+}
+
+[sub_resource type="Gradient" id="Gradient_y7twn"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_7eati"]
+colors = PackedColorArray(1, 0.585811, 0, 1, 1, 0.826105, 0.644683, 1)
+
 [node name="TeleportOutput" type="Node2D"]
 script = ExtResource("1_rejy7")
+
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot"]
+self_modulate = Color(0.576471, 0.576471, 0.576471, 1)
+scale = Vector2(0.82, 0.82)
+texture = ExtResource("2_qnmwe")
+offset = Vector2(-1.455, 0)
+
+[node name="WobblyPortal" parent="Pivot/Sprite2D" instance=ExtResource("3_jbp7b")]
+modulate = Color(1, 0.54902, 0.337255, 1)
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_87scr")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0.576471, 0.576471, 0.576471, 1)
-scale = Vector2(0.82, 0.82)
-texture = ExtResource("2_qnmwe")
-offset = Vector2(-1.455, 0)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2px7n")
+}
+speed_scale = 2.0
 
-[node name="WobblyPortal" parent="Sprite2D" instance=ExtResource("3_jbp7b")]
-modulate = Color(1, 0.54902, 0.337255, 1)
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -15
+emitting = false
+amount = 35
+lifetime = 0.65
+one_shot = true
+preprocess = 0.3
+explosiveness = 1.0
+texture = ExtResource("4_fcffd")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 275.0
+initial_velocity_max = 300.0
+linear_accel_min = -350.0
+linear_accel_max = -300.0
+scale_amount_min = 0.15
+scale_amount_max = 0.25
+color_ramp = SubResource("Gradient_y7twn")
+color_initial_ramp = SubResource("Gradient_7eati")
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_mouse_exited"]

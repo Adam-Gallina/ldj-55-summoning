@@ -59,7 +59,7 @@ modulate = Color(0.376471, 0.847059, 0.372549, 1)
 [node name="InputPortal3" parent="Test" instance=ExtResource("1_rcvpn")]
 position = Vector2(88, -464)
 SummonedObject = ExtResource("6_0hqy1")
-SummonRate = 3
+SummonRate = 2
 
 [node name="WobblyPortal" parent="Test/InputPortal3" instance=ExtResource("7_7lc4t")]
 modulate = Color(0.376471, 0.847059, 0.372549, 1)
@@ -81,6 +81,9 @@ modulate = Color(0.376471, 0.847059, 0.372549, 1)
 
 [node name="OutputPortal" parent="Test" instance=ExtResource("3_okjl1")]
 position = Vector2(-599, -427)
+FilteredObject = 2
+EmptyRate = 4
+LoseAmount = 12
 
 [node name="WobblyPortal2" parent="Test/OutputPortal" instance=ExtResource("7_7lc4t")]
 modulate = Color(0.376471, 0.847059, 0.372549, 1)

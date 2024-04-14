@@ -1,5 +1,7 @@
 extends Node2D
 
+signal game_over(score : int)
+
 @onready var _viewport_size = Vector2i(ProjectSettings.get_setting('display/window/size/viewport_width'), ProjectSettings.get_setting('display/window/size/viewport_height'))
 @export var StartGridHeight : int = 7
 
@@ -30,6 +32,8 @@ var _series : Array[PortalSpawner.PortalSeries] = []
 func _ready():
 	GridController.step.connect(_on_step)
 	GridController.tick.connect(_on_tick)
+
+	game_over.connect(get_node('%GameUI')._on_game_lost)
 	
 	_set_cam_zoom(_curr_zoom)
 	GridController.update_grid_height(StartGridHeight)
@@ -44,6 +48,7 @@ func _calc_cam_zoom(grid_height : int):
 
 
 func start_game():
+	Leaderboard.start_new_game()
 	GridController.toggle_pause()
 
 	_series.append(portal_spawner.get_new_portal_series())
@@ -53,6 +58,7 @@ func start_game():
 
 	var output_pos = portal_spawner.get_portal_spawn_pos()
 	_series[0].outputs.append(portal_spawner.spawn_output_portal(_series[0], output_pos, 8))
+	_series[0].outputs[-1].portal_filled.connect(_on_portal_filled)
 	_series[0].output_rate += 1
 
 	_next_spawn = randi_range(_min_tick_spawns, _max_tick_spawns)
@@ -116,6 +122,7 @@ func _on_tick():
 				s.input_rate += int(8 / s.inputs[-1].SummonRate)
 				
 				s.outputs.append(portal_spawner.spawn_output_portal(s, output_pos, 8))
+				s.outputs[-1].portal_filled.connect(_on_portal_filled)
 				s.output_rate += 1
 
 				spawn_successful = true		
@@ -142,3 +149,7 @@ func _on_tick():
 		
 		if spawn_successful: _next_spawn = randi_range(_min_tick_spawns, _max_tick_spawns)
 
+
+func _on_portal_filled(_portal):
+	Leaderboard.end_game()
+	game_over.emit(Leaderboard.get_curr_score())

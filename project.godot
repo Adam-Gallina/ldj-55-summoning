@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ldj-55"
-run/main_scene="res://test.tscn"
+run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://Items/Summons/Images/icon.svg"
 
@@ -19,7 +19,7 @@ config/icon="res://Items/Summons/Images/icon.svg"
 
 GridController="*res://Autoloaded/GridController.gd"
 Constants="*res://Autoloaded/constants.gd"
-ScoreBoard="*res://Autoloaded/score_board.gd"
+Leaderboard="*res://Autoloaded/leaderboard.gd"
 
 [display]
 

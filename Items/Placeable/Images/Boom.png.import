@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7hpu8nmm024x"
-path="res://.godot/imported/ElbowPipe.png-2ed98c7b6a38e4abf9b8df2c29a20659.ctex"
+uid="uid://cset64ha1ps0i"
+path="res://.godot/imported/Boom.png-6889b3ab245883ff797a2e5db7c1c5a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/Placeable/ElbowPipe.png"
-dest_files=["res://.godot/imported/ElbowPipe.png-2ed98c7b6a38e4abf9b8df2c29a20659.ctex"]
+source_file="res://Items/Placeable/Images/Boom.png"
+dest_files=["res://.godot/imported/Boom.png-6889b3ab245883ff797a2e5db7c1c5a6.ctex"]
 
 [params]
 

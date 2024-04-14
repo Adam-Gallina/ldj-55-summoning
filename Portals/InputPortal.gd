@@ -12,6 +12,8 @@ var _summon_dir : Constants.Direction = Constants.Direction.Down
 func set_summon_dir(dir : Constants.Direction):
 	_summon_dir = dir
 
+	get_node('%SpawnArrow').rotation = Vector2.RIGHT.angle_to(Constants.DirectionVector(dir))
+
 func set_summon_rate(rate : int):
 	SummonRate = rate
 	get_node('%EveryTwo').visible = rate == 2
