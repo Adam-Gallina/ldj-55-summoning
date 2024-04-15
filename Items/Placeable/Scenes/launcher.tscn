@@ -108,6 +108,7 @@ ObjType = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot"]
 z_index = -10
+scale = Vector2(0.822386, 0.822386)
 texture = ExtResource("2_p3yqg")
 
 [node name="Area2D" type="Area2D" parent="."]

@@ -1,9 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://vj7f4wk02auv"]
+[gd_scene load_steps=14 format=3 uid="uid://vj7f4wk02auv"]
 
 [ext_resource type="Script" path="res://Items/Placeable/destroy.gd" id="1_3ppcp"]
+[ext_resource type="PackedScene" uid="uid://2k5s1yijafew" path="res://Portals/Images/portal_edge.tscn" id="2_cfdmn"]
 [ext_resource type="Texture2D" uid="uid://cset64ha1ps0i" path="res://Items/Placeable/Images/Boom.png" id="2_r3n0b"]
 [ext_resource type="Texture2D" uid="uid://bneflosr5lhx4" path="res://UI/Icons/Star.png" id="3_6gfvf"]
+[ext_resource type="Texture2D" uid="uid://bobraqeq3kyb5" path="res://Portals/Images/Portal_Spiky.png" id="3_trp7a"]
 [ext_resource type="AudioStream" uid="uid://d01o12m5f74r1" path="res://Sounds/Place.wav" id="4_q85am"]
+[ext_resource type="Texture2D" uid="uid://doup726vlxjph" path="res://UI/Icons/circle.png" id="5_ntumo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_87scr"]
 size = Vector2(200, 200)
@@ -107,10 +110,32 @@ ObjType = 5
 
 [node name="Pivot" type="Node2D" parent="."]
 
+[node name="Portal3" parent="Pivot" instance=ExtResource("2_cfdmn")]
+self_modulate = Color(0.47451, 0, 0, 1)
+scale = Vector2(0.579307, 0.579307)
+texture = ExtResource("3_trp7a")
+
+[node name="Portal4" parent="Pivot/Portal3" instance=ExtResource("2_cfdmn")]
+self_modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.84713, 0.84713)
+texture = ExtResource("3_trp7a")
+
+[node name="Portal2" parent="Pivot/Portal3/Portal4" instance=ExtResource("2_cfdmn")]
+self_modulate = Color(0.47451, 0, 0, 1)
+scale = Vector2(0.853176, 0.853176)
+texture = ExtResource("3_trp7a")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Pivot"]
+self_modulate = Color(0, 0, 0, 1)
+z_index = -11
+scale = Vector2(0.426483, 0.426483)
+texture = ExtResource("5_ntumo")
+
 [node name="Sprite2D" type="Sprite2D" parent="Pivot"]
+self_modulate = Color(0.494118, 0.494118, 0.494118, 1)
 z_index = -10
+scale = Vector2(0.367131, 0.367131)
 texture = ExtResource("2_r3n0b")
-offset = Vector2(-4.075, -8.7)
 
 [node name="Area2D" type="Area2D" parent="."]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cuj2dyvmh6pco"]
+[gd_scene load_steps=14 format=3 uid="uid://cuj2dyvmh6pco"]
 
 [ext_resource type="Script" path="res://Portals/OutputPortal.gd" id="1_sqvke"]
 [ext_resource type="Texture2D" uid="uid://djak53wmpt7ud" path="res://Portals/Images/Portal_Round.png" id="2_6h1fp"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bneflosr5lhx4" path="res://UI/Icons/Star.png" id="3_qrvbp"]
 [ext_resource type="AudioStream" uid="uid://dj7wh8kfnokul" path="res://Sounds/PortalWarning.wav" id="4_jr01s"]
 [ext_resource type="Texture2D" uid="uid://5nfw48h0ipjw" path="res://Portals/Images/Flash.png" id="6_100tc"]
+[ext_resource type="Texture2D" uid="uid://c01prnp8jx7t5" path="res://Items/Summons/Images/Bone.png" id="7_rrkcm"]
 
 [sub_resource type="Animation" id="Animation_ipcoq"]
 length = 0.001
@@ -169,6 +170,13 @@ _data = {
 "spin": SubResource("Animation_ngoib")
 }
 
+[sub_resource type="Gradient" id="Gradient_yortt"]
+offsets = PackedFloat32Array(0.713333, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_unsq0"]
+colors = PackedColorArray(0.371015, 0.371015, 0.371015, 1, 1, 1, 1, 1)
+
 [node name="OutputPortal" type="Node2D"]
 script = ExtResource("1_sqvke")
 ObjType = -1
@@ -304,3 +312,36 @@ libraries = {
 "": SubResource("AnimationLibrary_ov5a3")
 }
 speed_scale = 2.0
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 30
+explosiveness = 0.5
+texture = ExtResource("3_lixjm")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 350.0
+initial_velocity_max = 400.0
+linear_accel_min = -250.0
+linear_accel_max = -250.0
+scale_amount_min = 0.05
+scale_amount_max = 0.15
+color_ramp = SubResource("Gradient_yortt")
+color_initial_ramp = SubResource("Gradient_unsq0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 20
+scale = Vector2(0.448877, 0.448877)
+texture = ExtResource("7_rrkcm")
+offset = Vector2(-180, -180)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(1, 1, 1, 0.588235)
+self_modulate = Color(0.513726, 0.513726, 0.513726, 1)
+show_behind_parent = true
+position = Vector2(-180, -180)
+texture = ExtResource("3_lixjm")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Sprite2D/Sprite2D2"]
+scale = Vector2(0.825441, 0.825441)
+texture = ExtResource("3_lixjm")

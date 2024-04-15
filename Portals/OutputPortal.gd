@@ -19,6 +19,8 @@ var _curr_amount = 0
 
 var _jiggled = false
 
+@onready var _colorblind_img = $Sprite2D
+
 func _ready():
 	if not SkipAnim:
 		$AnimationPlayer.play("spin")
@@ -27,6 +29,9 @@ func _ready():
 
 	_amount_bar.max_value = LoseAmount
 	_amount_bar.value = LoseAmount
+
+	remove_child(_colorblind_img)
+	get_parent().add_child.call_deferred(_colorblind_img)
 
 func set_empty_rate(rate : int):
 	EmptyRate = rate
@@ -47,10 +52,15 @@ func summon_interact(summon : SummonObject):
 		
 		_amount_bar.value = LoseAmount - _curr_amount
 
+func set_summon_img(texture):
+	_colorblind_img.texture = texture
 
 func do_pulse():
 	$AnimationPlayer.play("pulse")
 
+func _process(_delta):
+	_colorblind_img.position = position
+	_colorblind_img.visible = Constants.ColorBlindMode
 
 func _on_tick():
 	_next_gain -= 1
@@ -64,6 +74,7 @@ func _on_tick():
 
 		if _curr_amount == LoseAmount:
 			portal_filled.emit(self)
+			$CPUParticles2D.emitting = true
 
 	if _curr_amount >= PanicAmount:
 		portal_warning.emit(self)

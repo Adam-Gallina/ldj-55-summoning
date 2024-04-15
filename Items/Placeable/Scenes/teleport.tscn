@@ -12,7 +12,7 @@
 size = Vector2(200, 200)
 
 [sub_resource type="Curve" id="Curve_8gwvg"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.494737, 0.527472), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.505263, 0.307692), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Gradient" id="Gradient_cj7pv"]
@@ -145,7 +145,7 @@ ObjType = 6
 [node name="Sprite2D" type="Sprite2D" parent="Pivot"]
 self_modulate = Color(0.576471, 0.576471, 0.576471, 1)
 z_index = -10
-scale = Vector2(0.82, 0.82)
+scale = Vector2(0.627669, 0.627669)
 texture = ExtResource("2_3sngd")
 offset = Vector2(-1.455, 0)
 
@@ -162,7 +162,7 @@ modulate = Color(0.678431, 0.678431, 0.678431, 1)
 z_index = -20
 texture_repeat = 2
 points = PackedVector2Array(0, 0, 100, 0, 200, 0, 300, 0, 400, 0, 500, 0, 600, 0, 700, 0)
-width = 130.0
+width = 100.0
 width_curve = SubResource("Curve_8gwvg")
 gradient = SubResource("Gradient_cj7pv")
 texture = ExtResource("5_j4fkr")

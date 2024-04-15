@@ -79,11 +79,12 @@ func _on_step(delta, _to_next_tick):
 func on_collision(other : SummonObject):
 	GridController.unhover(_last_hover)
 	
-	var a = $AudioStreamPlayer
-	a.play()
-	a.finished.connect(a.queue_free)
-	remove_child(a)
-	get_parent().add_child(a)
+	if not Constants.CollisionAudio:
+		var a = $AudioStreamPlayer
+		a.play()
+		a.finished.connect(a.queue_free)
+		remove_child(a)
+		get_parent().add_child(a)
 
 	despawn()
 	other.despawn()

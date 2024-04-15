@@ -86,12 +86,12 @@ func _on_spawn_pressed(obj):
 
 func _on_object_drag_start(obj : GridObject):
     _curr_drag = obj
-    $TrashBtn._on_object_selected(obj)
+    $SideBar/TrashBtn._on_object_selected(obj)
 
 func _on_object_drag_end(obj : GridObject):
     if obj == _curr_drag:
         _curr_drag = null
-        $TrashBtn._on_object_placed(obj)
+        $SideBar/TrashBtn._on_object_placed(obj)
 
 func _on_trash_btn_pressed():
     if _curr_drag != null:
@@ -100,7 +100,7 @@ func _on_trash_btn_pressed():
             _curr_drag.drag_start.disconnect(_on_object_drag_start)
             _curr_drag.drag_end.disconnect(_on_object_drag_end)
 
-            $TrashBtn.play_trash()
+            $SideBar/TrashBtn.play_trash()
             return true
 
         return false

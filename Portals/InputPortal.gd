@@ -1,4 +1,5 @@
 extends GridObject
+class_name InputPortal
 
 @export var SummonedObject : PackedScene
 @export var SummonRate : int = 2
@@ -9,10 +10,14 @@ var _progress_dir = 1
 
 var _summon_dir : Constants.Direction = Constants.Direction.Down
 
+@onready var _colorblind_img = $Sprite2D
+
 func set_summon_dir(dir : Constants.Direction):
 	_summon_dir = dir
 
 	get_node('%SpawnArrow').rotation = Vector2.RIGHT.angle_to(Constants.DirectionVector(dir))
+
+func get_summon_dir(): return _summon_dir
 
 func set_summon_rate(rate : int):
 	SummonRate = rate
@@ -20,11 +25,21 @@ func set_summon_rate(rate : int):
 	get_node('%EverySix').visible = rate == 2
 	get_node('%EveryFour').visible = rate == 4 or rate == 2
 
+func set_summon_img(texture):
+	_colorblind_img.texture = texture
+
 func _ready():
 	GridController.tick.connect(_on_tick)
 	#GridController.step.connect(_on_step)
 
 	_progress_bar.value = 0
+
+	remove_child(_colorblind_img)
+	get_parent().add_child.call_deferred(_colorblind_img)
+
+func _process(_delta):
+	_colorblind_img.position = position
+	_colorblind_img.visible = Constants.ColorBlindMode
 
 func _on_tick():
 	_next_summon -= 1

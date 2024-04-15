@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ddap48akjr4gb"]
+[gd_scene load_steps=12 format=3 uid="uid://ddap48akjr4gb"]
 
 [ext_resource type="Script" path="res://Portals/ZenOutputPortal.gd" id="1_pg38l"]
 [ext_resource type="Texture2D" uid="uid://djak53wmpt7ud" path="res://Portals/Images/Portal_Round.png" id="2_ipcjo"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bneflosr5lhx4" path="res://UI/Icons/Star.png" id="4_c66up"]
 [ext_resource type="AudioStream" uid="uid://dj7wh8kfnokul" path="res://Sounds/PortalWarning.wav" id="5_lirwi"]
 [ext_resource type="Texture2D" uid="uid://5nfw48h0ipjw" path="res://Portals/Images/Flash.png" id="6_ba1l7"]
+[ext_resource type="Texture2D" uid="uid://c01prnp8jx7t5" path="res://Items/Summons/Images/Bone.png" id="7_0twd7"]
 
 [sub_resource type="Animation" id="Animation_ipcoq"]
 length = 0.001
@@ -305,3 +306,20 @@ libraries = {
 "": SubResource("AnimationLibrary_ov5a3")
 }
 speed_scale = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 20
+scale = Vector2(0.448877, 0.448877)
+texture = ExtResource("7_0twd7")
+offset = Vector2(-180, -180)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(1, 1, 1, 0.588235)
+self_modulate = Color(0.513726, 0.513726, 0.513726, 1)
+show_behind_parent = true
+position = Vector2(-180, -180)
+texture = ExtResource("3_s5rj3")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Sprite2D/Sprite2D2"]
+scale = Vector2(0.825441, 0.825441)
+texture = ExtResource("3_s5rj3")

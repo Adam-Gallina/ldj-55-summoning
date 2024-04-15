@@ -108,7 +108,7 @@ script = ExtResource("1_rejy7")
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot"]
 self_modulate = Color(0.576471, 0.576471, 0.576471, 1)
-scale = Vector2(0.82, 0.82)
+scale = Vector2(0.62249, 0.62249)
 texture = ExtResource("2_qnmwe")
 offset = Vector2(-1.455, 0)
 

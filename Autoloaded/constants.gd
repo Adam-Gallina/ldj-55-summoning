@@ -39,3 +39,7 @@ func DirectionInverse(dir : Direction):
         Direction.Right: return Direction.Left
         Direction.Down: return Direction.Up
         Direction.Left: return Direction.Right
+
+
+var ColorBlindMode = false
+var CollisionAudio = false

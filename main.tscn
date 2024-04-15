@@ -320,6 +320,7 @@ disabled = true
 text = "Challenge"
 
 [node name="SpikyPortal" parent="UI/PlayChallenge" instance=ExtResource("4_p24ub")]
+visible = false
 modulate = Color(1, 0.407843, 0.407843, 1)
 z_index = -1
 position = Vector2(-2, 49)
@@ -337,9 +338,9 @@ scale = Vector2(0.53, 1)
 modulate = Color(0.137255, 0, 0.27451, 1)
 z_index = -2
 layout_mode = 0
-offset_left = -38.0
+offset_left = -8.0
 offset_top = -10.0
-offset_right = 42.0
+offset_right = 72.0
 offset_bottom = 106.0
 texture = ExtResource("17_kcfrl")
 expand_mode = 1
@@ -390,6 +391,7 @@ rotation = 0.10472
 scale = Vector2(0.5, 1)
 
 [node name="WobblyPortal2" parent="UI/PlayInfinite" instance=ExtResource("6_jhwca")]
+visible = false
 modulate = Color(0.47451, 0.741176, 1, 1)
 z_index = -1
 position = Vector2(333, 49)
@@ -411,9 +413,9 @@ expand_mode = 1
 modulate = Color(0.137255, 0, 0.27451, 1)
 z_index = -2
 layout_mode = 0
-offset_left = 285.0
+offset_left = 268.0
 offset_top = -10.0
-offset_right = 365.0
+offset_right = 348.0
 offset_bottom = 106.0
 texture = ExtResource("17_kcfrl")
 expand_mode = 1
@@ -431,10 +433,10 @@ expand_mode = 1
 
 [node name="PlayZen" type="Button" parent="UI"]
 layout_mode = 2
-offset_left = 258.0
-offset_top = 899.0
-offset_right = 598.0
-offset_bottom = 995.0
+offset_left = 363.0
+offset_top = 891.0
+offset_right = 703.0
+offset_bottom = 987.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("16_nhudw")
@@ -446,6 +448,7 @@ text = "Zen
 "
 
 [node name="RoundPortal" parent="UI/PlayZen" instance=ExtResource("8_nj4h3")]
+visible = false
 modulate = Color(0.564706, 1, 0.552941, 1)
 z_index = -1
 position = Vector2(-7, 50)
@@ -461,9 +464,9 @@ scale = Vector2(0.5, 1)
 modulate = Color(0.137255, 0, 0.27451, 1)
 z_index = -2
 layout_mode = 0
-offset_left = -38.0
+offset_left = -12.0
 offset_top = -10.0
-offset_right = 42.0
+offset_right = 68.0
 offset_bottom = 106.0
 texture = ExtResource("17_kcfrl")
 expand_mode = 1
@@ -493,3 +496,5 @@ expand_mode = 1
 [connection signal="pressed" from="UI/PlayChallenge" to="." method="_on_challenge_pressed"]
 [connection signal="pressed" from="UI/PlayInfinite" to="." method="_on_infinite_pressed"]
 [connection signal="pressed" from="UI/PlayZen" to="." method="_on_zen_pressed"]
+
+[editable path="DemoAnim/OutputPortal4"]

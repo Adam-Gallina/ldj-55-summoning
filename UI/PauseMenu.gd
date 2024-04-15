@@ -21,3 +21,14 @@ func _press_menu():
 func _press_tutorial():
     get_parent().get_node('Tutorial').show()
     hide()
+
+
+
+func _on_colorblind_toggled(toggled_on:bool):
+    Constants.ColorBlindMode = toggled_on
+
+func _on_music_toggled(toggled_on:bool):
+    GridController.get_node('AudioStreamPlayer').stream_paused = toggled_on
+
+func _on_collisions_toggled(toggled_on:bool):
+    Constants.CollisionAudio = toggled_on

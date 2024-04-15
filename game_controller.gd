@@ -49,7 +49,8 @@ func _calc_cam_zoom(grid_height : int):
 
 func start_game():
 	Leaderboard.start_new_game()
-	#GridController.toggle_pause()
+	if GridController.Paused:
+		GridController.toggle_pause()
 	if GridController.FastForward:
 		GridController.toggle_fast_forward()
 
@@ -111,33 +112,45 @@ func _on_tick():
 			s = _series.pick_random()
 
 		var eligible_upgrades = []
-		for out in s.outputs:
-			if out.EmptyRate == 2:
-				continue
-			if s.input_rate - (s.output_rate - 1) >= 8 / (out.EmptyRate-1):
-				eligible_upgrades.append(out)
+		if s.input_rate - s.output_rate >= 2:
+			for out in s.outputs:
+				if out.EmptyRate == 2:
+					continue
+				if s.input_rate - s.output_rate >= 8 / (out.EmptyRate-1):
+					eligible_upgrades.append(out)
 
 
 		if eligible_upgrades.size() == 0 or randf() <= ChanceForNewOutput:
 			var input_pos = portal_spawner.get_portal_spawn_pos()
-			var output_pos = portal_spawner.get_portal_spawn_pos()
-
-			if input_pos == null or output_pos == null:
-				pass
-			elif input_pos == output_pos:
-				pass
-			elif abs(input_pos.x - output_pos.x) <= 1 and abs(input_pos.y - output_pos.y) <= 1:
-				pass
-			else:
+			if input_pos != null:
 				s.inputs.append(portal_spawner.spawn_input_portal(s, input_pos))
 				s.input_rate += int(8 / s.inputs[-1].SummonRate)
 				
-				s.outputs.append(portal_spawner.spawn_output_portal(s, output_pos, 9))
-				s.outputs[-1].portal_filled.connect(_on_portal_filled)
-				s.output_rate += 1
+				var output_pos = portal_spawner.get_portal_spawn_pos()
+				if output_pos != null:
+					s.outputs.append(portal_spawner.spawn_output_portal(s, output_pos, 9))
+					s.outputs[-1].portal_filled.connect(_on_portal_filled)
+					s.output_rate += 1
 
 				spawn_successful = true
 				$SpawnAudio.play()
+
+			#if input_pos == null or output_pos == null:
+			#	pass
+			#elif input_pos == output_pos:
+			#	pass
+			#elif abs(input_pos.x - output_pos.x) <= 1 and abs(input_pos.y - output_pos.y) <= 1:
+			#	pass
+			#else:
+			#	s.inputs.append(portal_spawner.spawn_input_portal(s, input_pos))
+			#	s.input_rate += int(8 / s.inputs[-1].SummonRate)
+			#	
+			#	s.outputs.append(portal_spawner.spawn_output_portal(s, output_pos, 9))
+			#	s.outputs[-1].portal_filled.connect(_on_portal_filled)
+			#	s.output_rate += 1
+#
+#				spawn_successful = true
+#				$SpawnAudio.play()
 		else:
 			var upgrade = eligible_upgrades.pick_random()
 
@@ -165,7 +178,34 @@ func _on_tick():
 		if spawn_successful: _next_spawn = randi_range(_min_tick_spawns, _max_tick_spawns)
 
 
-func _on_portal_filled(_portal):
+func _on_portal_filled(portal):
 	Leaderboard.end_game()
 	GridController.toggle_pause()
 	game_over.emit(Leaderboard.get_curr_score())
+
+	_lost_portal = portal
+	_cam_pan_remaining = CamPanTime
+	_cam_start_pos = cam.global_position
+	_target_zoom = _curr_zoom
+
+
+@export var CamPanTime = 2
+@export var CamZoomMod = .25
+var _cam_pan_remaining
+var _cam_start_pos
+
+var _lost_portal : OutputPortal
+var _next_shake = 0
+func _process(delta):
+	if _lost_portal == null: return
+
+	_cam_pan_remaining -= delta
+	if _cam_pan_remaining > 0:
+		var t = _cam_pan_remaining / CamPanTime
+		cam.global_position = _cam_start_pos.lerp(_lost_portal.global_position, 1-t)
+		_set_cam_zoom(_target_zoom * (1 - CamZoomMod * t))
+
+	_next_shake -= delta
+	if _next_shake <= 0:
+		_lost_portal.portal_warning.emit(_lost_portal)
+		_next_shake = GridController.TickSpeed

@@ -9,13 +9,6 @@
 
 [node name="Gameboard" type="Node2D"]
 script = ExtResource("1_8wjyj")
-StartGridHeight = null
-CycleTime = null
-MinTimeBetweenSpawns = null
-MaxTimeBetweenSpawns = null
-ChanceForNewOutput = null
-ChanceForNewSeries = null
-ChanceForNoNewInput = null
 
 [node name="SpawnAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_fnqbi")

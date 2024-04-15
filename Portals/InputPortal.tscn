@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgxlvkuixln4c"]
+[gd_scene load_steps=7 format=3 uid="uid://bgxlvkuixln4c"]
 
 [ext_resource type="Script" path="res://Portals/InputPortal.gd" id="1_x424r"]
 [ext_resource type="Texture2D" uid="uid://c3ovukgc0ooq1" path="res://UI/Icons/Diamond.png" id="3_ftpvn"]
 [ext_resource type="Texture2D" uid="uid://djak53wmpt7ud" path="res://Portals/Images/Portal_Round.png" id="3_org3x"]
+[ext_resource type="Texture2D" uid="uid://c01prnp8jx7t5" path="res://Items/Summons/Images/Bone.png" id="5_c3prl"]
 [ext_resource type="Texture2D" uid="uid://qenml1p4fx46" path="res://UI/Icons/Arrow.png" id="5_s557e"]
+[ext_resource type="Texture2D" uid="uid://doup726vlxjph" path="res://UI/Icons/circle.png" id="6_i1ib1"]
 
 [node name="InputPortal" type="Node2D"]
 scale = Vector2(0.65, 0.65)
@@ -92,3 +94,20 @@ unique_name_in_owner = true
 position = Vector2(-3, -1)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("5_s557e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 20
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("5_c3prl")
+offset = Vector2(-140, -140)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(1, 1, 1, 0.588235)
+self_modulate = Color(0.513726, 0.513726, 0.513726, 1)
+show_behind_parent = true
+position = Vector2(-140, -140)
+texture = ExtResource("6_i1ib1")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Sprite2D/Sprite2D2"]
+scale = Vector2(0.825441, 0.825441)
+texture = ExtResource("6_i1ib1")

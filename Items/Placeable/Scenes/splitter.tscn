@@ -106,6 +106,7 @@ script = ExtResource("1_m2rjv")
 ObjType = 2
 
 [node name="Pivot" type="Node2D" parent="."]
+scale = Vector2(0.638585, 0.638585)
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot"]
 z_index = -10
