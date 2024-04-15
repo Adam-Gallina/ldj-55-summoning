@@ -23,6 +23,7 @@ func set_movement_dir(dir : Constants.Direction):
 func get_movement_dir(): return _curr_dir
 
 func set_floating_tiles(amount : int):
+	_last_float = null
 	_remaining_float = amount
 	_float_anim_remaining = GridController.TickSpeed
 
@@ -47,7 +48,7 @@ func _on_step(delta, _to_next_tick):
 
 	var p = GridController.closest_grid_space(position)
 
-	if not GridController.is_in_bounds(p):
+	if not GridController.is_in_bounds(p, 1):
 		despawn()
 		return
 
@@ -77,6 +78,13 @@ func _on_step(delta, _to_next_tick):
 
 func on_collision(other : SummonObject):
 	GridController.unhover(_last_hover)
+	
+	var a = $AudioStreamPlayer
+	a.play()
+	a.finished.connect(a.queue_free)
+	remove_child(a)
+	get_parent().add_child(a)
+
 	despawn()
 	other.despawn()
 

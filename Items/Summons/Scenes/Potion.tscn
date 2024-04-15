@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3t2vapcolyx3"]
+[gd_scene load_steps=7 format=3 uid="uid://c3t2vapcolyx3"]
 
 [ext_resource type="Script" path="res://Items/Summons/SummonObject.gd" id="1_dahwj"]
 [ext_resource type="Texture2D" uid="uid://c64phl74cu2xg" path="res://Items/Summons/Images/Potion.png" id="2_8u8t8"]
 [ext_resource type="Script" path="res://Items/Summons/summon_particles.gd" id="3_v8amc"]
+[ext_resource type="AudioStream" uid="uid://c3mx578862qx0" path="res://Sounds/Collision2.wav" id="4_ee01h"]
 
 [sub_resource type="Curve" id="Curve_eabxj"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.64066, 0.0, 0, 0]
@@ -40,3 +41,7 @@ scale_amount_max = 20.0
 scale_amount_curve = SubResource("Curve_eabxj")
 color_ramp = SubResource("Gradient_echsq")
 script = ExtResource("3_v8amc")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ee01h")
+volume_db = -16.0

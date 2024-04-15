@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bww6q61tdxd0i"]
+[gd_scene load_steps=12 format=3 uid="uid://bww6q61tdxd0i"]
 
 [ext_resource type="PackedScene" uid="uid://b756ltngpqunc" path="res://Environment/background.tscn" id="1_1fwmo"]
 [ext_resource type="PackedScene" uid="uid://bb5gordg8g48g" path="res://UI/game_ui.tscn" id="1_bmbmm"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://by0l6ai4rb0mm" path="res://Items/Summons/Scenes/Orb.tscn" id="6_0hqy1"]
 [ext_resource type="PackedScene" uid="uid://bx5mg26d7wtro" path="res://Portals/Images/round_portal.tscn" id="6_x8jel"]
 [ext_resource type="PackedScene" uid="uid://bjv34e88k18ve" path="res://Portals/Images/wobbly_portal.tscn" id="7_7lc4t"]
-[ext_resource type="PackedScene" uid="uid://3rh0bky0io2b" path="res://Items/Summons/Scenes/Icon.tscn" id="8_rrg1b"]
 [ext_resource type="PackedScene" uid="uid://bufwhem4acqw5" path="res://Items/Summons/Scenes/Wrench.tscn" id="10_e7kbx"]
 
 [sub_resource type="GDScript" id="GDScript_ks72o"]
@@ -55,6 +54,7 @@ script = SubResource("GDScript_ks72o")
 [node name="InputPortal" parent="Test" instance=ExtResource("1_rcvpn")]
 position = Vector2(804, -242)
 SummonedObject = ExtResource("4_krj2t")
+SummonRate = 8
 
 [node name="SpikyPortal" parent="Test/InputPortal" instance=ExtResource("5_gykhy")]
 modulate = Color(0.376471, 0.847059, 0.372549, 1)
@@ -62,15 +62,15 @@ modulate = Color(0.376471, 0.847059, 0.372549, 1)
 [node name="InputPortal3" parent="Test" instance=ExtResource("1_rcvpn")]
 position = Vector2(88, -464)
 SummonedObject = ExtResource("6_0hqy1")
-SummonRate = 2
+SummonRate = 0
 
 [node name="WobblyPortal" parent="Test/InputPortal3" instance=ExtResource("7_7lc4t")]
 modulate = Color(0.376471, 0.847059, 0.372549, 1)
 
 [node name="InputPortal2" parent="Test" instance=ExtResource("1_rcvpn")]
 position = Vector2(232, -257)
-SummonedObject = ExtResource("8_rrg1b")
-SummonRate = 3
+SummonedObject = ExtResource("6_0hqy1")
+SummonRate = 0
 
 [node name="RoundPortal" parent="Test/InputPortal2" instance=ExtResource("6_x8jel")]
 modulate = Color(0.376471, 0.847059, 0.372549, 1)
@@ -78,6 +78,7 @@ modulate = Color(0.376471, 0.847059, 0.372549, 1)
 [node name="InputPortal4" parent="Test" instance=ExtResource("1_rcvpn")]
 position = Vector2(639, -471)
 SummonedObject = ExtResource("10_e7kbx")
+SummonRate = 0
 
 [node name="SpikyPortal" parent="Test/InputPortal4" instance=ExtResource("5_gykhy")]
 modulate = Color(0.376471, 0.847059, 0.372549, 1)
@@ -85,7 +86,7 @@ modulate = Color(0.376471, 0.847059, 0.372549, 1)
 [node name="OutputPortal" parent="Test" instance=ExtResource("3_okjl1")]
 position = Vector2(-599, -427)
 FilteredObject = 2
-EmptyRate = 2
+EmptyRate = 0
 
 [node name="WobblyPortal2" parent="Test/OutputPortal" instance=ExtResource("7_7lc4t")]
 modulate = Color(0.376471, 0.847059, 0.372549, 1)

@@ -1,9 +1,173 @@
-[gd_scene load_steps=5 format=3 uid="uid://cuj2dyvmh6pco"]
+[gd_scene load_steps=11 format=3 uid="uid://cuj2dyvmh6pco"]
 
 [ext_resource type="Script" path="res://Portals/OutputPortal.gd" id="1_sqvke"]
 [ext_resource type="Texture2D" uid="uid://djak53wmpt7ud" path="res://Portals/Images/Portal_Round.png" id="2_6h1fp"]
+[ext_resource type="Texture2D" uid="uid://doup726vlxjph" path="res://UI/Icons/circle.png" id="3_lixjm"]
 [ext_resource type="Texture2D" uid="uid://bneflosr5lhx4" path="res://UI/Icons/Star.png" id="3_qrvbp"]
 [ext_resource type="AudioStream" uid="uid://dj7wh8kfnokul" path="res://Sounds/PortalWarning.wav" id="4_jr01s"]
+[ext_resource type="Texture2D" uid="uid://5nfw48h0ipjw" path="res://Portals/Images/Flash.png" id="6_100tc"]
+
+[sub_resource type="Animation" id="Animation_ipcoq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Pulse:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Pulse:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Pulse:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.392157)]
+}
+
+[sub_resource type="Animation" id="Animation_iyjr1"]
+resource_name = "pulse"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Pulse:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Pulse:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(4.5, 4.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Pulse:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ngoib"]
+resource_name = "spin"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.2, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-1.56905, 0.0, 0.0, 1.56905]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.2, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 2.0944, 2.0944]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ov5a3"]
+_data = {
+"RESET": SubResource("Animation_ipcoq"),
+"pulse": SubResource("Animation_iyjr1"),
+"spin": SubResource("Animation_ngoib")
+}
 
 [node name="OutputPortal" type="Node2D"]
 script = ExtResource("1_sqvke")
@@ -28,7 +192,25 @@ value = 4.0
 fill_mode = 4
 texture_progress = ExtResource("2_6h1fp")
 
-[node name="EveryOne" type="TextureRect" parent="TextureProgressBar"]
+[node name="TextureRect" type="TextureRect" parent="TextureProgressBar"]
+self_modulate = Color(0.654902, 0.654902, 0.654902, 1)
+z_index = 20
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_lixjm")
+expand_mode = 1
+
+[node name="EveryOne" type="TextureRect" parent="TextureProgressBar/TextureRect"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -37,16 +219,16 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -37.0
-offset_top = -53.0
+offset_top = -44.0
 offset_right = 2.99998
-offset_bottom = -13.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.80083, 1.80083)
 texture = ExtResource("3_qrvbp")
 expand_mode = 1
 
-[node name="EveryTwo" type="TextureRect" parent="TextureProgressBar"]
+[node name="EveryTwo" type="TextureRect" parent="TextureProgressBar/TextureRect"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -55,16 +237,16 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 13.0
-offset_top = -26.0
+offset_top = -11.0
 offset_right = 53.0
-offset_bottom = 14.0
+offset_bottom = 29.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.321141
 texture = ExtResource("3_qrvbp")
 expand_mode = 1
 
-[node name="EveryFour" type="TextureRect" parent="TextureProgressBar"]
+[node name="EveryFour" type="TextureRect" parent="TextureProgressBar/TextureRect"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -72,17 +254,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -51.0
-offset_top = -12.0
-offset_right = -11.0
-offset_bottom = 28.0
+offset_left = -52.0
+offset_top = 0.999996
+offset_right = -12.0
+offset_bottom = 41.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -0.321547
 texture = ExtResource("3_qrvbp")
 expand_mode = 1
 
-[node name="EveryEight" type="TextureRect" parent="TextureProgressBar"]
+[node name="EveryEight" type="TextureRect" parent="TextureProgressBar/TextureRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -90,9 +272,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -13.0
+offset_top = -4.0
 offset_right = 20.0
-offset_bottom = 27.0
+offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_qrvbp")
@@ -101,3 +283,24 @@ expand_mode = 1
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_jr01s")
 volume_db = -10.0
+
+[node name="Spin" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.392157)
+z_index = -1
+scale = Vector2(2.74, 2.74)
+texture = ExtResource("6_100tc")
+
+[node name="Pulse" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.392157)
+z_index = -1
+rotation = 3.14159
+texture = ExtResource("2_6h1fp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Spin")
+libraries = {
+"": SubResource("AnimationLibrary_ov5a3")
+}
+speed_scale = 2.0

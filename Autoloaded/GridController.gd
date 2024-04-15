@@ -31,6 +31,14 @@ func update_grid_height(new_height : int):
 	MinGrid = Vector2i(-int(x), -int(y))
 	MaxGrid = Vector2i(int(x), int(y))
 
+func update_grid(new_height : int, new_width : int):
+	var y = float(new_height - 1) / 2
+	var x = float(new_width - 1) / 2
+
+	MinGrid = Vector2i(-int(x), -int(y))
+	MaxGrid = Vector2i(int(x), int(y))
+	print(MinGrid, ' ', MaxGrid)
+
 
 func closest_grid_space(world_pos : Vector2) -> Vector2i:
 	var x = int(world_pos.x + GridSize / 2 * sign(world_pos.x)) / GridSize
@@ -55,8 +63,8 @@ func insert(grid_pos : Vector2i, obj : GridObject):
 func remove(grid_pos : Vector2i):
 	_curr_contained.erase(grid_pos)
 
-func is_in_bounds(grid_pos : Vector2i):
-	return grid_pos.x >= MinGrid.x and grid_pos.x <= MaxGrid.x and grid_pos.y >= MinGrid.y and grid_pos.y <= MaxGrid.y
+func is_in_bounds(grid_pos : Vector2i, margin=0):
+	return grid_pos.x >= MinGrid.x-margin and grid_pos.x <= MaxGrid.x+margin and grid_pos.y >= MinGrid.y-margin and grid_pos.y <= MaxGrid.y+margin
 
 
 func pos_hovered(grid_pos : Vector2i) -> SummonObject:

@@ -45,6 +45,8 @@ func jiggle(delay=0):
 	if delay > 0:
 		await get_tree().create_timer(delay).timeout
 
+	if not is_instance_valid(self): return
+
 	if get_child_count() > 0:
 		get_children()[0].jiggle(.05)
 

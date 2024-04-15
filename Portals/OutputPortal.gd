@@ -1,7 +1,10 @@
 extends GridObject
+class_name OutputPortal
 
 signal portal_filled(portal)
 signal portal_warning(portal)
+
+@export var SkipAnim : bool = false
 
 @export var FilteredObject : int
 
@@ -17,6 +20,9 @@ var _curr_amount = 0
 var _jiggled = false
 
 func _ready():
+	if not SkipAnim:
+		$AnimationPlayer.play("spin")
+
 	GridController.tick.connect(_on_tick)
 
 	_amount_bar.max_value = LoseAmount
@@ -26,12 +32,12 @@ func set_empty_rate(rate : int):
 	EmptyRate = rate
 	_next_gain = EmptyRate if _next_gain == null else min(_next_gain, EmptyRate)
 
-	get_node('%EveryFour').visible = rate < 8
-	get_node('%EveryTwo').visible = rate < 4
-	get_node('%EveryOne').visible = rate == 1
+	get_node('%EveryFour').visible = rate < 9
+	get_node('%EveryTwo').visible = rate < 5
+	get_node('%EveryOne').visible = rate == 2
 
 func summon_interact(summon : SummonObject):
-	if _curr_amount <= -1: return
+	if _curr_amount <= -1 and EmptyRate > 0: return
 
 	if summon.ObjectNum == FilteredObject:
 		summon.despawn()
@@ -40,6 +46,10 @@ func summon_interact(summon : SummonObject):
 		if _curr_amount < -1: _curr_amount = -1
 		
 		_amount_bar.value = LoseAmount - _curr_amount
+
+
+func do_pulse():
+	$AnimationPlayer.play("pulse")
 
 
 func _on_tick():

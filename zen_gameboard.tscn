@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://bc5gasyo6psi3"]
+
+[ext_resource type="Script" path="res://game_controller.gd" id="1_ihymk"]
+[ext_resource type="AudioStream" uid="uid://b2k6plkxr4ift" path="res://Sounds/PortalSpawn.wav" id="2_bmmew"]
+[ext_resource type="AudioStream" uid="uid://cdwutio823r4c" path="res://Sounds/PortalUpgrade.wav" id="3_8l1uk"]
+[ext_resource type="PackedScene" uid="uid://b756ltngpqunc" path="res://Environment/background.tscn" id="4_x18gx"]
+[ext_resource type="PackedScene" uid="uid://cjxqlwuy8jr7o" path="res://PortalSpawner.tscn" id="5_270pf"]
+[ext_resource type="PackedScene" uid="uid://ddap48akjr4gb" path="res://Portals/ZenOutputPortal.tscn" id="6_qevxo"]
+[ext_resource type="PackedScene" uid="uid://bb5gordg8g48g" path="res://UI/game_ui.tscn" id="6_xyt5n"]
+
+[node name="Gameboard" type="Node2D"]
+script = ExtResource("1_ihymk")
+StartGridHeight = null
+CycleTime = null
+MinTimeBetweenSpawns = null
+MaxTimeBetweenSpawns = null
+ChanceForNewOutput = null
+ChanceForNewSeries = null
+ChanceForNoNewInput = null
+
+[node name="SpawnAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_bmmew")
+volume_db = -12.0
+
+[node name="UpgradeAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8l1uk")
+volume_db = -12.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Background" parent="." instance=ExtResource("4_x18gx")]
+
+[node name="PortalSpawner" parent="." instance=ExtResource("5_270pf")]
+PortalOutputScene = ExtResource("6_qevxo")
+
+[node name="GameUI" parent="PortalSpawner" instance=ExtResource("6_xyt5n")]
+unique_name_in_owner = true

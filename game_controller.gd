@@ -49,15 +49,17 @@ func _calc_cam_zoom(grid_height : int):
 
 func start_game():
 	Leaderboard.start_new_game()
-	GridController.toggle_pause()
+	#GridController.toggle_pause()
+	if GridController.FastForward:
+		GridController.toggle_fast_forward()
 
 	_series.append(portal_spawner.get_new_portal_series())
 	var input_pos = portal_spawner.get_portal_spawn_pos()
 	_series[0].inputs.append(portal_spawner.spawn_input_portal(_series[0], input_pos, 8))
-	_series[0].input_rate += 1
+	_series[0].input_rate += 2
 
 	var output_pos = portal_spawner.get_portal_spawn_pos()
-	_series[0].outputs.append(portal_spawner.spawn_output_portal(_series[0], output_pos, 8))
+	_series[0].outputs.append(portal_spawner.spawn_output_portal(_series[0], output_pos, 9))
 	_series[0].outputs[-1].portal_filled.connect(_on_portal_filled)
 	_series[0].output_rate += 1
 
@@ -72,7 +74,10 @@ func _on_step(delta, _to_next_tick):
 	if _zoom_remaining <= 0:
 		_zoom_remaining = -1
 		_curr_zoom = _target_zoom
-		GridController.update_grid_height(_target_grid_height)
+
+		var width = int(_viewport_size.x /_curr_zoom / GridController.GridSize)
+		if width % 2 == 0: width -= 1
+		GridController.update_grid(_target_grid_height, width)
 	else:
 		var t = 1 - (_zoom_remaining / CycleTime)
 		zoom = _curr_zoom + (_target_zoom - _curr_zoom) * t
@@ -93,7 +98,7 @@ func _on_tick():
 	# Spawn tracking
 	_next_spawn -= 1
 
-	if _next_spawn == 0:
+	if _next_spawn <= 0:
 		var spawn_successful = false
 
 
@@ -107,9 +112,9 @@ func _on_tick():
 
 		var eligible_upgrades = []
 		for out in s.outputs:
-			if out.EmptyRate == 1:
+			if out.EmptyRate == 2:
 				continue
-			if s.input_rate - s.output_rate >= 8 / out.EmptyRate:
+			if s.input_rate - (s.output_rate - 1) >= 8 / (out.EmptyRate-1):
 				eligible_upgrades.append(out)
 
 
@@ -117,11 +122,17 @@ func _on_tick():
 			var input_pos = portal_spawner.get_portal_spawn_pos()
 			var output_pos = portal_spawner.get_portal_spawn_pos()
 
-			if input_pos != null and output_pos != null:
+			if input_pos == null or output_pos == null:
+				pass
+			elif input_pos == output_pos:
+				pass
+			elif abs(input_pos.x - output_pos.x) <= 1 and abs(input_pos.y - output_pos.y) <= 1:
+				pass
+			else:
 				s.inputs.append(portal_spawner.spawn_input_portal(s, input_pos))
 				s.input_rate += int(8 / s.inputs[-1].SummonRate)
 				
-				s.outputs.append(portal_spawner.spawn_output_portal(s, output_pos, 8))
+				s.outputs.append(portal_spawner.spawn_output_portal(s, output_pos, 9))
 				s.outputs[-1].portal_filled.connect(_on_portal_filled)
 				s.output_rate += 1
 
@@ -130,15 +141,16 @@ func _on_tick():
 		else:
 			var upgrade = eligible_upgrades.pick_random()
 
-			if upgrade.EmptyRate == 8:
-				upgrade.set_empty_rate(4)
+			if upgrade.EmptyRate == 9:
+				upgrade.set_empty_rate(5)
 				s.output_rate += 1
-			elif upgrade.EmptyRate == 4:
-				upgrade.set_empty_rate(2)
+			elif upgrade.EmptyRate == 5:
+				upgrade.set_empty_rate(3)
 				s.output_rate += 2
-			elif upgrade.EmptyRate == 2:
-				upgrade.set_empty_rate(1)
+			elif upgrade.EmptyRate == 3:
+				upgrade.set_empty_rate(2)
 				s.output_rate += 4
+			upgrade.do_pulse()
 			$UpgradeAudio.play()
 
 			if not randf() <= ChanceForNewOutput:
@@ -155,4 +167,5 @@ func _on_tick():
 
 func _on_portal_filled(_portal):
 	Leaderboard.end_game()
+	GridController.toggle_pause()
 	game_over.emit(Leaderboard.get_curr_score())

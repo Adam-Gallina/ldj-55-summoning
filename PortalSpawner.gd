@@ -61,8 +61,8 @@ func spawn_input_portal(series : PortalSeries, grid_pos : Vector2i, spawn_rate=-
 func spawn_output_portal(series : PortalSeries, grid_pos : Vector2i, empty_rate=-1):
     var p = PortalOutputScene.instantiate()
     p.FilteredObject = series.portal_summon_id
-    # Random between (1, 2, 4, 8)
-    p.set_empty_rate(2 ** (randi() % 4) if empty_rate == -1 else empty_rate)
+    # Random between (2, 3, 5, 9)
+    p.set_empty_rate((2 ** (randi() % 4) + 1) if empty_rate == -1 else empty_rate)
 
     get_parent().add_child(p)
 

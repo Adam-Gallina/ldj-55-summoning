@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://qenml1p4fx46" path="res://UI/Icons/Arrow.png" id="5_s557e"]
 
 [node name="InputPortal" type="Node2D"]
+scale = Vector2(0.65, 0.65)
 script = ExtResource("1_x424r")
 SummonRate = 4
 ObjType = -1

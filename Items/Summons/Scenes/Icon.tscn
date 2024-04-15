@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://3rh0bky0io2b"]
+[gd_scene load_steps=7 format=3 uid="uid://3rh0bky0io2b"]
 
 [ext_resource type="Script" path="res://Items/Summons/SummonObject.gd" id="1_2dl2i"]
 [ext_resource type="Texture2D" uid="uid://bfoakd4b41iib" path="res://Items/Summons/Images/icon.svg" id="2_uid1w"]
 [ext_resource type="Script" path="res://Items/Summons/summon_particles.gd" id="3_psfj0"]
+[ext_resource type="AudioStream" uid="uid://c3mx578862qx0" path="res://Sounds/Collision2.wav" id="4_emjwh"]
 
 [sub_resource type="Curve" id="Curve_eabxj"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.64066, 0.0, 0, 0]
@@ -39,3 +40,7 @@ scale_amount_max = 20.0
 scale_amount_curve = SubResource("Curve_eabxj")
 color_ramp = SubResource("Gradient_v881p")
 script = ExtResource("3_psfj0")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_emjwh")
+volume_db = -16.0

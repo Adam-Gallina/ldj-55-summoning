@@ -1,17 +1,20 @@
 extends Node
 
+var _curr_gamemode : String = 'Unknown'
 var _curr_score : int= 0
-var _curr_highscore : int = 0
+var _curr_highscores : Dictionary = {}
 var _playing = false
 
 func get_curr_score() -> int: return _curr_score
 
 func get_player_highscore() -> int:
-    return _curr_highscore
+    return _curr_highscores.get(_curr_gamemode, 0)
 
 func set_player_highscore(score : int):
-    _curr_highscore = score
+    _curr_highscores[_curr_gamemode] = score
 
+func set_gamemode(mode : String):
+    _curr_gamemode = mode
 
 func start_new_game():
     _playing = true

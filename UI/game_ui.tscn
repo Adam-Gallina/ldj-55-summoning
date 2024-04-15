@@ -871,6 +871,7 @@ SummonRate = -1
 [node name="OutputPortal" parent="Tutorial" instance=ExtResource("25_ii3h5")]
 modulate = Color(0.768627, 0.368627, 1, 1)
 position = Vector2(232, 943)
+SkipAnim = true
 EmptyRate = 0
 
 [node name="WobblyPortal2" parent="Tutorial/OutputPortal" instance=ExtResource("24_vqaoh")]
@@ -886,7 +887,7 @@ text = "Input portals bring the item a wizard wants to summon to the In Between.
 
 Input portals have an arrow in the middle showing the direction summoned items will be moving in.
 
-Summon portals have stars in the middle. The more stars, the more frequently that portal needs its object delivered.
+Summon portals have stars in the middle. The more stars, the more frequently that portal needs its object delivered. Summon portals won't accept summons when filled up
 
 If the circle around a Summon portal runs out, you lose :("
 label_settings = SubResource("LabelSettings_ohc5x")

@@ -5,7 +5,9 @@ extends Node2D
 
 
 func _on_play_pressed():
+    Leaderboard.set_gamemode("normal")
     get_tree().change_scene_to_packed(PlayScene)
 
 func _on_zen_pressed():
+    Leaderboard.set_gamemode("zen")
     get_tree().change_scene_to_packed(ZenScene)
