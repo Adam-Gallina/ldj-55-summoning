@@ -125,7 +125,8 @@ func _on_tick():
 				s.outputs[-1].portal_filled.connect(_on_portal_filled)
 				s.output_rate += 1
 
-				spawn_successful = true		
+				spawn_successful = true
+				$SpawnAudio.play()
 		else:
 			var upgrade = eligible_upgrades.pick_random()
 
@@ -138,12 +139,14 @@ func _on_tick():
 			elif upgrade.EmptyRate == 2:
 				upgrade.set_empty_rate(1)
 				s.output_rate += 4
+			$UpgradeAudio.play()
 
 			if not randf() <= ChanceForNewOutput:
 				var input_pos = portal_spawner.get_portal_spawn_pos()
 				if input_pos != null:
 					s.inputs.append(portal_spawner.spawn_input_portal(s, input_pos))
 					s.input_rate += int(8 / s.inputs[-1].SummonRate)
+					$SpawnAudio.play()
 			
 			spawn_successful = true
 		

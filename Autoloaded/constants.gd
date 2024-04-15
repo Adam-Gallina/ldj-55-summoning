@@ -1,5 +1,7 @@
 extends Node
 
+var TutorialShown = false
+
 enum ObjectType { 
     Portal = -1,
     None, Reroute, Splitter, Launch, Delay, Destroy, Teleport

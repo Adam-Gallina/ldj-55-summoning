@@ -3,14 +3,14 @@
 [ext_resource type="Script" path="res://Portals/OutputPortal.gd" id="1_sqvke"]
 [ext_resource type="Texture2D" uid="uid://djak53wmpt7ud" path="res://Portals/Images/Portal_Round.png" id="2_6h1fp"]
 [ext_resource type="Texture2D" uid="uid://bneflosr5lhx4" path="res://UI/Icons/Star.png" id="3_qrvbp"]
-[ext_resource type="PackedScene" uid="uid://bjv34e88k18ve" path="res://Portals/Images/wobbly_portal.tscn" id="4_60y7b"]
+[ext_resource type="AudioStream" uid="uid://dj7wh8kfnokul" path="res://Sounds/PortalWarning.wav" id="4_jr01s"]
 
 [node name="OutputPortal" type="Node2D"]
-modulate = Color(0.466667, 0.466667, 0.466667, 1)
 script = ExtResource("1_sqvke")
 ObjType = -1
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+modulate = Color(0.439216, 0.439216, 0.439216, 1)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -98,4 +98,6 @@ grow_vertical = 2
 texture = ExtResource("3_qrvbp")
 expand_mode = 1
 
-[node name="WobblyPortal" parent="." instance=ExtResource("4_60y7b")]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jr01s")
+volume_db = -10.0

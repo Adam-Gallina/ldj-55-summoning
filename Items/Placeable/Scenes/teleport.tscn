@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://2ounmfs7tk1w"]
+[gd_scene load_steps=16 format=3 uid="uid://2ounmfs7tk1w"]
 
 [ext_resource type="Script" path="res://Items/Placeable/TpInput.gd" id="1_oamaj"]
 [ext_resource type="Texture2D" uid="uid://djak53wmpt7ud" path="res://Portals/Images/Portal_Round.png" id="2_3sngd"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bjv34e88k18ve" path="res://Portals/Images/wobbly_portal.tscn" id="3_oc27l"]
 [ext_resource type="Texture2D" uid="uid://k2p0ou6ojyaq" path="res://Items/Placeable/Images/HorizontalLines.png" id="5_j4fkr"]
 [ext_resource type="Texture2D" uid="uid://bneflosr5lhx4" path="res://UI/Icons/Star.png" id="6_n7f1l"]
+[ext_resource type="AudioStream" uid="uid://d01o12m5f74r1" path="res://Sounds/Place.wav" id="7_ta6dc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_87scr"]
 size = Vector2(200, 200)
@@ -195,6 +196,10 @@ scale_amount_min = 0.15
 scale_amount_max = 0.25
 color_ramp = SubResource("Gradient_34hjr")
 color_initial_ramp = SubResource("Gradient_30pr0")
+
+[node name="SelectAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ta6dc")
+volume_db = -16.0
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_mouse_exited"]

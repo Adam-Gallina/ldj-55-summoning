@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dixxthcbkd4gg"]
+[gd_scene load_steps=11 format=3 uid="uid://dixxthcbkd4gg"]
 
 [ext_resource type="Script" path="res://Items/Placeable/launcher.gd" id="1_40hw0"]
 [ext_resource type="Texture2D" uid="uid://s2e26kigqt2s" path="res://Items/Placeable/Images/Launcher.png" id="2_p3yqg"]
 [ext_resource type="Texture2D" uid="uid://bneflosr5lhx4" path="res://UI/Icons/Star.png" id="3_jwvdw"]
+[ext_resource type="AudioStream" uid="uid://d01o12m5f74r1" path="res://Sounds/Place.wav" id="4_egtte"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_87scr"]
 size = Vector2(200, 200)
@@ -139,6 +140,10 @@ scale_amount_min = 0.15
 scale_amount_max = 0.25
 color_ramp = SubResource("Gradient_vn41y")
 color_initial_ramp = SubResource("Gradient_j87mo")
+
+[node name="SelectAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_egtte")
+volume_db = -16.0
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_mouse_exited"]

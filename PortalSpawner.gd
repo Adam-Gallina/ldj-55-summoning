@@ -70,7 +70,9 @@ func spawn_output_portal(series : PortalSeries, grid_pos : Vector2i, empty_rate=
     GridController.insert(grid_pos, p)
 
     var img = series.portal_image.instantiate()
+    p.portal_warning.connect(img.get_node('Portal')._on_portal_warning)
     p.modulate = series.portal_color
+    img.modulate = Color(.5,.5,.5)
     p.add_child(img)
 
     return p

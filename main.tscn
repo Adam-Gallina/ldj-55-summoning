@@ -77,6 +77,7 @@ position = Vector2(-2000, 0.00012207)
 FilteredObject = 3
 
 [node name="SpikyPortal" parent="DemoAnim/OutputPortal" instance=ExtResource("4_p24ub")]
+modulate = Color(0.439216, 0.439216, 0.439216, 1)
 
 [node name="InputPortal2" parent="DemoAnim" instance=ExtResource("2_4nnsv")]
 modulate = Color(0.494118, 0.886275, 0.47451, 1)
@@ -92,6 +93,7 @@ position = Vector2(-600, 600)
 FilteredObject = 3
 
 [node name="SpikyPortal" parent="DemoAnim/OutputPortal3" instance=ExtResource("4_p24ub")]
+modulate = Color(0.439216, 0.439216, 0.439216, 1)
 
 [node name="InputPortal3" parent="DemoAnim" instance=ExtResource("2_4nnsv")]
 modulate = Color(0.74902, 0.482353, 0.960784, 1)
@@ -107,6 +109,7 @@ position = Vector2(-0.00012207, -1000)
 FilteredObject = 2
 
 [node name="WobblyPortal2" parent="DemoAnim/OutputPortal2" instance=ExtResource("6_jhwca")]
+modulate = Color(0.439216, 0.439216, 0.439216, 1)
 
 [node name="InputPortal4" parent="DemoAnim" instance=ExtResource("2_4nnsv")]
 modulate = Color(0.411765, 0.588235, 0.87451, 1)
@@ -121,6 +124,7 @@ position = Vector2(0, 1000)
 FilteredObject = 4
 
 [node name="RoundPortal" parent="DemoAnim/OutputPortal4" instance=ExtResource("8_nj4h3")]
+modulate = Color(0.439216, 0.439216, 0.439216, 1)
 
 [node name="Splitter" parent="DemoAnim" instance=ExtResource("11_lqumk")]
 position = Vector2(-800, 0)

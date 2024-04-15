@@ -1,6 +1,6 @@
 extends TextureRect
 
-@export var MenuScene : PackedScene
+@export var MenuPath : String = "res://main.tscn"
 
 @onready var _score_label = get_node('%Score')
 @onready var _highscore_label = get_node('%Highscore')
@@ -26,4 +26,4 @@ func _press_restart():
 	get_tree().reload_current_scene()
 
 func _press_menu():
-	get_tree().change_scene_to_packed(MenuScene)
+	get_tree().change_scene_to_file(MenuPath)

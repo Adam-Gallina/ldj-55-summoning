@@ -17,7 +17,7 @@ config/icon="res://Items/Summons/Images/icon.svg"
 
 [autoload]
 
-GridController="*res://Autoloaded/GridController.gd"
+GridController="*res://Autoloaded/GridController.tscn"
 Constants="*res://Autoloaded/constants.gd"
 Leaderboard="*res://Autoloaded/leaderboard.gd"
 

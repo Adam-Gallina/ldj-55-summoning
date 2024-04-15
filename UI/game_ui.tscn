@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bb5gordg8g48g"]
+[gd_scene load_steps=47 format=3 uid="uid://bb5gordg8g48g"]
 
 [ext_resource type="Texture2D" uid="uid://csllc4ya03qby" path="res://UI/Icons/sharp_pause_white_48dp.png" id="1_cgm83"]
 [ext_resource type="Script" path="res://UI/game_ui.gd" id="1_y53i7"]
@@ -19,9 +19,334 @@
 [ext_resource type="Texture2D" uid="uid://cset64ha1ps0i" path="res://Items/Placeable/Images/Boom.png" id="15_qjmga"]
 [ext_resource type="Texture2D" uid="uid://bhi6ak5ptdjsi" path="res://UI/Icons/GarbageCan_Can.png" id="17_knlt1"]
 [ext_resource type="Texture2D" uid="uid://dyqper5ah6k5j" path="res://UI/Icons/GarbageCan_Lid.png" id="18_ao73h"]
+[ext_resource type="Script" path="res://UI/TrashBtnAnim.gd" id="18_trn25"]
 [ext_resource type="Script" path="res://UI/PauseMenu.gd" id="19_cs7wa"]
 [ext_resource type="Script" path="res://UI/LoseScreen.gd" id="19_phews"]
-[ext_resource type="PackedScene" uid="uid://d0y6o4gaxmiju" path="res://main.tscn" id="20_vpswd"]
+[ext_resource type="AudioStream" uid="uid://o457pgqq8mop" path="res://Sounds/Trash.wav" id="21_x7bor"]
+[ext_resource type="Script" path="res://UI/Tutorial.gd" id="23_qivhd"]
+[ext_resource type="PackedScene" uid="uid://bgxlvkuixln4c" path="res://Portals/InputPortal.tscn" id="23_tehvo"]
+[ext_resource type="PackedScene" uid="uid://bjv34e88k18ve" path="res://Portals/Images/wobbly_portal.tscn" id="24_vqaoh"]
+[ext_resource type="PackedScene" uid="uid://cuj2dyvmh6pco" path="res://Portals/OutputPortal.tscn" id="25_ii3h5"]
+
+[sub_resource type="Animation" id="Animation_gpnoq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Can:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(253, -9)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Can:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0872665]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Lid:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.110325]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Lid:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(244, -12)]
+}
+
+[sub_resource type="Animation" id="Animation_1l81s"]
+resource_name = "deposit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lid:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(49, -121), Vector2(-21, 90), Vector2(-20, 26), Vector2(248, -11)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Lid:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.527652, 0.0593839, -0.141909, 0.122721]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Can:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-19, 48), Vector2(-15, 93), Vector2(-7, 26), Vector2(256, -4.00001)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Can:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-0.226709, 0.0367942, -0.136136, 0.0952959]
+}
+
+[sub_resource type="Animation" id="Animation_dblmu"]
+resource_name = "lid_close"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lid:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(49, -121), Vector2(-20, 26)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Lid:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.527652, -0.141909]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Can:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-19, 48), Vector2(-7, 26)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Can:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.226709, -0.136136]
+}
+
+[sub_resource type="Animation" id="Animation_8ccvv"]
+resource_name = "lid_open"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lid:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-20, 26), Vector2(49, -121)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Lid:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.141909, 0.527652]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Can:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-7, 26), Vector2(-19, 48)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Can:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.136136, -0.226709]
+}
+
+[sub_resource type="Animation" id="Animation_nd3bp"]
+resource_name = "trash_hidden"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Can:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.136136, 0.0872665]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Can:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-7, 26), Vector2(253, -9)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Lid:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.141909, 0.110325]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Lid:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-20, 26), Vector2(244, -12)]
+}
+
+[sub_resource type="Animation" id="Animation_kyr60"]
+resource_name = "trash_visible"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Can:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0872665, -0.136136]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Can:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(253, -9), Vector2(-7, 26)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Lid:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(244, -15), Vector2(-20, 26)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Lid:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.113205, -0.141909]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7qfin"]
+_data = {
+"RESET": SubResource("Animation_gpnoq"),
+"deposit": SubResource("Animation_1l81s"),
+"lid_close": SubResource("Animation_dblmu"),
+"lid_open": SubResource("Animation_8ccvv"),
+"trash_hidden": SubResource("Animation_nd3bp"),
+"trash_visible": SubResource("Animation_kyr60")
+}
 
 [sub_resource type="LabelSettings" id="LabelSettings_1b0tl"]
 font_size = 30
@@ -46,6 +371,13 @@ gradient = SubResource("Gradient_qqy6a")
 
 [sub_resource type="LabelSettings" id="LabelSettings_ubp1w"]
 font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_ohc5x"]
+font_size = 22
+
+[sub_resource type="LabelSettings" id="LabelSettings_wai2h"]
+line_spacing = 49.1
+font_size = 18
 
 [sub_resource type="LabelSettings" id="LabelSettings_vnjvi"]
 font_size = 20
@@ -171,13 +503,20 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -94.0
-offset_top = -76.0
+offset_left = -230.0
+offset_top = -188.0
 grow_horizontal = 0
 grow_vertical = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 flat = true
+script = ExtResource("18_trn25")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TrashBtn"]
+libraries = {
+"": SubResource("AnimationLibrary_7qfin")
+}
+speed_scale = 2.0
 
 [node name="Can" type="TextureRect" parent="TrashBtn"]
 layout_mode = 1
@@ -186,31 +525,36 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -51.0
-offset_top = -29.0
-offset_right = 149.0
-offset_bottom = 107.0
+offset_left = 253.0
+offset_top = -9.0
+offset_right = 453.0
+offset_bottom = 127.0
 grow_horizontal = 2
 grow_vertical = 2
-rotation = -0.136136
-scale = Vector2(0.405, 0.579)
+rotation = 0.0872665
+scale = Vector2(1.01, 1.444)
 texture = ExtResource("17_knlt1")
 
-[node name="Lid" type="TextureRect" parent="TrashBtn/Can"]
+[node name="Lid" type="TextureRect" parent="TrashBtn"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -112.754
-offset_top = -75.5521
-offset_right = 87.2458
-offset_bottom = -11.5521
+offset_left = 244.0
+offset_top = -12.0
+offset_right = 444.0
+offset_bottom = 52.0001
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.115, 0.865)
+rotation = 0.110325
+scale = Vector2(1.115, 1.05)
 texture = ExtResource("18_ao73h")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TrashBtn"]
+stream = ExtResource("21_x7bor")
+volume_db = -16.0
 
 [node name="ScoreLabel" type="Label" parent="."]
 unique_name_in_owner = true
@@ -273,7 +617,6 @@ grow_vertical = 2
 mouse_filter = 0
 texture = SubResource("GradientTexture1D_n4mv0")
 script = ExtResource("19_cs7wa")
-MenuScene = ExtResource("20_vpswd")
 
 [node name="Background" type="TextureRect" parent="PauseMenu"]
 layout_mode = 1
@@ -320,11 +663,23 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -75.0
-offset_top = 83.0
+offset_top = 77.0
 offset_right = 75.0
-offset_bottom = 114.0
+offset_bottom = 108.0
 grow_horizontal = 2
 text = "Resume"
+
+[node name="Tutorial" type="Button" parent="PauseMenu/Background"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.0
+offset_top = 111.0
+offset_right = 75.0
+offset_bottom = 142.0
+grow_horizontal = 2
+text = "Tutorial"
 
 [node name="Restart" type="Button" parent="PauseMenu/Background"]
 layout_mode = 1
@@ -332,9 +687,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -75.0
-offset_top = 118.0
+offset_top = 146.0
 offset_right = 75.0
-offset_bottom = 149.0
+offset_bottom = 177.0
 grow_horizontal = 2
 text = "Restart"
 
@@ -344,11 +699,198 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -75.0
-offset_top = 156.0
+offset_top = 184.0
 offset_right = 75.0
-offset_bottom = 187.0
+offset_bottom = 215.0
 grow_horizontal = 2
 text = "Return to Menu"
+
+[node name="Tutorial" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = SubResource("GradientTexture1D_n4mv0")
+script = ExtResource("23_qivhd")
+
+[node name="Background" type="TextureRect" parent="Tutorial"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -619.0
+offset_right = 200.0
+offset_bottom = -479.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_bdan5")
+expand_mode = 1
+
+[node name="Panel2" type="TextureRect" parent="Tutorial/Background"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 290.0
+offset_bottom = 130.0
+texture = SubResource("GradientTexture1D_lfia4")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Tutorial/Background"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -84.5
+offset_top = 20.0
+offset_right = 84.5
+offset_bottom = 70.0
+grow_horizontal = 2
+text = "Tutorial"
+label_settings = SubResource("LabelSettings_ubp1w")
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="Tutorial/Background"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.0
+offset_top = 83.0
+offset_right = 75.0
+offset_bottom = 114.0
+grow_horizontal = 2
+text = "Resume"
+
+[node name="Can" type="TextureRect" parent="Tutorial"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 764.0
+offset_top = 438.54
+offset_right = 964.0
+offset_bottom = 574.54
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.136136
+scale = Vector2(1.01, 1.444)
+texture = ExtResource("17_knlt1")
+
+[node name="Lid" type="TextureRect" parent="Tutorial"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 751.0
+offset_top = 438.54
+offset_right = 951.0
+offset_bottom = 502.54
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.141909
+scale = Vector2(1.115, 1.05)
+texture = ExtResource("18_ao73h")
+
+[node name="Label5" type="Label" parent="Tutorial"]
+layout_mode = 0
+offset_left = 121.0
+offset_top = 113.0
+offset_right = 546.61
+offset_bottom = 178.0
+text = "You can control the speed of the game with the buttons in this corner
+You can also press [space] to pause and [tab] to toggle 2x speed
+
+The cog opens the options menu, and can bring you back to this tutorial if you forget something"
+label_settings = SubResource("LabelSettings_ohc5x")
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="Tutorial"]
+layout_mode = 0
+offset_left = 1232.0
+offset_top = 988.0
+offset_right = 1657.61
+offset_bottom = 1257.0
+text = "Remove objects by dragging them to the trashcan in this corner and clicking on it"
+label_settings = SubResource("LabelSettings_ohc5x")
+autowrap_mode = 2
+
+[node name="Label4" type="Label" parent="Tutorial"]
+layout_mode = 0
+offset_left = 1508.0
+offset_top = 84.0
+offset_right = 1933.61
+offset_bottom = 353.0
+text = "Click the objects in this panel to place them anywhere on the map.
+While holding an object, rotate with [scroll wheel] or [Q/E], and mirror it with [right click] or [W]. 
+Left click to place objects, and left click placed objects to move them"
+label_settings = SubResource("LabelSettings_ohc5x")
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="Tutorial"]
+layout_mode = 0
+offset_left = 1480.0
+offset_top = 376.0
+offset_right = 1905.61
+offset_bottom = 876.0
+text = "Router: Redirects summoned objects
+Splitter: Sends objects in alternating directions
+Launcher: Bounce an object over the next tile
+Timer: Hold back objects for a tick
+Boom (idky): Destroys any objects
+Teleporter: Instantly transport objects"
+label_settings = SubResource("LabelSettings_wai2h")
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="Tutorial"]
+visible = false
+layout_mode = 0
+offset_left = 1926.0
+offset_top = 353.0
+offset_right = 1996.0
+offset_bottom = 423.0
+mouse_default_cursor_shape = 2
+flat = true
+
+[node name="InputPortal" parent="Tutorial" instance=ExtResource("23_tehvo")]
+modulate = Color(0.768627, 0.368627, 1, 1)
+position = Vector2(233, 641)
+SummonRate = -1
+
+[node name="WobblyPortal" parent="Tutorial/InputPortal" instance=ExtResource("24_vqaoh")]
+
+[node name="OutputPortal" parent="Tutorial" instance=ExtResource("25_ii3h5")]
+modulate = Color(0.768627, 0.368627, 1, 1)
+position = Vector2(232, 943)
+EmptyRate = 0
+
+[node name="WobblyPortal2" parent="Tutorial/OutputPortal" instance=ExtResource("24_vqaoh")]
+modulate = Color(0.439216, 0.439216, 0.439216, 1)
+
+[node name="Label" type="Label" parent="Tutorial"]
+layout_mode = 0
+offset_left = 426.0
+offset_top = 495.0
+offset_right = 851.61
+offset_bottom = 1070.0
+text = "Input portals bring the item a wizard wants to summon to the In Between. They think it happens seamlessly, but it's your job to guide it to the matching Summon portals
+
+Input portals have an arrow in the middle showing the direction summoned items will be moving in.
+
+Summon portals have stars in the middle. The more stars, the more frequently that portal needs its object delivered.
+
+If the circle around a Summon portal runs out, you lose :("
+label_settings = SubResource("LabelSettings_ohc5x")
+autowrap_mode = 2
 
 [node name="LoseScreen" type="TextureRect" parent="."]
 visible = false
@@ -360,7 +902,6 @@ grow_vertical = 2
 mouse_filter = 0
 texture = SubResource("GradientTexture1D_n4mv0")
 script = ExtResource("19_phews")
-MenuScene = ExtResource("20_vpswd")
 
 [node name="Background" type="TextureRect" parent="LoseScreen"]
 layout_mode = 1
@@ -463,7 +1004,9 @@ text = "Return to Menu"
 [connection signal="pressed" from="Items/TeleportBtn" to="." method="_on_spawn_pressed" binds= [6]]
 [connection signal="pressed" from="TrashBtn" to="." method="_on_trash_btn_pressed"]
 [connection signal="pressed" from="PauseMenu/Background/Resume" to="PauseMenu" method="_toggle_menu"]
+[connection signal="pressed" from="PauseMenu/Background/Tutorial" to="PauseMenu" method="_press_tutorial"]
 [connection signal="pressed" from="PauseMenu/Background/Restart" to="PauseMenu" method="_press_restart"]
 [connection signal="pressed" from="PauseMenu/Background/Menu" to="PauseMenu" method="_press_menu"]
+[connection signal="pressed" from="Tutorial/Background/Resume" to="Tutorial" method="_resume"]
 [connection signal="pressed" from="LoseScreen/Background/Restart" to="LoseScreen" method="_press_restart"]
 [connection signal="pressed" from="LoseScreen/Background/Menu" to="LoseScreen" method="_press_menu"]

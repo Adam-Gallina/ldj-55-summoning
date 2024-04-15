@@ -32,15 +32,20 @@ func _unhandled_input(event):
             if _dragged:
                 $AnimationPlayer.play('RESET')
                 $CPUParticles2D.emitting = true
+                $SelectAudio.play()
                 _dragged = false
                 drag_end.emit(self)
                 _place_object(_curr_grid_pos)
             elif _hovered:
-                _dragged = true
+                select_object()
                 drag_start.emit(self)
                 
                 if GridController.pos_contents(_curr_grid_pos) == self:
                     GridController.remove(_curr_grid_pos)
+
+func select_object():
+    $SelectAudio.play()
+    _dragged = true
 
 
 func _place_object(grid_pos : Vector2i):

@@ -35,6 +35,9 @@ func _ready():
 	p = GridController.closest_grid_space($OutputPortal.position)
 	$OutputPortal.position = GridController.to_world_pos(p)
 	GridController.insert(p, $OutputPortal)
+	
+	
+	$OutputPortal.portal_warning.connect($OutputPortal/WobblyPortal2/Portal._on_portal_warning)
 "
 
 [node name="Node2D" type="Node2D"]
@@ -82,8 +85,7 @@ modulate = Color(0.376471, 0.847059, 0.372549, 1)
 [node name="OutputPortal" parent="Test" instance=ExtResource("3_okjl1")]
 position = Vector2(-599, -427)
 FilteredObject = 2
-EmptyRate = 4
-LoseAmount = 12
+EmptyRate = 2
 
 [node name="WobblyPortal2" parent="Test/OutputPortal" instance=ExtResource("7_7lc4t")]
 modulate = Color(0.376471, 0.847059, 0.372549, 1)

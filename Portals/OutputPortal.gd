@@ -1,51 +1,67 @@
 extends GridObject
 
 signal portal_filled(portal)
+signal portal_warning(portal)
 
 @export var FilteredObject : int
 
 @export var EmptyRate = 8
 @export var LoseAmount = 12
+@export var WarningAmount = 8
+@export var PanicAmount = 10
 var _curr_amount = 0
 @onready var _next_gain = EmptyRate
 
 @onready var _amount_bar : TextureProgressBar = $TextureProgressBar
 
-func _ready():
-    GridController.tick.connect(_on_tick)
+var _jiggled = false
 
-    print(LoseAmount)
-    _amount_bar.max_value = LoseAmount
-    _amount_bar.value = LoseAmount
+func _ready():
+	GridController.tick.connect(_on_tick)
+
+	_amount_bar.max_value = LoseAmount
+	_amount_bar.value = LoseAmount
 
 func set_empty_rate(rate : int):
-    EmptyRate = rate
-    _next_gain = EmptyRate if _next_gain == null else min(_next_gain, EmptyRate)
+	EmptyRate = rate
+	_next_gain = EmptyRate if _next_gain == null else min(_next_gain, EmptyRate)
 
-    get_node('%EveryFour').visible = rate < 8
-    get_node('%EveryTwo').visible = rate < 4
-    get_node('%EveryOne').visible = rate == 1
+	get_node('%EveryFour').visible = rate < 8
+	get_node('%EveryTwo').visible = rate < 4
+	get_node('%EveryOne').visible = rate == 1
 
 func summon_interact(summon : SummonObject):
-    if _curr_amount <= -1: return
+	if _curr_amount <= -1: return
 
-    if summon.ObjectNum == FilteredObject:
-        summon.despawn()
-        Leaderboard.add_point()
-        _curr_amount -= 1
-        if _curr_amount < -1: _curr_amount = -1
-        
-        _amount_bar.value = LoseAmount - _curr_amount
+	if summon.ObjectNum == FilteredObject:
+		summon.despawn()
+		Leaderboard.add_point()
+		_curr_amount -= 1
+		if _curr_amount < -1: _curr_amount = -1
+		
+		_amount_bar.value = LoseAmount - _curr_amount
 
 
 func _on_tick():
-    _next_gain -= 1
+	_next_gain -= 1
 
-    if _next_gain <= 0:
-        _curr_amount += 1
-        _next_gain = EmptyRate
 
-        _amount_bar.value = LoseAmount - _curr_amount
+	if _next_gain <= 0 and EmptyRate > 0:
+		_curr_amount += 1
+		_next_gain = EmptyRate
 
-        if _curr_amount == LoseAmount:
-            portal_filled.emit(self)
+		_amount_bar.value = LoseAmount - _curr_amount
+
+		if _curr_amount == LoseAmount:
+			portal_filled.emit(self)
+
+	if _curr_amount >= PanicAmount:
+		portal_warning.emit(self)
+		$AudioStreamPlayer.play()
+	elif _curr_amount >= WarningAmount:
+		if _jiggled:
+			_jiggled = false
+		else:
+			portal_warning.emit(self)
+			$AudioStreamPlayer.play()
+			_jiggled = true
