@@ -1,12 +1,20 @@
 extends Node2D
 
-@export var PlayScene : PackedScene
+@export var ChallengeScene : PackedScene
+@export var InfiniteScene : PackedScene
 @export var ZenScene : PackedScene
 
+func _ready():
+    if GridController.Paused: GridController.toggle_pause()
 
-func _on_play_pressed():
-    Leaderboard.set_gamemode("normal")
-    get_tree().change_scene_to_packed(PlayScene)
+
+func _on_challenge_pressed():
+    Leaderboard.set_gamemode("challenge")
+    get_tree().change_scene_to_packed(ChallengeScene)
+
+func _on_infinite_pressed():
+    Leaderboard.set_gamemode("infinite")
+    get_tree().change_scene_to_packed(InfiniteScene)
 
 func _on_zen_pressed():
     Leaderboard.set_gamemode("zen")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://d0y6o4gaxmiju"]
+[gd_scene load_steps=26 format=3 uid="uid://d0y6o4gaxmiju"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_rjrhw"]
 [ext_resource type="PackedScene" uid="uid://b756ltngpqunc" path="res://Environment/background.tscn" id="1_vohxq"]
@@ -16,6 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://d3plnc1auau04" path="res://Items/Placeable/Scenes/elbow_pipe.tscn" id="12_uks7d"]
 [ext_resource type="PackedScene" uid="uid://dixxthcbkd4gg" path="res://Items/Placeable/Scenes/launcher.tscn" id="13_gcwyj"]
 [ext_resource type="PackedScene" uid="uid://d0ugtktuhfhyl" path="res://Items/Placeable/Scenes/delay.tscn" id="14_5q7s0"]
+[ext_resource type="FontFile" uid="uid://csnladna4anr6" path="res://Fonts/Permanent_Marker/PermanentMarker-Regular.ttf" id="16_nhudw"]
+[ext_resource type="Texture2D" uid="uid://cl2m0h7fdi8r1" path="res://200x200_square.png" id="17_kcfrl"]
+[ext_resource type="Texture2D" uid="uid://vxxxhhj4s6kj" path="res://Triangle.png" id="18_8p7ul"]
 
 [sub_resource type="GDScript" id="GDScript_7dled"]
 script/source = "extends Node2D
@@ -48,14 +51,27 @@ func _ready():
 "
 
 [sub_resource type="LabelSettings" id="LabelSettings_1c0ym"]
-font_size = 100
+font = ExtResource("16_nhudw")
+font_size = 140
+font_color = Color(0.87451, 0.65098, 1, 1)
+outline_size = 25
+outline_color = Color(0.172549, 0, 0.356863, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ot0n7"]
 font_size = 24
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_17gfi"]
+bg_color = Color(0.137255, 0, 0.27451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s0ad0"]
+bg_color = Color(0.247059, 0, 0.494118, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_80mek"]
+bg_color = Color(0.247059, 0, 0.494118, 1)
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_rjrhw")
-PlayScene = ExtResource("2_xxmou")
+InfiniteScene = ExtResource("2_xxmou")
 ZenScene = ExtResource("3_eadrw")
 
 [node name="Background" parent="." instance=ExtResource("1_vohxq")]
@@ -157,6 +173,7 @@ position = Vector2(400, 0)
 position = Vector2(400, 600)
 
 [node name="UI" type="Control" parent="."]
+z_index = 50
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -166,34 +183,109 @@ offset_bottom = 1200.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+[node name="Title" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title" type="Label" parent="UI/Title"]
 layout_mode = 0
-offset_left = 140.0
-offset_top = 561.0
-offset_right = 432.0
-offset_bottom = 800.0
-
-[node name="Play" type="Button" parent="UI/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 70
-text = "Play"
-
-[node name="Spacer" type="Label" parent="UI/VBoxContainer"]
-layout_mode = 2
-
-[node name="PlayZen" type="Button" parent="UI/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 70
-text = "Play Zen"
-
-[node name="Title" type="Label" parent="UI"]
-layout_mode = 0
-offset_left = 1103.0
-offset_top = 236.0
-offset_right = 1851.0
-offset_bottom = 373.0
-text = "The In Between"
+offset_left = 1069.0
+offset_top = 99.0
+offset_right = 1559.0
+offset_bottom = 300.0
+text = "THE IN"
 label_settings = SubResource("LabelSettings_1c0ym")
+
+[node name="WobblyPortal" parent="UI/Title/Title" instance=ExtResource("6_jhwca")]
+modulate = Color(0.282353, 0, 0.607843, 1)
+z_index = -1
+position = Vector2(472, 107)
+rotation = 0.23911
+scale = Vector2(0.5, 1)
+
+[node name="TextureRect" type="TextureRect" parent="UI/Title/Title"]
+modulate = Color(0.172549, 0, 0.356863, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_left = -7.0
+offset_top = 78.0
+offset_right = 475.315
+offset_bottom = 138.0
+texture = ExtResource("17_kcfrl")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="UI/Title/Title/TextureRect"]
+show_behind_parent = true
+z_index = -2
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_right = 34.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("17_kcfrl")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="UI/Title/Title/TextureRect"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = -20.0
+offset_bottom = 60.0
+texture = ExtResource("18_8p7ul")
+expand_mode = 1
+flip_h = true
+
+[node name="Title2" type="Label" parent="UI/Title"]
+layout_mode = 0
+offset_left = 1202.0
+offset_top = 256.0
+offset_right = 1882.0
+offset_bottom = 457.0
+text = "BETWEEN"
+label_settings = SubResource("LabelSettings_1c0ym")
+
+[node name="WobblyPortal2" parent="UI/Title/Title2" instance=ExtResource("6_jhwca")]
+modulate = Color(0.282353, 0, 0.607843, 1)
+z_index = -1
+position = Vector2(10, 110)
+rotation = -0.0645772
+scale = Vector2(0.5, 1)
+
+[node name="TextureRect" type="TextureRect" parent="UI/Title/Title2"]
+modulate = Color(0.172549, 0, 0.356863, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_left = 10.0
+offset_top = 78.0
+offset_right = 696.34
+offset_bottom = 138.0
+texture = ExtResource("17_kcfrl")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="UI/Title/Title2/TextureRect"]
+show_behind_parent = true
+z_index = -2
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_right = 4.0
+grow_vertical = 2
+texture = ExtResource("17_kcfrl")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="UI/Title/Title2/TextureRect"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 686.0
+offset_right = 706.0
+offset_bottom = 60.0
+texture = ExtResource("18_8p7ul")
+expand_mode = 1
 
 [node name="Credits" type="Label" parent="UI"]
 layout_mode = 1
@@ -211,5 +303,193 @@ grow_vertical = 0
 text = "Made in 72 hours for Ludum Dare 55 by Adam Gallina!"
 label_settings = SubResource("LabelSettings_ot0n7")
 
-[connection signal="pressed" from="UI/VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="UI/VBoxContainer/PlayZen" to="." method="_on_zen_pressed"]
+[node name="PlayChallenge" type="Button" parent="UI"]
+layout_mode = 2
+offset_left = 300.0
+offset_top = 511.0
+offset_right = 640.0
+offset_bottom = 607.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("16_nhudw")
+theme_override_font_sizes/font_size = 65
+theme_override_styles/normal = SubResource("StyleBoxFlat_17gfi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_s0ad0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_80mek")
+disabled = true
+text = "Challenge"
+
+[node name="SpikyPortal" parent="UI/PlayChallenge" instance=ExtResource("4_p24ub")]
+modulate = Color(1, 0.407843, 0.407843, 1)
+z_index = -1
+position = Vector2(-2, 49)
+rotation = -0.107078
+scale = Vector2(0.53, 1)
+
+[node name="SpikyPortal2" parent="UI/PlayChallenge" instance=ExtResource("4_p24ub")]
+modulate = Color(1, 0.407843, 0.407843, 1)
+z_index = -1
+position = Vector2(331, 49)
+rotation = 0.151084
+scale = Vector2(0.53, 1)
+
+[node name="TextureRect" type="TextureRect" parent="UI/PlayChallenge"]
+modulate = Color(0.137255, 0, 0.27451, 1)
+z_index = -2
+layout_mode = 0
+offset_left = -38.0
+offset_top = -10.0
+offset_right = 42.0
+offset_bottom = 106.0
+texture = ExtResource("17_kcfrl")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="UI/PlayChallenge"]
+modulate = Color(0.137255, 0, 0.27451, 1)
+z_index = -2
+layout_mode = 0
+offset_left = 285.0
+offset_top = -10.0
+offset_right = 365.0
+offset_bottom = 106.0
+texture = ExtResource("17_kcfrl")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="UI/PlayChallenge"]
+modulate = Color(0.137255, 0, 0.27451, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_left = -6.0
+offset_top = -10.0
+offset_right = 338.665
+offset_bottom = 106.0
+texture = ExtResource("17_kcfrl")
+expand_mode = 1
+
+[node name="PlayInfinite" type="Button" parent="UI"]
+layout_mode = 2
+offset_left = 205.0
+offset_top = 706.0
+offset_right = 545.0
+offset_bottom = 802.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("16_nhudw")
+theme_override_font_sizes/font_size = 65
+theme_override_styles/normal = SubResource("StyleBoxFlat_17gfi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_s0ad0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_80mek")
+text = "Infinite
+"
+
+[node name="WobblyPortal" parent="UI/PlayInfinite" instance=ExtResource("6_jhwca")]
+modulate = Color(0.47451, 0.741176, 1, 1)
+z_index = -1
+position = Vector2(-9, 49)
+rotation = 0.10472
+scale = Vector2(0.5, 1)
+
+[node name="WobblyPortal2" parent="UI/PlayInfinite" instance=ExtResource("6_jhwca")]
+modulate = Color(0.47451, 0.741176, 1, 1)
+z_index = -1
+position = Vector2(333, 49)
+rotation = -0.10472
+scale = Vector2(0.5, 1)
+
+[node name="TextureRect" type="TextureRect" parent="UI/PlayInfinite"]
+modulate = Color(0.137255, 0, 0.27451, 1)
+z_index = -2
+layout_mode = 0
+offset_left = -38.0
+offset_top = -10.0
+offset_right = 42.0
+offset_bottom = 106.0
+texture = ExtResource("17_kcfrl")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="UI/PlayInfinite"]
+modulate = Color(0.137255, 0, 0.27451, 1)
+z_index = -2
+layout_mode = 0
+offset_left = 285.0
+offset_top = -10.0
+offset_right = 365.0
+offset_bottom = 106.0
+texture = ExtResource("17_kcfrl")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="UI/PlayInfinite"]
+modulate = Color(0.137255, 0, 0.27451, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_left = -6.0
+offset_top = -10.0
+offset_right = 338.665
+offset_bottom = 106.0
+texture = ExtResource("17_kcfrl")
+expand_mode = 1
+
+[node name="PlayZen" type="Button" parent="UI"]
+layout_mode = 2
+offset_left = 258.0
+offset_top = 899.0
+offset_right = 598.0
+offset_bottom = 995.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("16_nhudw")
+theme_override_font_sizes/font_size = 65
+theme_override_styles/normal = SubResource("StyleBoxFlat_17gfi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_s0ad0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_80mek")
+text = "Zen
+"
+
+[node name="RoundPortal" parent="UI/PlayZen" instance=ExtResource("8_nj4h3")]
+modulate = Color(0.564706, 1, 0.552941, 1)
+z_index = -1
+position = Vector2(-7, 50)
+scale = Vector2(0.5, 1)
+
+[node name="RoundPortal2" parent="UI/PlayZen" instance=ExtResource("8_nj4h3")]
+modulate = Color(0.564706, 1, 0.552941, 1)
+z_index = -1
+position = Vector2(333, 50)
+scale = Vector2(0.5, 1)
+
+[node name="TextureRect" type="TextureRect" parent="UI/PlayZen"]
+modulate = Color(0.137255, 0, 0.27451, 1)
+z_index = -2
+layout_mode = 0
+offset_left = -38.0
+offset_top = -10.0
+offset_right = 42.0
+offset_bottom = 106.0
+texture = ExtResource("17_kcfrl")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="UI/PlayZen"]
+modulate = Color(0.137255, 0, 0.27451, 1)
+z_index = -2
+layout_mode = 0
+offset_left = 285.0
+offset_top = -10.0
+offset_right = 365.0
+offset_bottom = 106.0
+texture = ExtResource("17_kcfrl")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="UI/PlayZen"]
+modulate = Color(0.137255, 0, 0.27451, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_left = -6.0
+offset_top = -10.0
+offset_right = 338.665
+offset_bottom = 106.0
+texture = ExtResource("17_kcfrl")
+expand_mode = 1
+
+[connection signal="pressed" from="UI/PlayChallenge" to="." method="_on_challenge_pressed"]
+[connection signal="pressed" from="UI/PlayInfinite" to="." method="_on_infinite_pressed"]
+[connection signal="pressed" from="UI/PlayZen" to="." method="_on_zen_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bb5gordg8g48g"]
+[gd_scene load_steps=50 format=3 uid="uid://bb5gordg8g48g"]
 
 [ext_resource type="Texture2D" uid="uid://csllc4ya03qby" path="res://UI/Icons/sharp_pause_white_48dp.png" id="1_cgm83"]
 [ext_resource type="Script" path="res://UI/game_ui.gd" id="1_y53i7"]
@@ -11,9 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://vj7f4wk02auv" path="res://Items/Placeable/Scenes/destroy.tscn" id="6_ljt71"]
 [ext_resource type="PackedScene" uid="uid://2ounmfs7tk1w" path="res://Items/Placeable/Scenes/teleport.tscn" id="7_5f214"]
 [ext_resource type="Texture2D" uid="uid://b3nbipo4tac6x" path="res://UI/Icons/sharp_settings_white_48dp.png" id="8_kv8bb"]
+[ext_resource type="Texture2D" uid="uid://cl2m0h7fdi8r1" path="res://200x200_square.png" id="8_qkrp3"]
+[ext_resource type="Texture2D" uid="uid://vxxxhhj4s6kj" path="res://Triangle.png" id="9_5xda5"]
 [ext_resource type="Texture2D" uid="uid://d2vyjyoanc1gb" path="res://Portals/Images/Portal_Wobbly.png" id="10_ueo1c"]
 [ext_resource type="Texture2D" uid="uid://b7hpu8nmm024x" path="res://Items/Placeable/Images/ElbowPipe.png" id="11_y0u72"]
 [ext_resource type="Texture2D" uid="uid://cdxgo4lcpeg7u" path="res://Items/Placeable/Images/Splitter.png" id="12_6xbfr"]
+[ext_resource type="FontFile" uid="uid://csnladna4anr6" path="res://Fonts/Permanent_Marker/PermanentMarker-Regular.ttf" id="13_fpmc0"]
 [ext_resource type="Texture2D" uid="uid://s2e26kigqt2s" path="res://Items/Placeable/Images/Launcher.png" id="13_y5c4i"]
 [ext_resource type="Texture2D" uid="uid://6l2v6r0okp1q" path="res://Items/Placeable/Images/Delay.png" id="14_k3f0c"]
 [ext_resource type="Texture2D" uid="uid://cset64ha1ps0i" path="res://Items/Placeable/Images/Boom.png" id="15_qjmga"]
@@ -27,6 +30,10 @@
 [ext_resource type="PackedScene" uid="uid://bgxlvkuixln4c" path="res://Portals/InputPortal.tscn" id="23_tehvo"]
 [ext_resource type="PackedScene" uid="uid://bjv34e88k18ve" path="res://Portals/Images/wobbly_portal.tscn" id="24_vqaoh"]
 [ext_resource type="PackedScene" uid="uid://cuj2dyvmh6pco" path="res://Portals/OutputPortal.tscn" id="25_ii3h5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1b0tl"]
+font = ExtResource("13_fpmc0")
+font_size = 40
 
 [sub_resource type="Animation" id="Animation_gpnoq"]
 length = 0.001
@@ -348,9 +355,6 @@ _data = {
 "trash_visible": SubResource("Animation_kyr60")
 }
 
-[sub_resource type="LabelSettings" id="LabelSettings_1b0tl"]
-font_size = 30
-
 [sub_resource type="Gradient" id="Gradient_mnwvg"]
 colors = PackedColorArray(0, 0, 0, 0.392157, 0, 0, 0, 0.392157)
 
@@ -396,22 +400,134 @@ DelayScene = ExtResource("5_3imsr")
 DestroyScene = ExtResource("6_ljt71")
 TeleportScene = ExtResource("7_5f214")
 
-[node name="OptionsBtn" type="Button" parent="."]
-offset_top = 56.0
-offset_right = 104.0
-offset_bottom = 160.0
-scale = Vector2(0.5, 0.5)
-focus_mode = 0
-mouse_default_cursor_shape = 2
-icon = ExtResource("8_kv8bb")
-flat = true
+[node name="TopBar" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
 
-[node name="SpeedControls" type="HBoxContainer" parent="."]
-offset_right = 320.0
+[node name="Backgrounds" type="Control" parent="TopBar"]
+modulate = Color(1, 1, 1, 0.494118)
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TimeBackground" type="TextureRect" parent="TopBar/Backgrounds"]
+self_modulate = Color(0.254902, 0, 0.4, 1)
+layout_mode = 0
+offset_top = -96.0
+offset_right = 250.0
 offset_bottom = 104.0
-scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_qkrp3")
+expand_mode = 1
 
-[node name="PauseBtn" type="Button" parent="SpeedControls"]
+[node name="TextureRect" type="TextureRect" parent="TopBar/Backgrounds/TimeBackground"]
+self_modulate = Color(0.254902, 0, 0.4, 1)
+layout_mode = 0
+offset_left = 250.0
+offset_right = 450.0
+offset_bottom = 200.0
+texture = ExtResource("9_5xda5")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="TopBar/Backgrounds/TimeBackground"]
+self_modulate = Color(0.431373, 0.431373, 0.431373, 1)
+layout_mode = 0
+offset_top = -15.0
+offset_right = 250.0
+offset_bottom = 185.0
+texture = ExtResource("8_qkrp3")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="TopBar/Backgrounds/TimeBackground"]
+self_modulate = Color(0.431373, 0.431373, 0.431373, 1)
+layout_mode = 0
+offset_left = 250.0
+offset_top = -15.0
+offset_right = 450.0
+offset_bottom = 185.0
+texture = ExtResource("9_5xda5")
+expand_mode = 1
+
+[node name="ScoreBackground" type="TextureRect" parent="TopBar/Backgrounds"]
+self_modulate = Color(0.254902, 0, 0.4, 1)
+layout_mode = 0
+offset_left = 310.0
+offset_top = -126.0
+offset_right = 510.0
+offset_bottom = 74.0
+texture = ExtResource("9_5xda5")
+expand_mode = 1
+flip_h = true
+flip_v = true
+
+[node name="Background4" type="TextureRect" parent="TopBar/Backgrounds/ScoreBackground"]
+self_modulate = Color(0.254902, 0, 0.4, 1)
+layout_mode = 0
+offset_left = 200.0
+offset_right = 240.0
+offset_bottom = 200.0
+texture = ExtResource("8_qkrp3")
+expand_mode = 1
+
+[node name="Background5" type="TextureRect" parent="TopBar/Backgrounds/ScoreBackground"]
+self_modulate = Color(0.254902, 0, 0.4, 1)
+layout_mode = 0
+offset_left = 240.0
+offset_right = 440.0
+offset_bottom = 200.0
+texture = ExtResource("9_5xda5")
+expand_mode = 1
+
+[node name="OptionsBackground" type="TextureRect" parent="TopBar/Backgrounds"]
+self_modulate = Color(0.254902, 0, 0.4, 1)
+layout_mode = 0
+offset_left = 1914.0
+offset_top = -96.0
+offset_right = 2164.0
+offset_bottom = 104.0
+texture = ExtResource("8_qkrp3")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="TopBar/Backgrounds/OptionsBackground"]
+self_modulate = Color(0.254902, 0, 0.4, 1)
+layout_mode = 0
+offset_left = -200.0
+offset_bottom = 200.0
+texture = ExtResource("9_5xda5")
+expand_mode = 1
+flip_h = true
+
+[node name="TextureRect2" type="TextureRect" parent="TopBar/Backgrounds/OptionsBackground"]
+self_modulate = Color(0.431373, 0.431373, 0.431373, 1)
+layout_mode = 0
+offset_top = -15.0
+offset_right = 250.0
+offset_bottom = 185.0
+texture = ExtResource("8_qkrp3")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="TopBar/Backgrounds/OptionsBackground"]
+self_modulate = Color(0.431373, 0.431373, 0.431373, 1)
+layout_mode = 0
+offset_left = -200.0
+offset_top = -15.0
+offset_bottom = 185.0
+texture = ExtResource("9_5xda5")
+expand_mode = 1
+flip_h = true
+
+[node name="SpeedControls" type="HBoxContainer" parent="TopBar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 10.0
+offset_top = 7.0
+offset_right = 330.0
+offset_bottom = 111.0
+grow_horizontal = 2
+scale = Vector2(0.75, 0.75)
+
+[node name="PauseBtn" type="Button" parent="TopBar/SpeedControls"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
@@ -419,7 +535,7 @@ mouse_default_cursor_shape = 2
 icon = ExtResource("1_cgm83")
 flat = true
 
-[node name="PlayBtn" type="Button" parent="SpeedControls"]
+[node name="PlayBtn" type="Button" parent="TopBar/SpeedControls"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
@@ -427,13 +543,108 @@ mouse_default_cursor_shape = 2
 icon = ExtResource("2_v3058")
 flat = true
 
-[node name="FastForwardBtn" type="Button" parent="SpeedControls"]
+[node name="FastForwardBtn" type="Button" parent="TopBar/SpeedControls"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
 icon = ExtResource("3_iqmpw")
 flat = true
+
+[node name="ScoreLabel" type="Label" parent="TopBar"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 383.0
+offset_top = 7.0
+offset_right = 544.0
+offset_bottom = 62.0
+text = "123456789"
+label_settings = SubResource("LabelSettings_1b0tl")
+vertical_alignment = 1
+
+[node name="OptionsBtn" type="Button" parent="TopBar"]
+layout_mode = 0
+offset_left = 1902.0
+offset_top = 11.0
+offset_right = 2006.0
+offset_bottom = 115.0
+scale = Vector2(0.65, 0.65)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("8_kv8bb")
+flat = true
+
+[node name="SideBar" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="Control" parent="SideBar"]
+modulate = Color(1, 1, 1, 0.490196)
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TimeBackground" type="TextureRect" parent="SideBar/Background"]
+self_modulate = Color(0.254902, 0, 0.4, 1)
+layout_mode = 0
+offset_left = 2158.0
+offset_top = 341.0
+offset_right = 2638.0
+offset_bottom = 541.0
+rotation = 1.5708
+texture = ExtResource("8_qkrp3")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="SideBar/Background/TimeBackground"]
+self_modulate = Color(0.431373, 0.431373, 0.431373, 1)
+layout_mode = 0
+offset_top = -15.0
+offset_right = 480.0
+offset_bottom = 185.0
+texture = ExtResource("8_qkrp3")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="SideBar/Background/TimeBackground"]
+self_modulate = Color(0.254902, 0, 0.4, 1)
+layout_mode = 0
+offset_left = 480.0
+offset_top = -1.01848e-05
+offset_right = 680.0
+offset_bottom = 200.0
+texture = ExtResource("9_5xda5")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="SideBar/Background/TimeBackground"]
+self_modulate = Color(0.431373, 0.431373, 0.431373, 1)
+layout_mode = 0
+offset_left = 480.0
+offset_top = -15.0
+offset_right = 680.0
+offset_bottom = 185.0
+texture = ExtResource("9_5xda5")
+expand_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="SideBar/Background/TimeBackground"]
+self_modulate = Color(0.254902, 0, 0.4, 1)
+layout_mode = 0
+offset_left = -200.0
+offset_top = 1.94953e-05
+offset_bottom = 200.0
+texture = ExtResource("9_5xda5")
+expand_mode = 1
+flip_h = true
+
+[node name="TextureRect5" type="TextureRect" parent="SideBar/Background/TimeBackground"]
+self_modulate = Color(0.431373, 0.431373, 0.431373, 1)
+layout_mode = 0
+offset_left = -200.0
+offset_top = -15.0
+offset_bottom = 185.0
+texture = ExtResource("9_5xda5")
+expand_mode = 1
+flip_h = true
 
 [node name="Items" type="VBoxContainer" parent="."]
 anchors_preset = 6
@@ -525,10 +736,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 253.0
-offset_top = -9.0
-offset_right = 453.0
-offset_bottom = 127.0
+offset_left = 138.0
+offset_top = -103.0
+offset_right = 338.0
+offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.0872665
@@ -542,10 +753,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 244.0
-offset_top = -12.0
-offset_right = 444.0
-offset_bottom = 52.0001
+offset_left = 129.0
+offset_top = -106.0
+offset_right = 329.0
+offset_bottom = -41.9999
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.110325
@@ -555,18 +766,6 @@ texture = ExtResource("18_ao73h")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TrashBtn"]
 stream = ExtResource("21_x7bor")
 volume_db = -16.0
-
-[node name="ScoreLabel" type="Label" parent="."]
-unique_name_in_owner = true
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 23.0
-grow_horizontal = 0
-text = "1234"
-label_settings = SubResource("LabelSettings_1b0tl")
-horizontal_alignment = 2
 
 [node name="UpgradeSelect" type="TextureRect" parent="."]
 visible = false
@@ -993,10 +1192,10 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Return to Menu"
 
-[connection signal="pressed" from="OptionsBtn" to="PauseMenu" method="_toggle_menu"]
-[connection signal="pressed" from="SpeedControls/PauseBtn" to="." method="_on_pause_pressed"]
-[connection signal="pressed" from="SpeedControls/PlayBtn" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="SpeedControls/FastForwardBtn" to="." method="_on_fast_forward_pressed"]
+[connection signal="pressed" from="TopBar/SpeedControls/PauseBtn" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="TopBar/SpeedControls/PlayBtn" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="TopBar/SpeedControls/FastForwardBtn" to="." method="_on_fast_forward_pressed"]
+[connection signal="pressed" from="TopBar/OptionsBtn" to="PauseMenu" method="_toggle_menu"]
 [connection signal="pressed" from="Items/RerouteBtn" to="." method="_on_spawn_pressed" binds= [1]]
 [connection signal="pressed" from="Items/SplitterBtn" to="." method="_on_spawn_pressed" binds= [2]]
 [connection signal="pressed" from="Items/LaunchBtn" to="." method="_on_spawn_pressed" binds= [3]]
