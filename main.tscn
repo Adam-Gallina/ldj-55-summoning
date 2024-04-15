@@ -304,6 +304,7 @@ text = "Made in 72 hours for Ludum Dare 55 by Adam Gallina!"
 label_settings = SubResource("LabelSettings_ot0n7")
 
 [node name="PlayChallenge" type="Button" parent="UI"]
+visible = false
 layout_mode = 2
 offset_left = 300.0
 offset_top = 511.0
@@ -380,7 +381,7 @@ theme_override_font_sizes/font_size = 65
 theme_override_styles/normal = SubResource("StyleBoxFlat_17gfi")
 theme_override_styles/hover = SubResource("StyleBoxFlat_s0ad0")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_80mek")
-text = "Infinite
+text = "Challenge
 "
 
 [node name="WobblyPortal" parent="UI/PlayInfinite" instance=ExtResource("6_jhwca")]

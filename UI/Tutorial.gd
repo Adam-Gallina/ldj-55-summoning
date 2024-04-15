@@ -7,7 +7,6 @@ extends TextureRect
 
 func _ready():
     hide()
-    return
     if not Constants.TutorialShown: 
         show()
         GridController.toggle_pause.call_deferred()
