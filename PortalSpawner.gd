@@ -37,7 +37,6 @@ func get_new_portal_series():
     p.portal_summon_id = o.ObjectNum
     p.portal_summon_img = o.get_node('Sprite2D').texture
     o.queue_free()
-    print(p.portal_summon_img)
 
     return p
 
@@ -81,7 +80,7 @@ func spawn_output_portal(series : PortalSeries, grid_pos : Vector2i, empty_rate=
     p.add_child(img)
 
     p.set_summon_img(series.portal_summon_img)
-    
+
     return p
 
 func get_portal_spawn_pos():#tries=20):

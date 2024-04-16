@@ -19,7 +19,7 @@ config/icon="res://Items/Summons/Images/icon.svg"
 
 GridController="*res://Autoloaded/GridController.tscn"
 Constants="*res://Autoloaded/constants.gd"
-Leaderboard="*res://Autoloaded/leaderboard.gd"
+Leaderboard="*res://Autoloaded/Leaderboard.tscn"
 
 [display]
 

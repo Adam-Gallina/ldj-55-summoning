@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://bb5gordg8g48g"]
+[gd_scene load_steps=56 format=3 uid="uid://bb5gordg8g48g"]
 
 [ext_resource type="Texture2D" uid="uid://csllc4ya03qby" path="res://UI/Icons/sharp_pause_white_48dp.png" id="1_cgm83"]
 [ext_resource type="Script" path="res://UI/game_ui.gd" id="1_y53i7"]
@@ -386,6 +386,11 @@ font_size = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_atrax"]
 font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_p415w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ymiv0"]
+font_color = Color(1, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_lm5va"]
 font_size = 32
@@ -821,10 +826,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 253.0
-offset_top = -9.0
-offset_right = 453.0
-offset_bottom = 127.0
+offset_left = 138.0
+offset_top = -103.0
+offset_right = 338.0
+offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.0872665
@@ -838,10 +843,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 244.0
-offset_top = -12.0
-offset_right = 444.0
-offset_bottom = 52.0001
+offset_left = 129.0
+offset_top = -106.0
+offset_right = 329.0
+offset_bottom = -41.9999
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.110325
@@ -1096,7 +1101,6 @@ grow_vertical = 2
 scale = Vector2(1.5, 1.5)
 
 [node name="LoseScreen" type="TextureRect" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1194,6 +1198,102 @@ offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Return to Menu"
+
+[node name="Background2" type="TextureRect" parent="LoseScreen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 364.0
+offset_top = -1134.0
+offset_right = 664.0
+offset_bottom = -874.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("GradientTexture1D_bdan5")
+
+[node name="Panel2" type="TextureRect" parent="LoseScreen/Background2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_lfia4")
+
+[node name="TextEdit" type="TextEdit" parent="LoseScreen/Background2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -110.0
+offset_top = 19.0
+offset_right = 110.0
+offset_bottom = 49.0
+grow_horizontal = 2
+placeholder_text = "Name..."
+
+[node name="SubmitScore" type="Button" parent="LoseScreen/Background2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.0
+offset_top = 56.0
+offset_right = 75.0
+offset_bottom = 87.0
+grow_horizontal = 2
+text = "Submit score"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoseScreen/Background2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -93.5
+offset_top = 100.0
+offset_right = 93.5
+offset_bottom = 231.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="LoseScreen/Background2/VBoxContainer"]
+layout_mode = 2
+text = "1. Example name: 12345"
+label_settings = SubResource("LabelSettings_p415w")
+
+[node name="Label2" type="Label" parent="LoseScreen/Background2/VBoxContainer"]
+layout_mode = 2
+text = "2. Example name: 12345"
+label_settings = SubResource("LabelSettings_p415w")
+
+[node name="Label3" type="Label" parent="LoseScreen/Background2/VBoxContainer"]
+layout_mode = 2
+text = "3. Example name: 12345"
+label_settings = SubResource("LabelSettings_p415w")
+
+[node name="Label4" type="Label" parent="LoseScreen/Background2/VBoxContainer"]
+layout_mode = 2
+text = "4. Example name: 12345"
+label_settings = SubResource("LabelSettings_p415w")
+
+[node name="Label5" type="Label" parent="LoseScreen/Background2/VBoxContainer"]
+layout_mode = 2
+text = "5. Example name: 12345"
+label_settings = SubResource("LabelSettings_p415w")
+
+[node name="ErrorLabel" type="Label" parent="LoseScreen/Background2"]
+offset_left = 28.0
+offset_top = 99.0
+offset_right = 278.0
+offset_bottom = 122.0
+text = "Error accessing leaderboard..."
+label_settings = SubResource("LabelSettings_ymiv0")
 
 [node name="Tutorial" type="TextureRect" parent="." node_paths=PackedStringArray("WelcomePanel", "PortalPanel", "ToolsPanel", "TimeControlPanel")]
 visible = false
@@ -1651,6 +1751,8 @@ autowrap_mode = 2
 [connection signal="toggled" from="PauseMenu/Background2/MuteCollisionsLabel/CheckButton" to="PauseMenu" method="_on_collisions_toggled"]
 [connection signal="pressed" from="LoseScreen/Background/Restart" to="LoseScreen" method="_press_restart"]
 [connection signal="pressed" from="LoseScreen/Background/Menu" to="LoseScreen" method="_press_menu"]
+[connection signal="text_changed" from="LoseScreen/Background2/TextEdit" to="LoseScreen" method="_on_name_text_changed"]
+[connection signal="pressed" from="LoseScreen/Background2/SubmitScore" to="LoseScreen" method="_press_submit"]
 [connection signal="pressed" from="Tutorial/Panel/Resume" to="Tutorial" method="_resume"]
 [connection signal="pressed" from="Tutorial/WelcomePanel/NextButton" to="Tutorial" method="_welcome_next"]
 [connection signal="pressed" from="Tutorial/PortalPanel/NextButton" to="Tutorial" method="_portal_next"]

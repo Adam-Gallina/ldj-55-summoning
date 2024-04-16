@@ -37,14 +37,31 @@ func _ready():
 	
 	
 	$OutputPortal.portal_warning.connect($OutputPortal/WobblyPortal2/Portal._on_portal_warning)
+	
+	
+	Leaderboard.score_posted.connect(_on_score_posted)
+
+
+func _on_score_pressed():
+	Leaderboard.set_gamemode($TextEdit2.text)
+	Leaderboard.submit_score($TextEdit.text, int($TextEdit3.text))
+
+func _on_leaderboard_pressed():
+	Leaderboard.get_leaderboard(int($TextEdit4.text))
+
+
+func _on_score_posted(successful):
+	print('posted? ', successful)
+	
 "
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
+position = Vector2(838, 605)
 
 [node name="GameUI" parent="." instance=ExtResource("1_bmbmm")]
+visible = false
 
 [node name="Background" parent="." instance=ExtResource("1_1fwmo")]
 
@@ -90,3 +107,56 @@ EmptyRate = 0
 
 [node name="WobblyPortal2" parent="Test/OutputPortal" instance=ExtResource("7_7lc4t")]
 modulate = Color(0.376471, 0.847059, 0.372549, 1)
+
+[node name="TextEdit" type="TextEdit" parent="Test"]
+offset_left = 335.0
+offset_top = 471.0
+offset_right = 635.0
+offset_bottom = 501.0
+placeholder_text = "Player name here"
+
+[node name="TextEdit2" type="TextEdit" parent="Test"]
+offset_left = 342.0
+offset_top = 519.0
+offset_right = 642.0
+offset_bottom = 549.0
+placeholder_text = "Leaderboard"
+
+[node name="TextEdit3" type="TextEdit" parent="Test"]
+offset_left = 332.0
+offset_top = 570.0
+offset_right = 632.0
+offset_bottom = 600.0
+placeholder_text = "Score"
+
+[node name="Button" type="Button" parent="Test"]
+offset_left = 412.0
+offset_top = 640.0
+offset_right = 504.0
+offset_bottom = 671.0
+text = "Push score"
+
+[node name="TextEdit4" type="TextEdit" parent="Test"]
+offset_left = 950.0
+offset_top = 681.0
+offset_right = 1250.0
+offset_bottom = 711.0
+placeholder_text = "Count here"
+
+[node name="Label" type="Label" parent="Test"]
+custom_minimum_size = Vector2(400, 200)
+offset_left = 907.0
+offset_top = 423.0
+offset_right = 1307.0
+offset_bottom = 623.0
+autowrap_mode = 2
+
+[node name="Button2" type="Button" parent="Test"]
+offset_left = 1007.0
+offset_top = 640.0
+offset_right = 1142.0
+offset_bottom = 671.0
+text = "Get leaderboard"
+
+[connection signal="pressed" from="Test/Button" to="Test" method="_on_score_pressed"]
+[connection signal="pressed" from="Test/Button2" to="Test" method="_on_leaderboard_pressed"]

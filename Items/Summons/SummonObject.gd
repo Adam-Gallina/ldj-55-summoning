@@ -90,6 +90,8 @@ func on_collision(other : SummonObject):
 	other.despawn()
 
 func despawn():
+	if not is_instance_valid(self): return
+	
 	GridController.step.disconnect(_on_step)
     
 	if get_node('CPUParticles2D'):

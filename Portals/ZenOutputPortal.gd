@@ -1,4 +1,4 @@
 extends OutputPortal
 
-func set_empty_rate(rate : int):
+func set_empty_rate(_rate : int):
     pass

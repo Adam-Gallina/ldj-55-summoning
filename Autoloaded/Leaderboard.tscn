@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdrkssjrx8xrd"]
+
+[ext_resource type="Script" path="res://Autoloaded/leaderboard.gd" id="1_pw1ei"]
+
+[node name="Leaderboard" type="Node2D"]
+script = ExtResource("1_pw1ei")
+
+[node name="GetLeaderboard" type="HTTPRequest" parent="."]
+
+[node name="PostScore" type="HTTPRequest" parent="."]
