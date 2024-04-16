@@ -19,3 +19,6 @@ func _on_infinite_pressed():
 func _on_zen_pressed():
     Leaderboard.set_gamemode("zen")
     get_tree().change_scene_to_packed(ZenScene)
+
+func _on_quit_pressed():
+    get_tree().quit()
