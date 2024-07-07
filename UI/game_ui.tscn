@@ -1101,6 +1101,7 @@ grow_vertical = 2
 scale = Vector2(1.5, 1.5)
 
 [node name="LoseScreen" type="TextureRect" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1288,6 +1289,7 @@ text = "5. Example name: 12345"
 label_settings = SubResource("LabelSettings_p415w")
 
 [node name="ErrorLabel" type="Label" parent="LoseScreen/Background2"]
+layout_mode = 0
 offset_left = 28.0
 offset_top = 99.0
 offset_right = 278.0

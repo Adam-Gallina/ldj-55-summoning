@@ -40,6 +40,7 @@ func _ready():
 	
 	
 	Leaderboard.score_posted.connect(_on_score_posted)
+	Leaderboard.leaderboard.connect(_on_leaderboard)
 
 
 func _on_score_pressed():
@@ -47,12 +48,18 @@ func _on_score_pressed():
 	Leaderboard.submit_score($TextEdit.text, int($TextEdit3.text))
 
 func _on_leaderboard_pressed():
+	Leaderboard.set_gamemode($TextEdit2.text)
 	Leaderboard.get_leaderboard(int($TextEdit4.text))
 
 
 func _on_score_posted(successful):
-	print('posted? ', successful)
+	print('post ', successful)
 	
+func _on_leaderboard(s, leaderboard):
+	print(leaderboard)
+	$Label.text = \"worked\" if s else 'boo'
+	for i in leaderboard:
+		$Label.text += \"\\n%s: %d\" % [i.name, i.score]
 "
 
 [node name="Node2D" type="Node2D"]
@@ -120,6 +127,7 @@ offset_left = 342.0
 offset_top = 519.0
 offset_right = 642.0
 offset_bottom = 549.0
+text = "test"
 placeholder_text = "Leaderboard"
 
 [node name="TextEdit3" type="TextEdit" parent="Test"]

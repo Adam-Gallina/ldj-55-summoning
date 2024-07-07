@@ -40,12 +40,12 @@ func add_point(amount=1):
 
 func submit_score(player_name, score):
     var json = JSON.stringify({ 'name': player_name, 'score':score, 'key':'adamisthebest' })
-    var headers = ["Content-Type: application/json"]
-    print($PostScore.request(ScoreEndpoint % _curr_gamemode, headers, HTTPClient.METHOD_POST, json))
+    var headers = ["Content-Type: application/json", "Access-Control-Allow-Origin: *"]
+    $PostScore.request(ScoreEndpoint % _curr_gamemode, headers, HTTPClient.METHOD_POST, json)
 
 func get_leaderboard(count):
     var json = JSON.stringify({ 'count': count })
-    var headers = ["Content-Type: application/json"]
+    var headers = ["Content-Type: application/json", "Access-Control-Allow-Origin: *"]
     $GetLeaderboard.request(LeaderboardEndpoint % _curr_gamemode, headers, HTTPClient.METHOD_GET, json)
 
 
